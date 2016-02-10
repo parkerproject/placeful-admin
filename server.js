@@ -10,7 +10,7 @@ var swaggerOptions = {
 var server = new Hapi.Server();
 server.connection({
   host: '0.0.0.0',
-  port: 1122
+  port: 1022
 });
 // Require the routes and pass the server object.
 var routes = require('./server/config/routes')(server);
