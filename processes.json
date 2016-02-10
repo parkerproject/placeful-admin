@@ -1,0 +1,8 @@
+{
+  "script": "server.js",
+  "watch": ["server", "public"],
+  "ignore_watch": ["node_modules"],
+  "watch_options": {
+    "followSymlinks": false
+  }
+}

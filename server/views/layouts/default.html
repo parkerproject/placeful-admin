@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <script src="//cdn.optimizely.com/js/2428500854.js"></script>
+  <title>{% block title %}{% endblock %}</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="msvalidate.01" content="CD2BB719CB6AAFA4DF4543C1E76575AE" />
+  <meta name="google-site-verification" content="sbhX7BD_Ie45cQvi2MDithEjO_ReZIZbrlclq_JDMFw" />
+
+  <meta name="description" content="DEALSBOX is a local deals discovery and deal aggregation engine.">
+  <meta name="author" content="DEALSBOX local deals">
+  <meta name="twitter:card" content="app">
+  <meta name="twitter:site" content="@dealsboxapp">
+  <meta name="twitter:description" content="Discover and save on local deals. We find and share the best local deals near you - food & drinks deals, spa deals, fitness deals, things to do, etc.">
+  <meta name="twitter:app:country" content="US">
+  <meta name="twitter:app:name:iphone" content="DEALSBOX">
+  <meta name="twitter:app:id:iphone" content="944253010">
+  <meta name="twitter:app:url:iphone" content="dealsbox://">
+
+
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'> {% include "../includes/head.html" %}
+
+  <script src="//load.sumome.com/" data-sumo-site-id="fab7ecc564b41a3c7981dbdd894414a66ece67ce7594bf23c586d81d50b743d1" async="async"></script>
+
+</head>
+
+<body>
+  <script>
+    (function() {
+      var _fbq = window._fbq || (window._fbq = []);
+      if (!_fbq.loaded) {
+        var fbds = document.createElement('script');
+        fbds.async = true;
+        fbds.src = '//connect.facebook.net/en_US/fbds.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(fbds, s);
+        _fbq.loaded = true;
+      }
+      _fbq.push(['addPixelId', '619153371554592']);
+    })();
+    window._fbq = window._fbq || [];
+    window._fbq.push(['track', 'PixelInitialized', {}]);
+  </script>
+  <noscript>
+    <img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=619153371554592&amp;ev=PixelInitialized" />
+  </noscript>
+
+  {% block content %}{% endblock %} {% include "../includes/foot.html" %}
+
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-6101640-24', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript">
+    (function() {
+      window._pa = window._pa || {};
+      // _pa.orderId = "myOrderId"; // OPTIONAL: attach unique conversion identifier to conversions
+      // _pa.revenue = "19.99"; // OPTIONAL: attach dynamic purchase values to conversions
+      // _pa.productId = "myProductId"; // OPTIONAL: Include product ID for use with dynamic ads
+      var pa = document.createElement('script');
+      pa.type = 'text/javascript';
+      pa.async = true;
+      pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.marinsm.com/serve/55f49613aca157488100006e.js";
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(pa, s);
+    })();
+
+    $('.text-me').on('click', function() {
+      ga('send', 'event', 'button', 'click', 'text-me-button');
+    });
+
+    $('.download-button').on('click', function() {
+      ga('send', 'event', 'button', 'click', 'download-button');
+    });
+  </script>
+
+</body>
+
+</html>

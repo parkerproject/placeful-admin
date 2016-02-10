@@ -1,0 +1,563 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0; padding:0; border:none; text-decoration:none;}
+@font-face{
+	src:url(../fonts/gothambold1.ttf);
+	font-family:gotham-bold;
+}
+@font-face{
+	src:url(../fonts/OpenSans-Light.ttf);
+	font-family:light;
+}
+@font-face{
+	src:url(../fonts/OpenSans-Regular.ttf);
+	font-family:open;
+}
+.wraper{
+	width:100%;
+}
+.inerwraper{
+	margin:auto;
+	max-width:940px;
+	position:relative;
+}
+/*******Header********/
+.header{
+	width:100%;
+	background:url(../images/header-bg.png) no-repeat;
+	/*padding:0px 0px 50px 0px;*/
+	display:table;
+	background-size:cover;
+}
+.top-header{
+	margin:auto;
+	width:100%;
+	display:table;
+	padding:20px 0px;
+}
+.logo{
+	float:left;
+	width:193px;
+	padding-top:18px;
+}
+.nav{
+	float:right;
+	width:55%;
+
+	}
+/* ------------------------------------------
+  NAVIGATION STYLES
+  (+ responsive-nav.css file is loaded in the <head>)
+--------------------------------------------- */
+.nav-collapse,
+.nav-collapse * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.nav-collapse,
+.nav-collapse ul {
+  list-style: none;
+  width: 100%;
+  float: left;
+  margin-right:150px;
+  text-align: right;
+}
+
+.nav-collapse li {
+  padding:0px 5px 0px 5px;
+  height:50px;
+}
+.nav-collapse li:hover{
+	border-bottom:2px solid #fff;
+}
+@media screen and (min-width: 48em) {
+  .nav-collapse li {
+    padding:10px 0 0 0;
+  	margin:10px 12px;
+	width:auto;
+	display:inline-block;
+  }
+}
+
+.nav-collapse a {
+  color:#fff;
+  font-size:16px;
+  font-family:open;
+  text-decoration: none;
+  width: 100%;
+  text-align:center;
+  float: left;
+}
+@media screen and (min-width: 48em) {
+  .nav-collapse a {
+    margin: 0;
+    padding:0;
+    float: left;
+    text-align: center;
+  }
+}
+
+.nav-collapse ul ul a {
+  background: #ca3716;
+}
+
+@media screen and (min-width: 48em) {
+  .nav-collapse ul ul a {
+    display: none;
+  }
+}
+
+
+/* ------------------------------------------
+  NAV TOGGLE STYLES
+--------------------------------------------- */
+
+@font-face {
+  font-family: "responsivenav";
+  src:url("../icons/responsivenav.eot");
+  src:url("../icons/responsivenav.eot?#iefix") format("embedded-opentype"),
+    url("../icons/responsivenav.ttf") format("truetype"),
+    url("../icons/responsivenav.woff") format("woff"),
+    url("../icons/responsivenav.svg#responsivenav") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.nav-toggle {
+  position: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-decoration: none;
+  text-indent: -999px;
+  position: relative;
+  overflow: hidden;
+  width: 70px;
+  height: 40px;
+  float: right;
+}
+
+.nav-toggle:before {
+  color: #FFF; /* Edit this to change the icon color */
+  font-family: "responsivenav", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  font-size: 30px;
+  text-transform: none;
+  position: absolute;
+  content: "≡";
+  text-indent: 0;
+  text-align: center;
+  line-height: 40px;
+  speak: none;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.nav-toggle.active::before {
+  font-size: 25px;
+  content:"x";
+  color:#FFF;
+}
+
+.getapp{
+	float:right;
+	width:132px;
+	padding-top:10px;
+	margin-right:20px;
+}
+.getapp img{
+	cursor:pointer;
+}
+.banner-area{
+	float:right;
+	width:64%;
+	padding-top:100px;
+}
+.banner-area h1{
+	font-family:gotham-bold;
+	color:#FFF;
+	font-size:30px;
+	background-color: rgba(0, 0, 0, 0.6);
+  padding-left: 3px;
+}
+.banner-area ul{
+	margin:30px 0px;
+	padding:0;
+	text-align:left;
+	list-style:none;
+}
+.banner-area li{
+	display:inline-block;
+	margin:10px;
+	vertical-align:top;
+}
+.banner-area li:nth-child(2){
+	padding-top:30px;
+}
+.banner-area li:nth-child(3){
+	padding-top:15px;
+}
+.email-area{
+	width:300px;
+	height:43px;
+}
+.email-area input[type=tel]{
+	float:left;
+	width:170px;
+	padding:5px;
+	height:33px;
+	color:#222222;
+	font-size:15px;
+	font-family:open;
+}
+.social{
+	float:right;
+	width:63%;
+}
+.social ul{
+	margin:0;
+	padding:0;
+	text-align:left;
+	list-style:none;
+}
+.social li{
+	display:inline-block;
+	margin:4px;
+	vertical-align:top;
+}
+
+.text-me{
+  background: #f88625;
+  color: white;
+  text-transform: uppercase;
+  display: block;
+  width: 110px;
+  height: 43px;
+  font-size: 13px;
+}
+
+.only-in-states{
+  color: white;
+  font-size: 12px;
+}
+/*********About**********/
+.about{
+	clear:both;
+	position:relative;
+	width:100%;
+	padding:50px 0px 0px 0px;
+}
+.about h1{
+	width:100%;
+	padding:20px 0px;
+	text-align:center;
+	font-size:30px;
+	color:#222222;
+	font-family:gotham-bold;
+	margin-bottom: 0;
+}
+.about p{
+	width:100%;
+	font-family:light;
+	text-align:center;
+	font-size:17px;
+	color:#888888;
+}
+.iphone{
+	clear:both;
+	padding-top:100px;
+	width:542px;
+	margin:auto;
+}
+/************Featured**********/
+.featured{
+	clear:both;
+	width:100%;
+	background:#fcf9f5;
+	padding:30px 0px 50px 0px;
+}
+.featured h1{
+	width:100%;
+	padding:10px 0px;
+	text-align:center;
+	font-size:30px;
+	color:#222222;
+	font-family:gotham-bold;
+}
+.featured p{
+	width:100%;
+	font-family:light;
+	text-align:center;
+	padding:30px 0px 0px 0px;
+	font-size:17px;
+	color:#938a7e;
+}
+.featured ul{
+	margin:60px 0px 60px 0px;
+	padding:0;
+	list-style:none;
+	text-align:center;
+}
+.featured li{
+	display:inline-block;
+	margin:10px 40px;
+	vertical-align:top;
+}
+.featured li:nth-child(1){
+	margin-top:20px;
+}
+.readmore{
+	clear:both;
+	margin:auto;
+	width:142px;
+}
+/*********Client****/
+.Client{
+	clear:both;
+	width:100%;
+	padding:30px 0px 30px 0px;
+}
+.Client h1{
+	width:100%;
+	padding:10px 0px;
+	text-align:center;
+	font-size:30px;
+	color:#222222;
+	font-family:gotham-bold;
+	margin: 0;
+}
+.Client p{
+	width:100%;
+	font-family:light;
+	text-align:center;
+	padding:20px 0px 0px 0px;
+	font-size:17px;
+	color:#888888;
+}
+.Client ul{
+	margin:50px 0px 30px 0px;
+	padding:0;
+	list-style:none;
+	text-align:center;
+}
+.Client li{
+	display:inline-block;
+	margin:0px 10px;
+	vertical-align:top;
+}
+.Client li:nth-child(1){
+	margin-top:15px;
+}
+.Client li:nth-child(2){
+	margin-top:20px;
+}
+.anddmore{
+	clear:both;
+	margin:auto;
+	width:81px;
+}
+
+.Client img {
+  width: 150px;
+}
+/*****Footer*********/
+.footer{
+	clear:both;
+	width:100%;
+	padding:20px 0px;
+	background:#222222;
+	display:table;
+	color: #888888;
+	font-size: 13px;
+}
+.left-footer{
+	float:left;
+	width: 50%;
+}
+.left-footer p{
+	padding:10px 0px;
+	color:#888888;
+	font-size:14px;
+	font-family:open;
+}
+.right-footer{
+	float:right;
+	width: 30%;
+}
+
+.footer ul{
+	text-align: center;
+}
+
+.footer li{
+	color: white;
+	list-style: none;
+	margin: 0 10px;
+	display: inline-block;
+}
+
+.footer a{
+	color: #888888;
+}
+
+.copyright{
+	padding: 20px 0 0 0;
+	text-align: center;
+    font-size: 11px;
+}
+
+
+.about-page p{
+  width: 70%;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+
+@media (min-width:300px) and (max-width:414px){
+.hide-mobile{
+	display: none!important;
+}
+.iphone{
+	width:280px;
+}
+.left-footer{
+	float:none;
+	width: 50%;
+	margin:10px auto;
+}
+.right-footer{
+	float:none;
+	margin:auto;
+	width: 30%;
+}
+.getapp{
+	width:100px;
+}
+.logo{
+	width:100px;
+	padding:18px;
+	margin-right:0px;
+}
+.banner-area{
+	float:none;
+	margin:auto;
+	width:90%;
+	padding-top:100px;
+}
+.banner-area h1{
+	font-family:gotham-bold;
+	color:#FFF;
+}
+.social{
+	float:none;
+	margin:20px auto;
+	clear:both;
+	width:90%;
+}
+.email-area{
+	width:280px;
+	height:43px;
+}
+.email-area input[type=tel]{
+	float:left;
+	width: 170px;
+	padding:5px;
+	height:33px;
+	color:#222222;
+	font-size:15px;
+	font-family:open;
+}
+.banner-area li:nth-child(3) {
+    padding-top: 0px;
+	margin:0;
+}
+}
+@media (min-width:415px) and (max-width:480px){
+	.hide-mobile{
+	display: none!important;
+}
+.iphone{
+	width:400px;
+}
+.banner-area{
+	float:none;
+	margin:auto;
+	width:90%;
+	padding-top:100px;
+}
+.banner-area h1{
+	font-family:gotham-bold;
+	color:#FFF;
+	font-size:25px;
+}
+.social{
+	float:none;
+	margin:20px auto;
+	clear:both;
+	width:90%;
+}
+}
+@media (min-width:481px) and (max-width:550px){
+.hide-mobile{
+	display: none!important;
+}
+
+.iphone{
+	width:450px;
+}
+.banner-area{
+	float:none;
+	margin:auto;
+	width:90%;
+	padding-top:100px;
+}
+.banner-area h1{
+	font-size:20px;
+}
+.social{
+	float:none;
+	margin:20px auto;
+	clear:both;
+	width:90%;
+}
+}
+@media (min-width:551px) and (max-width:1024px){
+
+.banner-area{
+	float:none;
+	margin:auto;
+	width:90%;
+	padding-top:100px;
+}
+.banner-area h1{
+	font-family:gotham-bold;
+	color:#FFF;
+	font-size:30px;
+}
+.social{
+	float:none;
+	margin:20px auto;
+	clear:both;
+	width:90%;
+}
+.iphone{
+	width:450px;
+}
+}
+@media (min-width:300px) and (max-width:767px){
+.nav {
+    float: none;
+    width: 40%;
+	margin:20px auto;
+}
+}

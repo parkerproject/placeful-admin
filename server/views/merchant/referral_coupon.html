@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Referral Coupon</title>
+  <link rel="stylesheet" href="/merchant/bootstrap/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="//dl.dropbox.com/s/c2j8q9kuyy8fnjj/Placeful_favicon_96.png?dl=0">
+  <style>
+    section {
+      padding: 1% 0
+    }
+    
+    .alizarin {
+      background: #e74c3c
+    }
+    
+    .midnight-blue {
+      background: #2c3e50
+    }
+    
+    .dl {
+      padding: 0;
+      position: relative;
+      border: 1px dashed #cf4127
+    }
+    
+    .dl:before {
+      content: " ";
+      height: 20px;
+      width: 20px;
+      background: #ddd;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 20px;
+      margin-left: -10px
+    }
+    
+    .dl .brand {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      padding: 10px 15px;
+      margin-top: 10px;
+      text-align: center;
+      min-height: 100px
+    }
+    
+    .dl .discount {
+      min-height: 50px;
+      position: relative;
+      font-size: 80px;
+      /*line-height: 80px;*/
+      text-align: center;
+      font-weight: 700;
+      /*padding: 20px 15px 0;*/
+      color: #fff;
+    }
+    
+    .dl .discount:after {
+      content: " ";
+      border-right: 20px solid transparent;
+      border-left: 20px solid transparent;
+      position: absolute;
+      bottom: -20px;
+      left: 20%
+    }
+    
+    .dl .discount.alizarin:after {
+      border-top: 20px solid #e74c3c
+    }
+    
+    .dl .discount .type {
+      font-size: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: -30px
+    }
+    
+    .dl .descr {
+      margin-top: 10px;
+      padding: 20px 15px 5px 15px;
+      font-size: 20px;
+    }
+    
+    .dl .ends {
+      padding: 0 15px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    .dl .coupon {
+      min-height: 50px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 20px 15px
+    }
+    
+    .dl .coupon a.open-code {
+      color: #fff
+    }
+    
+    .dl .coupon .code {
+      letter-spacing: 1px;
+      border-radius: 4px;
+      margin-top: 10px;
+      padding: 10px 15px;
+      color: #fff;
+      font-size: 25px;
+    }
+    
+    .descr li {
+      padding-bottom: 10px;
+    }
+    
+    .descr ol {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h4 style="text-align: center;font-weight: normal;">Present this coupon to a business around you.</h4>
+  <section id="labels">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-6" style="margin: 0 auto;float:none;">
+          <div class="dl">
+            <div class="brand">
+              <h2>
+                <img src="https://dl.dropbox.com/s/902su9h1gjjggyk/dealsbox_logo.png?dl=0" alt="Welcome to DEALSBOX" style="max-width:100%;width:150px;" />
+                <small>Merchant</small>
+              </h2>
+            </div>
+            <div class="discount alizarin">
+              $40
+              <div class="type">
+                off
+              </div>
+            </div>
+            <div class="descr">
+              <ol>
+                <li>Register on <a href="https://merchant.dealsbox.co">https://merchant.dealsbox.co</a></li>
+                <li> Enter the referral code to save $40 on your first month</li>
+              </ol>
+            </div>
+            <div class="ends">
+              <small>
+                * Only valid for new merchants.
+              </small>
+            </div>
+            <div class="coupon midnight-blue">
+              <div id="code-1" class="code">
+                <small style="font-size:12px;">Referral code:</small> {{code}}
+              </div>
+              <small style="color: white;font-size: 13px;letter-spacing: 0.5px;font-weight: normal;">code is case-sensitive</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-6101640-31', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</body>
+
+</html>

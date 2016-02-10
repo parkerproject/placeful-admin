@@ -1,0 +1,156 @@
+{% extends '../layouts/merchant_default.html' %} {% block title %}{{ title }}{% endblock %} {% block content %}
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  {% include '../includes/merchant_head.html' %} {% include '../includes/merchant_sidebar.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h2>Edit Deal</h2>
+          <h4 class="text-danger">You cannot make changes to deal that has started</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <img src="{{deal.large_image}}" alt="" style="max-width:100%;" />
+            </div>
+          </div>
+        </div>
+
+        <div class="box-body">
+          <form action="/deal/edit_post" method="post" id="editForm" enctype="multipart/form-data" name="dealForm">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group has-feedback">
+                  <label for="">Deal title</label>
+                  <input type="text" class="form-control" placeholder="ex. $10 Off $30" name="title" autocomplete="off" value="{{deal.title}}" required {% if hasDealStarted %}disabled{% endif %}>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <input type="hidden" name="code" value="{{deal.coupon_code}}">
+                <p class="text-center">Coupon Code:
+                  <span class="coupon_code">{{deal.coupon_code}}</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group has-feedback">
+                  <label for="">In a Nutshell
+                    <small class="text-muted" data-toggle="tooltip" title="deal description">?</small>
+                  </label>
+                  <textarea class="form-control" rows="3" placeholder="Tell us more about your deal" name="description" required {% if hasDealStarted %}disabled{% endif %}>{{deal.description}}</textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group has-feedback">
+                  <label for="">Fine Print</label>
+                  <textarea class="form-control" rows="3" placeholder="fine print about the deal" name="fine_print" required {% if hasDealStarted %}disabled{% endif %}>{{deal.fine_print}}</textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <label for="">Deal Value</label>
+                <input type="text" class="form-control" placeholder="ex. 5" name="discount_value" autocomplete="off" value="{{deal.offer}}" disabled>
+              </div>
+
+
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>When do you want this deal to run:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" class="form-control pull-right" name="deal_date" id="reservation" value="{{deal.start_date}} - {{deal.expires_at}}" required {% if hasDealStarted %}disabled{% endif %}>
+                  </div>
+                  <!-- /.input group -->
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Deal category</label>
+                  <input name="category" id="category" class="form-control" value="{{deal.category_name}}" required {% if hasDealStarted %}disabled{% endif %}/>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputFile">Change deal image</label>
+                  <input type="file" id="exampleInputFile" name="file" {% if hasDealStarted %}disabled{% endif %}>
+                  <p class="help-block">(Image must be between 300px and 1500px wide)</p>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <label>Publish Deal</label>
+                <div class="form-group">
+                  <label class="label-radio">
+                    <input type="radio" name="publish" value="yes" class="minimal-red" {% if deal.published==='yes' %}checked{% endif %}> Yes
+                  </label>
+                  <label class="label-radio">
+                    <input type="radio" name="publish" value="no" class="minimal-red" {% if deal.published==='no' %}checked{% endif %}> No
+                  </label>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="row">
+              <!-- /.col -->
+              <div class="col-xs-4">
+                <input type="hidden" name="business_id" value={{business_id}} />
+                <input type="hidden" name="deal_id" value={{deal.deal_id}} />
+                <input type="hidden" name="nonhumans" value="" />
+                <p>
+                  <button type="submit" class="btn btn-success btn-block btn-flat save-change-js">Save changes</button>
+                </p>
+
+                <p>
+                  <button type="submit" class="btn btn-danger btn-block btn-flat delete-deal-js">Delete deal</button>
+                </p>
+              </div>
+              <!-- /.col -->
+            </div>
+
+          </form>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.3.0
+    </div>
+    <strong>Copyright &copy; 2014-2015 DEALSBOX.</strong> All rights reserved.
+  </footer>
+
+  <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+{% endblock %}

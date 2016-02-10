@@ -1,0 +1,219 @@
+{% extends '../layouts/merchant_default.html' %} {% block title %}{{ title }}{% endblock %} {% block content %}
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  {% include '../includes/merchant_head.html' %} {% include '../includes/merchant_sidebar.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h2>Create a Deal</h2>
+          <p class="lead">Enter your deal details to generate a coupon on the <a href="https://itunes.apple.com/us/app/dealsbox/id944253010?mt=8" style="text-decoration:underline;color:#3c8dbc;">app</a></p>
+        </div>
+
+        <div class="box-body">
+          <form action="/deal/builder" method="post" id="dealForm" enctype="multipart/form-data" name="dealForm">
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group has-feedback">
+                  <label for="">Deal title</label>
+                  <input type="text" class="form-control" placeholder="ex. $10 Off $30" name="title" autocomplete="off" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <input type="hidden" name="coupon_code" value="">
+                <p class="text-center">Coupon Code:
+                  <span class="coupon_code coupon-js"></span>
+                </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group has-feedback">
+                  <label for="">In a Nutshell
+                    <small class="text-muted" data-toggle="tooltip" title="deal description">?</small>
+                  </label>
+                  <textarea class="form-control" rows="3" placeholder="Tell us more about your deal" name="description" required></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group has-feedback">
+                  <label for="">Fine Print</label>
+                  <textarea class="form-control" rows="3" placeholder="fine print about the deal" name="fine_print"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="">Deal Value
+                      <small class="text-muted" data-toggle="tooltip" title="means the amount a customer will save off the undiscounted value of this product or service">?</small>
+                    </label>
+                    <input type="text" class="form-control" placeholder="ex. 5" name="discount_value" autocomplete="off" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="">Deal Value Off ($ or %)</label>
+                    <div class="form-group">
+                      <label class="label-radio">
+                        <input type="radio" name="discount_type" value="%" class="minimal-red" checked> %
+                      </label>
+                      <label class="label-radio">
+                        <input type="radio" name="discount_type" value="$" class="minimal-red"> $
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>When do you want this deal to run:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" class="form-control pull-right" name="deal_date" id="reservation" required>
+                  </div>
+                  <!-- /.input group -->
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Deal category</label>
+                  <select class="form-control" name="category" id="category" required>
+                    <option></option>
+                    <option>Food &amp; Drinks</option>
+                    <option>Health, Beauty &amp; Fitness</option>
+                    <option>Events &amp; Activities</option>
+                    <option>Services</option>
+                    <option>Shopping</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputFile">Add Deal image
+                    <small class="text-danger">
+                      <strong>(Image must be between 300px and 1500px wide)</strong>
+                    </small>
+                  </label>
+                  <input type="file" id="exampleInputFile" name="file" required>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <!-- /.col -->
+              <div class="col-xs-4">
+                <input type="hidden" name="business_id" value="{{business_id}}" />
+                <input type="hidden" name="business_email" value="{{business_email}}" />
+                <input type="hidden" name="yelp_URL" value="{{yelp_URL}}" />
+                <input type="hidden" name="business_address" value="{{business_address}}" />
+                <input type="hidden" name="business_phone" value="{{business_phone}}" />
+                <input type="hidden" name="business_map" value="{{business_map}}" />
+                <input type="hidden" name="business_lat" value="{{business_lat}}" />
+                <input type="hidden" name="business_lng" value="{{business_lng}}" />
+                <input type="hidden" name="business_icon" value="{{business_icon}}" />
+                <input type="hidden" name="business_locality" value="{{business_locality}}" />
+                <input type="hidden" name="business_name" value="{{business_name}}" />
+                <input type="hidden" name="nonhumans" value="" />
+                <input type="hidden" name="publish" value="" />
+
+                <button type="submit" class="btn btn-warning btn-block btn-flat preview-js">Preview Deal</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.3.0
+    </div>
+    <strong>Copyright &copy; 2014-2015 DEALSBOX.</strong> All rights reserved.
+  </footer>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">
+            <h2>Ticket to our town's the art of food</h2>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="location">
+            <header class="business_name"></header>
+            <address class="dealAddress"></address>
+            <strong>Tel</strong>:
+            <span class="dealPhone"></span>
+          </div>
+
+          <img src="" alt="" class="deal_image">
+          <section>
+            <div style="margin: 5px 0;text-align: right;font-size: 1.3em;">
+              <strong>Deal</strong>:
+              <span class="offer text-success">50</span>
+            </div>
+            <p>
+              <h4 style="border-bottom:1px solid #e1e1e1;font-weight: bold;">Description</h4>
+              <span class="dealDescription">A dentist of the Academy of General Dentistry and American Dental Association cleans teeth and supplies patients with home whitening tools"</span>
+            </p>
+            <p>
+              <h4 style="border-bottom:1px solid #e1e1e1;font-weight: bold;">Fine Print</h4>
+              <span class="finePrint">A dentist of the Academy of General Dentistry and American Dental Association cleans teeth and supplies patients with home whitening tools"</span>
+            </p>
+            <div class="dealDate">
+              <strong>Deal Date
+              </strong>:
+              <span>10/20/2015</span>
+            </div>
+            <div class="dealCategory">
+              <strong>Deal Category</strong>:
+              <span></span>
+            </div>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default save_deal" data-dismiss="modal">Save Deal</button>
+          <button type="button" class="btn btn-success publish_deal">Publish Deal</button>
+          <p>
+            <small class="text-danger">Deal will go live on the start date once is published</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+{% endblock %}

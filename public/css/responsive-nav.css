@@ -1,0 +1,76 @@
+/*! responsive-nav.js 1.0.34 by @viljamis */
+
+.nav-collapse ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+}
+
+.js .nav-collapse {
+  clip: rect(0 0 0 0);
+  max-height: 0;
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  zoom: 1;
+}
+
+.nav-collapse.opened {
+  max-height: 9999px;
+}
+
+.nav-toggle {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+@media screen and (min-width: 48em) {
+  .js .nav-collapse {
+    position: relative;
+  }
+  .js .nav-collapse.closed {
+    max-height: none;
+  }
+  .nav-toggle {
+    display: none;
+  }
+}
+
+@media (min-width:300px) and (max-width:930px){
+.line-about{
+	width:90%;
+	float:none;
+	margin:auto;
+	}
+.contact-form{
+	width:90%;
+	margin:30px auto;
+	float:none;
+	}
+}
+@media (min-width:300px) and (max-width:414px){
+	
+.mission li{
+	width:280px;
+}
+.mission li:nth-child(2){
+	width:280px;
+}
+.form-actual{
+	width:92%;
+	border:7px #4ce8fe solid;
+	margin-top:0px;
+	padding:5% 4%;
+	}
+}
+@media (min-width:414px) and (max-width:480px){
+.mission li:nth-child(2){
+	width:380px;
+}
+}

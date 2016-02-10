@@ -1,0 +1,138 @@
+{% extends '../layouts/merchant_default.html' %} {% block title %}{{ title }}{% endblock %} {% block content %}
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  {% include '../includes/merchant_head.html' %} {% include '../includes/merchant_sidebar.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <p class="lead" style="margin:0;">Manage Your Profile</p>
+          <span>You can view, edit your email</span>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-info alert-dismissable success-js" style="display: none;">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4> <i class="icon fa fa-check"></i> Your email has been updated!</h4>
+            </div>
+          </div>
+        </div>
+        <div class="box-body">
+          <form method="post" action="/profile" name="updateProfileForm" id="updateProfileForm">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="">Business Name</label>
+                  <input type="text" class="form-control" value="{{business_name}}" name="business_name" required disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="">Business Email</label>
+                  <input type="text" class="form-control" value="{{business_email}}" name="business_email" required>
+                  <span class="error" style="display: none;"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- /.col -->
+              <div class="col-xs-4">
+                <input type="hidden" name="business_id" value={{business_id}} />
+                <input type="hidden" name="nonhumans" value="" />
+
+                <button type="submit" class="btn btn-success btn-block btn-flat profile-js">Update Profile</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+        </div>
+
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="border:none;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding:0;">
+          <div class="box-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel panel-default coupon">
+                  <div class="panel-heading clearfix" id="head">
+                    <div class="panel-title" id="title">
+                      <img src="" class="small_image">
+                      <span class="hidden-xs title"></span>
+                      <span class="visible-xs title"></span>
+                    </div>
+                  </div>
+                  <div class="panel-body">
+                    <img src="" class="coupon-img img-rounded">
+                    <div class="col-md-12">
+                      <div class="offer number"></div>
+                    </div>
+                    <div class="col-md-12">
+                      <h3>Deal Description</h3>
+                      <span class="description"></span>
+                    </div>
+                    <div class="col-md-12">
+                      <h3>The Fine Print</h3>
+                      <p class="disclosure"></p>
+                    </div>
+                  </div>
+                  <div class="panel-footer">
+                    <div class="coupon-code">
+                      Code:
+                      <span class="code"></span>
+                    </div>
+                    <div class="exp">Expires:
+                      <span class="expiry_date"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <a type="button" class="btn btn-warning edit_deal" href="">Edit Deal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class=" main-footer ">
+    <div class="pull-right hidden-xs ">
+      <b>Version</b> 2.3.0
+    </div>
+    <strong>Copyright &copy; 2014-2015 DEALSBOX.</strong> All rights reserved.
+  </footer>
+
+  <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+  <div class="control-sidebar-bg "></div>
+</div>
+<!-- ./wrapper -->
+
+{% endblock %}

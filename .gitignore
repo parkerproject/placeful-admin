@@ -1,0 +1,17 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.idea
+.env
+
+pids
+results
+npm-debug.log
+node_modules
+server/controller/deal_images
+server/controllers/find.js

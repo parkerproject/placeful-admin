@@ -1,0 +1,193 @@
+body{
+  font-family: 'Dosis';
+  font-size: 1.6em;
+}
+
+.button.button-primary {
+    background-color: #DB462C;
+    border-color: #DB462C;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 30px;
+}
+
+
+.button.button-primary:focus,
+.button.button-primary:hover,
+.button.button-primary:visited,
+.button.button-primary:active {
+    background-color: #DB462C;
+    border-color: #DB462C;
+}
+
+.button.button-primary.button-success{
+  background-color: rgb(28, 184, 65);
+  border-color: rgb(28, 184, 65);
+}
+
+.button.button-primary.button-success:focus,
+.button.button-primary.button-success:hover,
+.button.button-primary.button-success:visited,
+.button.button-primary.button-success:active{
+  background-color: rgb(28, 184, 65);
+  border-color: rgb(28, 184, 65);
+}
+
+a {
+    color: #DB462C;
+}
+
+.header {
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    position: relative;
+    color: white;
+}
+
+.header-image {
+    background: url(../images/salon.png) no-repeat;
+    background-size: cover;
+    height: 500px;
+    color: white;
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.logo {
+    color: white;
+    padding: 20px 20px 20px 0;
+}
+
+.logo span {
+    display: block;
+    width: 150px;
+    text-indent: -9999px;
+    float: left;
+}
+
+.logo i {
+    font-style: normal;
+    font-size: 21px;
+    position: relative;
+    top: -2px;
+    left: 1px;
+}
+
+.header li {
+    display: inline-block;
+    list-style: none;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.header li a {
+    color: white;
+    text-decoration: none;
+}
+
+.blurb {
+    padding-top: 20%;
+}
+
+.login {
+    border: 2px solid white;
+    border-radius: 30px;
+    width: 70px;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+    font-weight: bold;
+}
+
+.how-it-works {
+    padding-top: 10px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin-top: 10%
+}
+
+hr {
+    margin: 10px 0;
+}
+
+.space {
+    padding: 30px;
+}
+
+.phone-container {
+    position: relative
+}
+
+.phone-bg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+    background: #f7f7f7;
+    display: block;
+}
+
+.container-left,
+.container-right {
+    z-index: 1;
+    position: relative;
+}
+
+.container-left {
+    padding-top: 14%;
+}
+
+.footer {
+    background: #000;
+    color: white;
+    margin: 0;
+    bottom: 0;
+    padding: 10px 0;
+    font-size: 12px;
+    font-weight: normal;
+    color: #ccc;
+}
+
+.footer img {
+    position: relative;
+    top: 10px;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.badge {
+    box-sizing: border-box;
+    margin: 0 5px 0 0;
+    padding-top: .3em;
+    padding-right: .4em;
+    padding-left: .4em;
+    padding-bottom: .2em;
+    min-width: 1.5em;
+    min-height: 1em;
+    line-height: 1em;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    background-color: black;
+    border-radius: 1em;
+}
+
+small{
+  font-size: 100%;
+}
+
+.underlogo{
+  position: relative;
+  top: -3px;
+  font-size: 12px;
+  color: #ccc;
+}

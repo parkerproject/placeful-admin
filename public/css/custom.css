@@ -1,0 +1,342 @@
+/* Shared */
+
+.button {
+    border-radius: 100px;
+}
+
+.topbar {
+    background: black;
+}
+
+.top-nav,
+.logo {
+    margin: 10px 0 10px 40px;
+}
+
+.logo {
+    display: block;
+    background: url(../images/logo.png)no-repeat;
+    width: 200px;
+    height: 29px;
+    text-indent: -9999px;
+}
+
+.top-nav li {
+    display: inline;
+    list-style: none;
+    padding: 20px 10px 10px 10px;
+}
+
+.top-nav li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.top-nav li a:hover {
+    color: #ce3f21;
+}
+
+.top-nav ul {
+    position: relative;
+    top: 10px
+    /*    text-align: right;*/
+    /*
+    height: 30px;
+    line-height: 30px;
+*/
+}
+/* Sections */
+
+.section {
+    padding: 8rem 0 7rem;
+    text-align: center;
+}
+
+.section-heading,
+.section-description {
+    margin-bottom: 1.2rem;
+}
+/* Hero */
+
+.phones {
+    position: relative;
+}
+
+.phone {
+    position: relative;
+    max-width: 80%;
+    margin: 3rem auto -12rem;
+}
+
+.phone + .phone {
+    display: none;
+}
+
+.ios-download {
+    background: url(../images/ios_app_badges.png)no-repeat;
+    display: block;
+    text-indent: -9999px;
+    width: 157px;
+    height: 45px;
+}
+/* Values */
+
+.values {
+    /*background-image: url('../images/values-bg.jpg');*/
+    
+    background-size: cover;
+    color: #000;
+    padding-bottom: 1rem!important;
+    padding-top: 10rem!important;
+    height: auto;
+    text-align: left;
+}
+
+.merchants {
+    padding: 0;
+    margin: 0;
+}
+
+.merchants li {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.merchants li:first-child {
+    padding-left: 0;
+}
+
+.groupon {
+    text-indent: -9999px;
+    background: url('../images/groupon.png') no-repeat;
+    height: 35px;
+    width: 80px;
+}
+
+.livingsocial {
+    text-indent: -9999px;
+    background: url('../images/livingsocial.png') no-repeat;
+    height: 35px;
+    width: 89px;
+}
+
+.restaurant {
+    text-indent: -9999px;
+    background: url('../images/restaurant.png') no-repeat;
+    height: 35px;
+    width: 145px;
+}
+
+.amazon {
+    text-indent: -9999px;
+    background: url('../images/amazon.png') no-repeat;
+    height: 35px;
+    width: 130px;
+}
+
+.yelp {
+    text-indent: -9999px;
+    background: url('../images/yelp.png') no-repeat;
+    height: 35px;
+    width: 65px;
+}
+
+.text-button,
+.text-button:focus {
+    background: #ce3f21;
+    border: 1px solid #ce3f21;
+    color: white;
+}
+
+.value-multiplier {
+    margin-bottom: .5rem;
+    color: #000;
+}
+
+.value-heading {
+    margin-bottom: .3rem;
+}
+
+.value-description {
+    opacity: .8;
+    font-weight: 300;
+}
+/* Help */
+
+.get-help {
+    border-bottom: 1px solid #ddd;
+    padding: 50px 0!important;
+}
+/* Categories */
+
+.categories {
+    background-image: url('../images/values-bg.jpg');
+    background-size: cover;
+    color: #fff;
+}
+
+.categories .section-description {
+    margin-bottom: 4rem;
+}
+
+.social a {
+    font-size: 1.2em;
+    color: white;
+    margin-right: 7px;
+    text-decoration: none;
+}
+
+label {
+    color: red;
+}
+/* Bigger than 550 */
+
+@media (min-width: 550px) {
+    .section {
+        padding: 12rem 0 11rem;
+    }
+    .hero {
+        padding-bottom: 12rem;
+        text-align: left;
+        height: 165px;
+    }
+    .phone {
+        position: absolute;
+        top: -7rem;
+        right: 3rem;
+        max-height: 362px;
+        z-index: 3;
+    }
+    .phone + .phone {
+        top: -6rem;
+        display: block;
+        max-width: 73.8%;
+        right: 0;
+        z-index: 2;
+        max-height: 338px;
+    }
+    .hero-heading {
+        font-size: 2.4rem;
+    }
+}
+/* Bigger than 750 */
+
+@media (min-width: 750px) {
+    .hero {
+        height: 190px;
+    }
+    .hero-heading {
+        font-size: 2.6rem;
+    }
+    .section {
+        padding: 14rem 0 15rem;
+    }
+    .hero {
+        padding: 16rem 0 14rem;
+    }
+    .section-description {
+        max-width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .phone {
+        top: -14rem;
+        right: 5rem;
+        max-height: 510px;
+    }
+    .phone + .phone {
+        top: -12rem;
+        max-height: 472px;
+    }
+    .categories {
+        padding: 15rem 0 8rem;
+    }
+}
+/* Bigger than 1000 */
+
+@media (min-width: 1000px) {
+    .section {
+        padding: 20rem 0 19rem;
+    }
+    .hero {
+        padding: 22rem 0;
+    }
+    .hero-heading {
+        font-size: 3.0rem;
+    }
+    .phone {
+        top: -16rem;
+        max-height: 615px;
+    }
+    .phone + .phone {
+        top: -14rem;
+        max-height: 570px;
+    }
+}
+
+#tabs ul li {
+    list-style: none;
+}
+
+.how-enter {
+    padding: 0!important;
+    font-size: 2em;
+}
+
+.footer {
+    background: black;
+    color: gray;
+    padding-top: 10px;
+}
+
+.footer ul {
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer ul li {
+    display: inline-block;
+}
+
+.footer p {
+    text-align: center;
+}
+
+.tracking {
+    text-align: center;
+    display: block;
+}
+
+.twitter {
+    text-indent: -9999px;
+    background: url(../images/twitter-icon.png) no-repeat;
+    width: 53px;
+    height: 49px;
+    direction: ltr;
+    display: block;
+}
+
+.facebook {
+    text-indent: -9999px;
+    background: url(../images/fb_icon.png) no-repeat;
+    width: 51px;
+    height: 49px;
+    direction: ltr;
+    display: block;
+    margin-right: 10px;
+}
+
+@media only screen and (max-device-width: 768px) {
+    .ios-download {
+        margin: 0 auto;
+    }
+    #tabs,
+    #tabs2,
+    #tabs3,
+    #tabs4,
+    #tabs5 {
+        width: 85%;
+        margin: 0 auto;
+    }
+}

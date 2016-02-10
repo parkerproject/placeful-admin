@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin - DEALSBOX</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.5 -->
+  <link rel="stylesheet" href="/merchant/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="/merchant/plugins/daterangepicker/daterangepicker-bs3.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="/merchant/plugins/iCheck/all.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/merchant/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/merchant/dist/css/skins/skin-red.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <link rel="icon" type="image/png" href="//dl.dropbox.com/s/c2j8q9kuyy8fnjj/Placeful_favicon_96.png?dl=0">
+  <style>
+    .main-header .logo .logo-lg {
+      background: url('https://lh3.googleusercontent.com/hnhQ3hoyoP62WMVQbGeEn76vO4qhkH2xDkDe8oDgobvVoeOMg5YF_X2sU04om-u2oH0eBTK-2LtD_OnECU_P8PZutF1y');
+      width: 183px;
+      text-indent: -9999px;
+      background-repeat: no-repeat;
+      position: relative;
+      top: 10px;
+      display: block;
+    }
+    
+    .login-logo a,
+    .register-logo a {
+      background: url('/images/Placeful-logo-black.png') no-repeat;
+      text-indent: -9999px;
+      width: 250px;
+      display: inline-block;
+      height: 68px;
+    }
+    
+    .for-merchant {
+      color: gray;
+      font-size: 30px;
+      float: left;
+    }
+    
+    .login-page,
+    .register-page {
+      background: white;
+    }
+    
+    .login-logo,
+    .register-logo {
+      margin-bottom: 0;
+    }
+    
+    .login-box-body,
+    .register-box-body {
+      border: 1px solid #ccc;
+    }
+    
+    .logout {
+      float: right;
+      color: white;
+      position: relative;
+      right: 20px;
+      top: 9px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    .logout:hover {
+      color: gray;
+    }
+    
+    .error {
+      color: red;
+      font-weight: normal;
+    }
+    
+    .btn-primary,
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active {
+      background-color: #DB462C;
+      border-color: #DB462C;
+      font-weight: bold;
+    }
+    
+    a,
+    a:hover,
+    a:focus,
+    a:active {
+      color: #DB462C
+    }
+    
+    body {
+      font-family: sans-serif;
+    }
+    
+    .status {
+      position: absolute;
+      top: 0;
+      font-size: 20px;
+      display: none;
+    }
+    
+    #myModal img {
+      max-width: 100%;
+    }
+    
+    .dealPrice,
+    .normalPrice {
+      padding: 2px 0;
+    }
+    
+    address {
+      margin: 0;
+    }
+    
+    .business_name {
+      font-weight: bold;
+    }
+    
+    .location {
+      margin-bottom: 10px;
+    }
+    
+    .normalPrice {
+      text-decoration: line-through;
+    }
+    
+    .pricing {
+      padding-left: 0;
+      text-align: right;
+      font-size: 8rem;
+      display: inline;
+    }
+    
+    .pricing-currency {
+      text-align: right;
+      padding-right: 0;
+      top: -1.5rem;
+      position: relative;
+      font-size: 4rem;
+    }
+    
+    .pricing-period {
+      position: relative;
+      font-size: 3rem;
+    }
+    
+    .get-started {
+      text-transform: capitalize;
+    }
+    
+    .plan-info {
+      font-size: 1.5rem;
+      margin-left: 50px;
+    }
+    
+    .full .box-title {
+      font-weight: bold;
+    }
+    
+    #stripe-form .form-row {
+      margin: 17px 0;
+    }
+    
+    .modal-footer {
+      margin-top: 20px;
+    }
+    
+    #stripe-form .row {
+      margin-bottom: 10px;
+    }
+    
+    .card-wrapper {
+      margin-bottom: 20px;
+    }
+    
+    .cc-text {
+      font-weight: bold;
+    }
+    
+    .clearfix:after {
+      content: ".";
+      visibility: hidden;
+      display: block;
+      height: 0;
+      clear: both;
+    }
+    
+    .btn-primary[disabled] {
+      background-color: #d27241!important;
+      border-color: #d27241!important;
+    }
+    
+    .text-center {
+      text-align: center;
+      position: relative;
+    }
+    
+    .or {
+      position: absolute;
+      font-size: 23px;
+      top: 21px;
+      left: 30px;
+    }
+    
+    .label-radio {
+      font-weight: normal;
+      padding-right: 10px;
+    }
+    
+    .coupon_code {
+      font-size: 3rem;
+      color: #cf4127;
+    }
+    
+    .btn {
+      font-weight: bold;
+    }
+    
+    .g-recaptcha {
+      margin-bottom: 10px;
+    }
+    
+    label {
+      font-weight: normal;
+    }
+    
+    .coupon {
+      border: 3px dashed #bcbcbc;
+      border-radius: 10px;
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-weight: 300;
+      margin: 10px 0 20px 15px;
+      position: relative;
+    }
+    
+    .coupon-img {
+      width: 300px;
+      margin-bottom: 15px;
+      padding: 0;
+    }
+    
+    .number {
+      font-size: 40px;
+      font-weight: 700;
+    }
+    
+    .small_image {
+      display: block;
+      float: left;
+      margin-right: 10px;
+    }
+    
+    .code {
+      font-weight: bold;
+    }
+    
+    .modal-content {
+      height: 600px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    
+    .referral_code {
+      border: 1px dashed;
+    }
+    
+    .login-box,
+    .register-box {
+      width: 100%;
+    }
+    
+    @media screen and (min-width: 1024px) {
+      .login-box,
+      .register-box {
+        width: 50%;
+      }
+    }
+    
+    .btn-primary {
+      height: 40px;
+    }
+  </style>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
+  <!-- Start of dealsbox Zendesk Widget script -->
+
+</head>
+<div class="login-box">
+  <div class="login-logo clearfix">
+    <a href="/"><b>Admin</b>LTE</a>
+    <!-- <span class="for-merchant">Merchant</span> -->
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <h4 class="login-box-msg">
+      <p class="lead">Login to Merchant Area</p>
+    </h4>
+    <form action="/login" method="post">
+      <span class="text-danger">{{message}}</span>
+      <div class="form-group has-feedback">
+        <input type="username" class="form-control" placeholder="Email" name="username">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Password" name="password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+
+        <!-- /.col -->
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-primary btn-block btn-flat" style="width:250px;margin:0 auto;">Log In</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+    <!-- /.social-auth-links -->
+
+    <!-- <a href="#">I forgot my password</a> -->
+    <br>
+    <a href="/register" class="text-center" style="display:block;">Register as a merchant</a>
+    <br />
+    <a href="/forgotpass" class="text-center" style="display:block;">I forgot my password</a>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+
+
+<!-- jQuery 2.1.4 -->
+<script src="/merchant/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="/merchant/bootstrap/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="/merchant/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="/merchant/plugins/fastclick/fastclick.min.js"></script>
+<!-- AdminLTE App -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script src="/merchant/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="/merchant/dist/js/app.min.js"></script>
+<script src="/merchant/dist/js/startswith.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script src="/merchant/plugins/iCheck/icheck.min.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script src="/merchant/dist/js/merchant.js"></script>
+
+</body>
+
+</html>
