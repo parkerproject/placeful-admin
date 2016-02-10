@@ -1,28 +1,27 @@
-var Hapi = require('hapi');
-var Inert = require('inert');
-var Vision = require('vision');
-var path = require('path');
-var Hapi_auth = require('hapi-auth-cookie');
-var HapiSwagger = require('hapi-swagger');
+var Hapi = require('hapi')
+var Inert = require('inert')
+var Vision = require('vision')
+var path = require('path')
+var Hapi_auth = require('hapi-auth-cookie')
+var HapiSwagger = require('hapi-swagger')
 var swaggerOptions = {
   apiVersion: '1.0.0'
-};
-var server = new Hapi.Server();
+}
+var server = new Hapi.Server()
 server.connection({
-  host: '0.0.0.0',
-  port: 1022
-});
-// Require the routes and pass the server object.
-var routes = require('./server/config/routes')(server);
+    host: '0.0.0.0',
+    port: 1222
+  })
+  // Require the routes and pass the server object.
+var routes = require('./server/config/routes')(server)
 
-global.appRoot = path.resolve(__dirname);
+global.appRoot = path.resolve(__dirname)
 
 // Export the server to be required elsewhere.
-module.exports = server;
+module.exports = server
 
 // Bootstrap Hapi Server Plugins, passes the server object to the plugins
-//require('./server/config/plugins')(server);
-
+// require('./server/config/plugins')(server)
 
 server.register([Inert, Vision, Hapi_auth, {
   register: HapiSwagger,
@@ -33,7 +32,7 @@ server.register([Inert, Vision, Hapi_auth, {
     engines: {
       html: require('swig')
     }
-  });
+  })
 
   server.auth.strategy('session', 'cookie', {
     password: 'dancingtomorrow',
@@ -41,9 +40,9 @@ server.register([Inert, Vision, Hapi_auth, {
     redirectTo: '/login',
     isSecure: false,
     ttl: 15 * 60 * 60 * 1000
-  });
-  server.route(routes);
+  })
+  server.route(routes)
   server.start(function () {
-    console.log('Server started at: ' + server.info.uri);
-  });
-});
+    console.log('Server started at: ' + server.info.uri)
+  })
+})
