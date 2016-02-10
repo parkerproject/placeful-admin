@@ -3153,8 +3153,7 @@ table.alt tfoot {
 }
 
 .wrapper.style1 {
-    background: #fff;
-    color: #000;
+    background: url(/images/header2.png) no-repeat;
 }
 
 .wrapper.style1-alt {
@@ -3757,6 +3756,10 @@ body.is-loading #sidebar nav ul li {
     #sidebar {
         display: none;
     }
+    .how li{
+      width: 100%!important;
+    height: auto!important;
+    }
 }
 
 
@@ -3810,7 +3813,8 @@ body.is-loading #sidebar nav ul li {
 }
 
 .featured .button {
-    background-color: #3AB54A;
+    /*background-color: #3AB54A;*/
+    background-color: #FF4136;
     border: none!important;
     box-shadow: 0 0 28px rgba(0, 0, 0, .2);
 }
