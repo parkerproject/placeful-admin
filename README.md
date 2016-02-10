@@ -1,3 +1,3 @@
-DEALSBOX Merchant
+Placeful Merchant
 ==================
-The source code for the DEALSBOX Merchant pages including the dashboard
+The source code for the Placeful for Business pages including the dashboard
