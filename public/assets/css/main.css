@@ -3875,7 +3875,7 @@ body.is-loading #sidebar nav ul li {
 }
 
 .cities {
-    background: url(http://placeful.co/images/cities.png) no-repeat;
+    background: url(/images/cities.png) no-repeat;
     background-size: cover;
     height: 400px;
 }
