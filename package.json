@@ -27,6 +27,7 @@
     "es6-promise": "^2.3.0",
     "factual-api": "^1.0.7",
     "good": "~2.2.3",
+    "got": "^6.1.1",
     "hapi": "^10.4.0",
     "hapi-assets": "~0.2.1",
     "hapi-auth-cookie": "^3.1.0",
