@@ -13,6 +13,7 @@ var querystring = require('querystring')
 var Promise = require('es6-promise').Promise
 var Factual = require('factual-api')
 var factual = new Factual(process.env.FACTUAL_KEY, process.env.FACTUAL_SECRET)
+var cc = require('coupon-code')
 
 http.globalAgent.maxSockets = https.globalAgent.maxSockets = 20
 var yelp = require('yelp').createClient({
@@ -57,7 +58,7 @@ module.exports = {
       }).limit(1, function (err, result) {
         var now = new Date()
         now = now.toISOString()
-        if (result[0] != null) {
+        if (result[0] != null) { // keeps failing here
           if (result[0].current_period_end < now || result[0].subscriber === 'no') {
             return reply.redirect('/payment')
           } else {
@@ -73,7 +74,8 @@ module.exports = {
               business_phone: request.auth.credentials.business_phone,
               business_address: request.auth.credentials.business_address,
               business_icon: request.auth.credentials.business_icon,
-              business_locality: request.auth.credentials.business_locality
+              business_locality: request.auth.credentials.business_locality,
+              form_id: process.env.FORM_ID
             })
           }
 

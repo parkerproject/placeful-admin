@@ -21,6 +21,7 @@
     "aws-sdk": "^2.2.11",
     "bcrypt-nodejs": "0.0.3",
     "bower": "~1.3.9",
+    "coupon-code": "^0.4.3",
     "cron": "^1.0.9",
     "dotenv": "0.4.0",
     "es6-promise": "^2.3.0",
