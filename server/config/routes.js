@@ -101,21 +101,9 @@ module.exports = function (server) {
     path: '/builder',
     config: controller.merchant_deal.index
   }, {
-    method: 'GET',
-    path: '/deal/edit',
-    config: controller.merchant_deal.edit
-  }, {
-    method: 'POST',
-    path: '/deal/edit_post',
-    config: controller.merchant_deal.edit_post
-  }, {
     method: 'POST',
     path: '/deal/delete_deal',
     config: controller.merchant_deal.delete_deal
-  }, {
-    method: 'POST',
-    path: '/deal/builder',
-    config: controller.merchant_deal.builder
   }, {
     method: 'GET',
     path: '/lab/yelp_phone',
@@ -136,6 +124,10 @@ module.exports = function (server) {
     method: 'POST',
     path: '/coupon/validate',
     config: controller.coupon.index
+  }, {
+    method: 'GET',
+    path: '/promotion/{promotion_id}',
+    config: controller.refresh_deals.index
   }]
   return routeTable
 }

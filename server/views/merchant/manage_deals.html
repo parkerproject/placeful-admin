@@ -12,8 +12,8 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <p class="lead" style="margin:0;">Manage Deals</p>
-          <span>You can view, edit all your deals from this page</span>
+          <p class="lead" style="margin:0;">Promotions</p>
+          <span>You can view all your promotions from this page</span>
           <!-- <input type="search" class="form-control input-sm" placeholder="search for coupon code, etc." aria-controls="example1" style="width:300px;"> -->
         </div>
         <div class="box-body">
@@ -32,29 +32,23 @@
                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                   <thead>
                     <tr role="row">
-                      <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 101px;">Coupon code</th>
-                      <th class="sorting" rowspan="1" colspan="1" style="width: 140px;">Offer Code</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 240px;">Title</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 140px;">Start Date</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 101px;">End Date</th>
-                      <th class="sorting" rowspan="1" colspan="1" style="width: 101px;">Published</th>
-                      <th class="sorting" rowspan="1" colspan="1" style="width: 101px;">Deal URL</th>
+                      <th class="sorting" rowspan="1" colspan="1" style="width: 101px;">Promotion URL</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 140px;"></th>
                     </tr>
                   </thead>
                   <tbody>
                     {% for deal in deals %}
-                    <tr role=" row " class=" ">
-                      <td class="sorting_1 ">{{deal.coupon_code}}</td>
-                      <td>{{deal.offer}}</td>
+                    <tr role=" row " class="">
                       <td>{{deal.title}}</td>
                       <td>{{deal.start_date}}</td>
                       <td>{{deal.expires_at}}</td>
-                      <td>{{deal.published}}</td>
-                      <td><a href="https://dealsbox.co/deal/{{deal.deal_id}}" target="_blank">https://dealsbox.co/deal/{{deal.deal_id}}</a></td>
+                      <td><a href="https://placeful.co/deal/{{deal.deal_id}}" target="_blank">https://dealsbox.co/deal/{{deal.deal_id}}</a></td>
                       <td>
                         <a href="#" data-offer="{{deal.offer}}" data-code="{{deal.coupon_code}}" data-title="{{deal.title}}" data-description="{{deal.description}}" data-fineprint="{{deal.fine_print}}" data-expires="{{deal.expires_at}}" data-largeimage="{{deal.large_image}}"
-                        data-smallimage="{{deal.small_image}}" data-deal_id="{{deal.deal_id}}" style="margin-right:10px;" class="btn btn-success view-modal">Edit</a>
+                          data-smallimage="{{deal.small_image}}" data-deal_id="{{deal.deal_id}}" style="margin-right:10px;" class="btn btn-success view-modal">Edit</a>
                       </td>
                     </tr>
                     {% endfor %}
@@ -75,68 +69,11 @@
   <!-- /.content-wrapper -->
 
 
-  <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header" style="border:none;">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="padding:0;">
-          <div class="box-body">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-default coupon">
-                  <div class="panel-heading clearfix" id="head">
-                    <div class="panel-title" id="title">
-                      <img src="" class="small_image hide">
-                      <span class="hidden-xs title"></span>
-                      <span class="visible-xs title"></span>
-                    </div>
-                  </div>
-                  <div class="panel-body">
-                    <img src="" class="coupon-img img-rounded">
-                    <div class="col-md-12">
-                      <div class="offer number"></div>
-                    </div>
-                    <div class="col-md-12">
-                      <h3>Deal Description</h3>
-                      <span class="description"></span>
-                    </div>
-                    <div class="col-md-12">
-                      <h3>The Fine Print</h3>
-                      <p class="disclosure"></p>
-                    </div>
-                  </div>
-                  <div class="panel-footer">
-                    <div class="coupon-code">
-                      Code:
-                      <span class="code"></span>
-                    </div>
-                    <div class="exp">Expires:
-                      <span class="expiry_date"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <a type="button" class="btn btn-warning edit_deal" href="">Edit Deal</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <footer class=" main-footer ">
     <div class="pull-right hidden-xs ">
       <b>Version</b> 2.3.0
     </div>
-    <strong>Copyright &copy; 2014-2015 DEALSBOX.</strong> All rights reserved.
+    <strong>Copyright &copy; 2016 Placeful.</strong> All rights reserved.
   </footer>
 
   <!-- Add the sidebar's background. This div must be placed
