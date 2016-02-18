@@ -4,43 +4,64 @@ const fs = require('fs')
 const AWS = require('aws-sdk')
 const collections = ['merchants', 'promotions']
 const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
+const request = require('request')
+const s3 = require('s3')
 
-AWS.config.region = 'us-west-2'
+var s3_client = s3.createClient({
+  s3Options: {
+    accessKeyId: process.env.AMAZON_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AMAZON_SECRET_ACCESS_KEY
+  },
+})
 
-var uploadToAmazon = function (file, file_name, body) {
-  let s3obj = new AWS.S3({
-    params: {
+var uploadToAmazon = function (file, file_name) {
+  var params = {
+    localFile: file,
+
+    s3Params: {
       Bucket: 'zeus00',
       Key: file_name,
+      Expires: 60,
       ACL: 'public-read'
-    }
-  })
+    },
+  }
+  var uploader = s3_client.uploadFile(params)
 
-  s3obj.upload({
-    Body: body
-  }).on('httpUploadProgress', function (evt) {
-    console.log('file upload in progress')
-  }).send(function (err, data) {
-    console.log(err, data)
-      // db.promotions.update({
-      //   deal_id: file_name
-      // }, {
-      //   $set {
-      //     large_image: data.location
-      //   }
-      // }, () => {
-      //   console.log('image uploaded')
-      // })
-
-  })
-
+  return uploader
 }
 
 module.exports = (filepath, file_name) => {
-  if (photo === '') {
+  if (filepath === '') {
     return
   }
 
-  let body = fs.createReadStream(filepath)
-  uploadToAmazon(filepath, file_name, body)
+  let imagePath = appRoot + '/public/images/promotions/' + file_name + '.jpg'
+  let body = fs.createWriteStream(imagePath)
+
+  request(filepath).pipe(body)
+
+  body.on('close', function () {
+    let uploader = uploadToAmazon(imagePath, file_name)
+
+    uploader.on('error', function (err) {
+      console.error('unable to upload:', err.stack)
+    })
+    uploader.on('progress', function () {
+      console.log('progress', uploader.progressMd5Amount, uploader.progressAmount, uploader.progressTotal)
+    })
+    uploader.on('end', function () {
+      fs.unlinkSync(imagePath)
+      db.promotions.update({
+        deal_id: file_name
+      }, {
+        $set: {
+          large_image: 'https://s3-us-west-2.amazonaws.com/zeus00/' + file_name
+        }
+      }, () => {
+        console.log('image uploaded')
+      })
+
+    })
+  })
+
 }

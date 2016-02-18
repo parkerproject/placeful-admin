@@ -39,14 +39,23 @@ module.exports = {
               coordinates: [Number(currentPromotion.hidden.business_lng), Number(currentPromotion.hidden.business_lat)]
             }
             promotion.title = currentPromotion.answers.textfield_17217315
-            promotion.description = currentPromotion.answers.textfield_17217371
-            promotion.fine_print = currentPromotion.answers.textfield_17217434
+            promotion.description = currentPromotion.answers.textarea_17509767
+            promotion.instructions = currentPromotion.answers.textarea_17509616
             promotion.price = currentPromotion.answers.number_17218066
-            promotion.category = currentPromotion.answers.dropdown_17301469
-            promotion.tags = currentPromotion.answers.textarea_17218431
             promotion.large_image = currentPromotion.answers.fileupload_17219382
-            promotion.start_date = currentPromotion.answers.date_17219396
-            promotion.end_date = currentPromotion.answers.date_17219403
+            promotion.start_date = new Date(currentPromotion.answers.date_17219396).toISOString()
+            promotion.end_date = new Date(currentPromotion.answers.date_17219403).toISOString()
+
+            let props = Object.keys(currentPromotion.answers)
+            let tags = []
+
+            props.forEach(function (tag) {
+              if (_.startsWith(tag, 'list_17501907_choice') && currentPromotion.answers[tag] !== '') {
+                tags.push(currentPromotion.answers[tag])
+              }
+            })
+
+            promotion.tags = tags
 
             db.promotions.save(promotion, function (err, result) {
               if (err) console.log(err)

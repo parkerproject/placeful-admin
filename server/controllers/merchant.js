@@ -105,7 +105,7 @@ module.exports = {
             var compareCases = result[0].referral_code.toUpperCase() // in case a user typed in lowercase
             if (body.hasOwnProperty('error') && compareCases !== 'SAVE40') {
               code_status = 'invalid'
-              price = (result[0].subscriber === 'no') ? '2999' : '4999'
+              price = (result[0].subscriber === 'no') ? '2999' : '5000'
             } else {
               code_status = 'valid'
               price = (result[0].subscriber === 'no' || result[0].referral_code_redeemed === 0) ? '0900' : '4999'
@@ -123,7 +123,7 @@ module.exports = {
 
           })
         } else {
-          price = (result[0].subscriber === 'no') ? '2999' : '4999'
+          price = (result[0].subscriber === 'no') ? '2999' : '5000'
           reply.view('merchant/index', {
             business_name: request.auth.credentials.business_name,
             business_email: request.auth.credentials.business_email,
