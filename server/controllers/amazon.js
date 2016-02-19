@@ -5,7 +5,13 @@ const collections = ['merchants', 'promotions']
 const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
 const request = require('request')
 const s3 = require('s3')
-const s3_client = require('./s3_client')
+
+let s3_client = s3.createClient({
+  s3Options: {
+    accessKeyId: process.env.AMAZON_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AMAZON_SECRET_ACCESS_KEY
+  }
+})
 
 let uploadToAmazon = function (file, file_name) {
   let params = {
