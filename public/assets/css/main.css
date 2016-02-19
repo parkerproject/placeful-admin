@@ -3659,7 +3659,7 @@ body.is-ie #sidebar > .inner {
 }
 
 #sidebar nav a:before {
-    background: #3c2c62;
+    /*background: #3c2c62;*/
 }
 
 #sidebar nav a:after {
@@ -3796,8 +3796,8 @@ body.is-loading #sidebar nav ul li {
 }
 
 .logo {
-    position: absolute;
-    left: 30px;
+    position: relative;;
+    left: -40px;
 }
 
 .logo em {
