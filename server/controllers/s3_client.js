@@ -1,7 +1,7 @@
 'use strict'
 require('dotenv').load()
 
-const s3 = require('./amazon')
+const s3 = require('s3')
 
 module.exports = () => {
   let s3_client = s3.createClient({
