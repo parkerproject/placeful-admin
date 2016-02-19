@@ -5,7 +5,7 @@ const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collecti
 const req = require('request')
 const _ = require('lodash')
 const randtoken = require('rand-token')
-const uploader = require('./s3')
+const uploader = require('./amazon')
 const typeform_url = 'https://api.typeform.com/v0/form/' + process.env.FORM_ID + '?key=' + process.env.TYPEFORM_API + '&completed=true'
 
 module.exports = {

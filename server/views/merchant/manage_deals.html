@@ -43,8 +43,8 @@
                     {% for deal in deals %}
                     <tr role=" row " class="">
                       <td>{{deal.title}}</td>
-                      <td>{{deal.start_date}}</td>
-                      <td>{{deal.end_date}}</td>
+                      <td>{{ deal.start_date|date('F jS, Y') }}</td>
+                      <td>{{ deal.end_date|date('F jS, Y') }}</td>
                       <td><a href="http://placeful.co/deal/{{deal.deal_id}}" target="_blank">http://placeful.co/deal/{{deal.deal_id}}</a></td>
                     </tr>
                     {% endfor %}

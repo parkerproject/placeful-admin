@@ -1,21 +1,14 @@
 'use strict'
 require('dotenv').load()
 const fs = require('fs')
-const AWS = require('aws-sdk')
 const collections = ['merchants', 'promotions']
 const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
 const request = require('request')
 const s3 = require('s3')
+const s3_client = require('./s3_client')
 
-var s3_client = s3.createClient({
-  s3Options: {
-    accessKeyId: process.env.AMAZON_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AMAZON_SECRET_ACCESS_KEY
-  },
-})
-
-var uploadToAmazon = function (file, file_name) {
-  var params = {
+let uploadToAmazon = function (file, file_name) {
+  let params = {
     localFile: file,
 
     s3Params: {
@@ -25,7 +18,7 @@ var uploadToAmazon = function (file, file_name) {
       ACL: 'public-read'
     },
   }
-  var uploader = s3_client.uploadFile(params)
+  let uploader = s3_client.uploadFile(params)
 
   return uploader
 }

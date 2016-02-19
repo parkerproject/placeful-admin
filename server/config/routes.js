@@ -99,15 +99,11 @@ module.exports = function (server) {
   }, {
     method: 'GET',
     path: '/builder',
-    config: controller.merchant_deal.index
-  }, {
-    method: 'POST',
-    path: '/deal/delete_deal',
-    config: controller.merchant_deal.delete_deal
+    config: controller.builder.index
   }, {
     method: 'GET',
     path: '/lab/yelp_phone',
-    config: controller.merchant_deal.searchYelpPhone
+    config: controller.searchYelp.index
   }, {
     method: 'POST',
     path: '/lab/payment',
