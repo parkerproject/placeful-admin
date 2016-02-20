@@ -42,7 +42,7 @@ module.exports = {
             }
             promotion.title = currentPromotion.answers.textfield_17217315
             promotion.description = currentPromotion.answers.textarea_17509767
-            promotion.instructions = currentPromotion.answers.textarea_17509616
+            promotion.fine_print = currentPromotion.answers.textarea_17509616
             promotion.large_image = currentPromotion.answers.fileupload_17219382
             promotion.start_date = new Date(currentPromotion.answers.date_17219396).toISOString()
             promotion.end_date = new Date(currentPromotion.answers.date_17219403).toISOString()

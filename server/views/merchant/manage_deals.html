@@ -45,7 +45,7 @@
                       <td>{{deal.title}}</td>
                       <td>{{ deal.start_date|date('F jS, Y') }}</td>
                       <td>{{ deal.end_date|date('F jS, Y') }}</td>
-                      <td><a href="http://placeful.co/deal/{{deal.deal_id}}" target="_blank">http://placeful.co/deal/{{deal.deal_id}}</a></td>
+                      <td><a href="http://placeful.co/promotion/{{deal.deal_id}}/{{deal.slug}}" target="_blank">http://placeful.co/promotion/{{deal.deal_id}}/{{deal.slug}}</a></td>
                     </tr>
                     {% endfor %}
                   </tbody>
