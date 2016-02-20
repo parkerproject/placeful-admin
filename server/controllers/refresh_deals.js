@@ -7,6 +7,8 @@ const _ = require('lodash')
 const randtoken = require('rand-token')
 const uploader = require('./amazon')
 const typeform_url = 'https://api.typeform.com/v0/form/' + process.env.FORM_ID + '?key=' + process.env.TYPEFORM_API + '&completed=true'
+const slug = require('slug')
+const mersenne = require('mersenne')
 
 module.exports = {
   index: {
@@ -41,10 +43,11 @@ module.exports = {
             promotion.title = currentPromotion.answers.textfield_17217315
             promotion.description = currentPromotion.answers.textarea_17509767
             promotion.instructions = currentPromotion.answers.textarea_17509616
-            promotion.price = currentPromotion.answers.number_17218066
             promotion.large_image = currentPromotion.answers.fileupload_17219382
             promotion.start_date = new Date(currentPromotion.answers.date_17219396).toISOString()
             promotion.end_date = new Date(currentPromotion.answers.date_17219403).toISOString()
+            promotion.slug = slug(currentPromotion.answers.textfield_17217315)
+            promotion.ticket_id = mersenne.rand()
 
             let props = Object.keys(currentPromotion.answers)
             let tags = []
