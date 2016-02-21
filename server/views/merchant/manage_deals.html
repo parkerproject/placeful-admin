@@ -32,8 +32,9 @@
                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                   <thead>
                     <tr role="row">
-                      <th class="sorting" rowspan="1" colspan="1" style="width: 240px;">Title</th>
-                      <th class="sorting" rowspan="1" colspan="1" style="width: 140px;">Start Date</th>
+                      <th class="sorting" rowspan="1" colspan="1" style="width: 101px;">Ticket ID</th>
+                      <th class="sorting" rowspan="1" colspan="1" style="width: 240px;">Promo</th>
+                      <th class="sorting" rowspan="1" colspan="1" style="width: 101px;">Start Date</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 101px;">End Date</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 101px;">Promotion URL</th>
 
@@ -42,6 +43,7 @@
                   <tbody>
                     {% for deal in deals %}
                     <tr role=" row " class="">
+                      <td>{{deal.ticket_id}}</td>
                       <td>{{deal.title}}</td>
                       <td>{{ deal.start_date|date('F jS, Y') }}</td>
                       <td>{{ deal.end_date|date('F jS, Y') }}</td>
