@@ -257,3 +257,11 @@
   #labelStripeCode{
     width: 200px;
   }
+
+  .navbar{
+    background-color: #bd382a!important
+  }
+
+  .main-header .logo{
+    background-color: #bd382a!important
+  }
