@@ -1,20 +1,21 @@
 .main-header .logo .logo-lg {
     background: url('/images/Placeful-logo-white.png');
-    width: 183px;
+    width: 100px;
     text-indent: -9999px;
     background-repeat: no-repeat;
     position: relative;
     top: 10px;
     display: block;
+    height: 28px;
   }
 
   .login-logo a,
   .register-logo a {
     background: url('/images/Placeful-logo-black.png') no-repeat;
     text-indent: -9999px;
-    width: 250px;
+    width: 100px;
     float: left;
-    height: 68px;
+    height: 28px;
   }
 
   .for-merchant {
