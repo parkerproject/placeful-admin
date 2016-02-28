@@ -1,178 +1,122 @@
 <div class="pull-left">
-  <p>
-    <small>Payment processing </small>
-    <img src="/images/stripe_small.png">
-  </p>
-  <section>
-    <span class="pricing-currency">$</span>
-    <h2 class="pricing">50</h2>
-    <span class="pricing-period">/month</span>
-    <div class="form-group">
-      {% if subscriber === 'no' %}
-      <label for="labelStripeCode">Coupon code</label>
-      <input type="text" class="form-control" id="labelStripeCode" placeholder="Coupon code" name="couponCode"> {% endif %}
-      <input type="hidden" name="price" value="5000" />
+    <h3>
+        Subscribe at $50 a month and run an unlimited number of promotions.
+    </h3>
+    <p><strong>Cancel or create a new promotion at any time throughout the month</strong>.</p>
+
+    <section>
+        <span class="pricing-currency">$</span>
+        <h2 class="pricing">50</h2>
+        <span class="pricing-period">/month</span>
+        <div class="form-group">
+            {% if subscriber === 'no' %}
+            <p>
+                <label for="labelStripeCode" style="display:block;float:left;margin-right:10px;padding-top:6px;">Coupon code</label>
+                <input type="text" class="form-control" id="labelStripeCode" placeholder="Coupon code" name="couponCode"></p> {% endif %}
+            <input type="hidden" name="price" value="5000" />
+        </div>
+    </section>
+    <div class="row">
+        <!-- /.payment button-->
+        <div class="col-xs-12">
+            <button type="submit" class="btn btn-info btn-block btn-flat stripeButton" style="width:200px;">Pay with card</button>
+        </div>
+        <!-- /.button -->
     </div>
-  </section>
-  <div class="row">
-    <!-- /.payment button-->
-    <div class="col-xs-12">
-      <button type="submit" class="btn btn-info btn-block btn-flat stripeButton" style="width:200px;">Pay with card</button>
-    </div>
-    <!-- /.button -->
-  </div>
-  <p style="padding-top:20px;">
-    <small>Credit card processing powered by
-      <a href="https://stripe.com/" target="_blank">Stripe</a>. Placeful Merchant does not store your payment information.
+    <p style="padding-top:20px;">
+        <small>Credit card processing
+      <a href="https://stripe.com/" target="_blank"><img src="/images/stripe_small.png"></a> Placeful does not store your payment information.
     </small>
-  </p>
+    </p>
 </div>
 <div class="pull-left plan-info">
-  <h4>Standard plan includes:</h4>
-  <ul id="accordion">
-    <li><a href="#unlimitedcoupons">Unlimited deals and campaigns</a></li>
-    <li><a href="#freepromo">Free promotion via our Networks</a></li>
-    <li><a href="#sales">You keep 100% of your sales revenue</a></li>
-    <!-- <li><a href="#marketing">Marketing Dashboard</a></li> -->
-    <li><a href="#anytypedeals">Supports Any Type of Deal</a></li>
-    <li><a href="#builder">Free Deal Builder</a></li>
-  </ul>
+    <!-- <h4>Standard plan includes:</h4>
+    <ul id="accordion">
+        <li><a href="#unlimitedcoupons">Unlimited deals and campaigns</a></li>
+        <li><a href="#freepromo">Free promotion via our Networks</a></li>
+        <li><a href="#sales">You keep 100% of your sales revenue</a></li>
+        <li><a href="#anytypedeals">Supports Any Type of Deal</a></li>
+        <li><a href="#builder">Free Deal Builder</a></li>
+    </ul> -->
 </div>
 
 <div style="clear:both"></div>
 
-<section class="full">
-  <h2>What is included in this plan:</h2>
-  <div class="box-body">
-    <div class="box-header">
-      <h3 class="box-title" id="unlimitedcoupons">Unlimited deals and campaigns</h3>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-      <p>Create unlimited deals, run any type of campaign at any time to attract a broader range of customers.</p>
-    </div>
-    <!-- /.box-body -->
-  </div>
-
-  <div class="box-body">
-    <div class="box-header">
-      <h3 class="box-title" id="freepromo">Free promotion via our Networks</h3>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-      <p>We advertise your deals on our mobile apps, social media and email. The retention rate for our users is quite high and we are growing on a daily basis.</p>
-    </div>
-    <!-- /.box-body -->
-  </div>
-
-  <div class="box-body">
-    <div class="box-header">
-      <h3 class="box-title" id="sales">You keep 100% of your sales revenue</h3>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-      <p>You keep 100% of your sales revenue, no cut whatsover, no hidden fees, no contracts. Only a fixed monthly fee of $50</p>
-    </div>
-    <!-- /.box-body -->
-  </div>
-
-  <!-- <div class="box-body">
-    <div class="box-header">
-      <h3 class="box-title" id="marketing">Marketing Dashboard</h3>
-    </div>
-    <div class="box-body">
-      <p>We provide you with analytics, an insight into your deals and popular deals across the platform.</p>
-    </div>
-  </div> -->
-
-  <div class="box-body">
-    <div class="box-header">
-      <h3 class="box-title" id="anytypedeals">Supports Any Type of Deal</h3>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-      <p>You can create any kind of deal, be it a $ Off or % Off, anything that works for you. Also you can run a time sensitive campaigns e.g happy hour, spa deal, etc.</p>
-    </div>
-    <!-- /.box-body -->
-  </div>
-
-  <div class="box-body">
-    <div class="box-header">
-      <h3 class="box-title" id="builder">Free Deal Builder</h3>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-      <p>Its so easy to use the Deal Builder that you will have fun using it. The Deal Builder is available to all local businesses and all categories of business. Just fill out the basic information about your deal, review and publish when you are ready.</p>
-    </div>
-    <!-- /.box-body -->
-  </div>
-</section>
+<section class="full"></section>
 
 <!-- stripe -->
 <script src="https://checkout.stripe.com/checkout.js"></script>
 <script>
-  $('#labelStripeCode').on('change', function(e) {
-    var numPrice = 5000;
-    $('input[name=price]').val(numPrice);
-    var self = $(this);
-    var text = self.val();
-    console.log(text);
-    $.post('/coupon/validate', {
-      text: text
-    }, function(response) {
-      if (response.status === 'success') {
-        var discount = response.data[0].discount;
-        var price = parseInt($('input[name=price]').val());
-        var new_price = price - (discount * 100);
-        $('input[name=price]').val(new_price);
-      }
-    });
-  })
+    $('#labelStripeCode').blur(function() {
+        var numPrice = 5000;
+        $('input[name=price]').val(numPrice);
+        var self = $(this);
+        var text = self.val();
+        $.post('/coupon/validate', {
+            text: text
+        }, function(response) {
+            if (response.status === 'success') {
+                var discount = response.data[0].discount;
+                var price = parseInt($('input[name=price]').val());
+                var new_price = price - (discount * 100);
+                console.log('testing ', new_price, discount)
+                $('input[name=price]').val(new_price);
+            }
+        });
+    })
 
-  var handler = StripeCheckout.configure({
-    key: 'pk_live_9xZBCqxsOvcil3BXQjT5lpPl',
-    image: 'https://dl.dropboxusercontent.com/s/3pmt3totxquslep/avatar_b9d0ace3edc0_64.png?dl=0',
-    locale: 'auto',
-    token: function(token) {
-      token.couponCode = $('input[name=couponCode]').val();
-      console.log(token);
-      $.post('/lab/payment', {
-        token: token
-      }, function(response) {
-        $('.stripeButton').removeClass('btn-info').addClass('btn-success').text('processing payment...').attr('disabled', 'disabled');
-        if (response.status === 'success') {
-          window.location = '/builder';
-        } else {
-          alert('Payment processing failed. Refresh the page and try again');
+    var handler = StripeCheckout.configure({
+        key: 'pk_test_38o72mxE5rPuPUpZTDJVmKKv', //'pk_live_9xZBCqxsOvcil3BXQjT5lpPl',
+        image: 'https://dl.dropbox.com/s/24qst7cra9x1fvc/placeful-icon_800.png?dl=0',
+        locale: 'auto',
+        "panel-label": 'Subscribe',
+        token: function(token) {
+            token.couponCode = $('input[name=couponCode]').val();
+            $.post('/lab/payment', {
+                token: token
+            }, function(response) {
+                $('.stripeButton').removeClass('btn-info').addClass('btn-success').text('processing payment...').attr('disabled', 'disabled');
+                if (response.status === 'success') {
+                    window.location = '/builder';
+                } else {
+                    alert('Payment processing failed. Refresh the page and try again');
+                }
+
+            });
         }
+    });
 
-      });
+    document.querySelector('.stripeButton').addEventListener('click', function(e) {
+        // Open Checkout with further options
+        $('.stripeButton').text('please wait...').attr('disabled', 'disabled');
+
+        setTimeout(function() {
+            var price = $('input[name=price]').val();
+            handler.open({
+                name: 'Placeful for Business',
+                description: 'Standard Plan ($50)',
+                amount: price,
+                email: "{{business_email}}",
+                zipcode: 'true',
+            });
+        }, 2000);
+
+        e.preventDefault();
+    });
+
+    $(document).on("DOMNodeRemoved", ".stripe_checkout_app", close);
+
+    function close() {
+        setTimeout(function() {
+            if ($('.stripeButton').hasClass('btn-info')) {
+                $('.stripeButton').text('Pay with card').removeAttr('disabled');
+            }
+        }, 5000);
     }
-  });
 
-  document.querySelector('.stripeButton').addEventListener('click', function(e) {
-    // Open Checkout with further options
-    $('.stripeButton').text('please wait...').attr('disabled', 'disabled');
-
-    setTimeout(function() {
-      var price = $('input[name=price]').val();
-      handler.open({
-        name: 'DEALSBOX Merchant',
-        description: 'Standard Plan ($50)',
-        amount: price,
-        email: "{{business_email}}",
-        zipcode: 'true'
-      });
-    }, 2000);
-
-    e.preventDefault();
-  });
-
-
-
-  // Close Checkout on page navigation
-  // $(window).on('popstate', function() {
-  //   console.log('test');
-  //   handler.close();
-  // });
+    // Close Checkout on page navigation
+    // $(window).on('popstate', function() {
+    //   console.log('test');
+    //   handler.close();
+    // });
 </script>
