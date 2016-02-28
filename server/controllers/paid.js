@@ -1,3 +1,4 @@
+'use strict'
 require('dotenv').load()
 var collections = ['paid']
 var db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
