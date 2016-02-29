@@ -35,7 +35,8 @@ module.exports = {
                                 subscriber: 'yes',
                                 current_period_end: current_period_end.format(),
                                 referral_code_redeemed: 1,
-                                referral_code: (request.payload.token.couponCode) ? request.payload.token.couponCode : ''
+                                referral_code: (request.payload.token.couponCode) ? request.payload.token.couponCode : '',
+                                stripe_id: customer.id
                             }
                         },
                         new: true

@@ -9,10 +9,10 @@
         <h2 class="pricing">50</h2>
         <span class="pricing-period">/month</span>
         <div class="form-group">
-            {% if subscriber === 'no' %}
             <p>
                 <label for="labelStripeCode" style="display:block;float:left;margin-right:10px;padding-top:6px;">Coupon code</label>
-                <input type="text" class="form-control" id="labelStripeCode" placeholder="Coupon code" name="couponCode"></p> {% endif %}
+                <input type="text" class="form-control" id="labelStripeCode" placeholder="Coupon code" name="couponCode">
+            </p>
             <input type="hidden" name="price" value="5000" />
         </div>
     </section>
@@ -66,7 +66,7 @@
     })
 
     var handler = StripeCheckout.configure({
-        key: 'pk_test_38o72mxE5rPuPUpZTDJVmKKv', //'pk_live_9xZBCqxsOvcil3BXQjT5lpPl',
+        key: 'pk_live_9xZBCqxsOvcil3BXQjT5lpPl', //'pk_live_9xZBCqxsOvcil3BXQjT5lpPl',
         image: 'https://dl.dropbox.com/s/24qst7cra9x1fvc/placeful-icon_800.png?dl=0',
         locale: 'auto',
         "panel-label": 'Subscribe',
@@ -113,10 +113,4 @@
             }
         }, 5000);
     }
-
-    // Close Checkout on page navigation
-    // $(window).on('popstate', function() {
-    //   console.log('test');
-    //   handler.close();
-    // });
 </script>

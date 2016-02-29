@@ -14,7 +14,8 @@ module.exports = {
 
             db.merchants.findAndModify({
                 query: {
-                    business_email: email
+                    business_email: email,
+                    stripe_id: data.data.customer
                 },
                 update: {
                     $set: {
@@ -24,6 +25,7 @@ module.exports = {
                 new: false
             }, function (err, doc, lastErrorObject) {
                 if (err) console.log(err)
+                console.log(created_date, email)
                 reply('updated')
             })
 

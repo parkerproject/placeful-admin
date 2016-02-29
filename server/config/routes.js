@@ -63,7 +63,7 @@ module.exports = function (server) {
   }, {
         method: 'GET',
         path: '/',
-        config: controller.merchant.landing
+        config: controller.landing.index
   }, {
         method: 'GET',
         path: '/home',
@@ -75,19 +75,19 @@ module.exports = function (server) {
   }, {
         method: ['GET', 'POST'],
         path: '/login',
-        config: controller.merchant.login
+        config: controller.login.index
   }, {
         method: 'GET',
         path: '/logout',
-        config: controller.merchant.logout
+        config: controller.logout.index
   }, {
         method: ['GET', 'POST'],
         path: '/forgotpass',
-        config: controller.merchant.forgot_pass
+        config: controller.forgot_password.index
   }, {
         method: ['GET', 'POST'],
         path: '/password_reset',
-        config: controller.merchant.password_reset
+        config: controller.password_reset.index
   }, {
         method: 'GET',
         path: '/register',
@@ -115,7 +115,7 @@ module.exports = function (server) {
   }, {
         method: ['GET', 'POST'],
         path: '/profile',
-        config: controller.merchant.profile
+        config: controller.profile.index
   }, {
         method: 'POST',
         path: '/coupon/validate',
