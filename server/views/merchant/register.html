@@ -2,47 +2,47 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin - Placeful</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.5 -->
-  <link rel="stylesheet" href="/merchant/bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="/merchant/plugins/daterangepicker/daterangepicker-bs3.css">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <!-- <link rel="stylesheet" href="/merchant/plugins/iCheck/all.css"> -->
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/merchant/dist/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="/merchant/dist/css/skins/skin-red.min.css">
-  <link rel="stylesheet" href="/merchant/dist/css/register.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin - Placeful</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="/merchant/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/merchant/plugins/daterangepicker/daterangepicker-bs3.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <!-- <link rel="stylesheet" href="/merchant/plugins/iCheck/all.css"> -->
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/merchant/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/merchant/dist/css/skins/skin-red.min.css">
+    <link rel="stylesheet" href="/merchant/dist/css/register.css">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
 
-  <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 
 </head>
 
 <body class="hold-transition skin-red sidebar-mini {{_class}}">
-  <div class="login-box">
-    <div class="login-logo clearfix">
-      <a href="/"><b>Admin</b>LTE</a>
-      <!-- <span class="for-merchant">Merchant</span> -->
-    </div>
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-      <h4 class="login-box-msg">
+    <div class="login-box">
+        <div class="login-logo clearfix">
+            <a href="/"><b>Admin</b>LTE</a>
+            <!-- <span class="for-merchant">Merchant</span> -->
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <h4 class="login-box-msg">
         <p class="lead">Register as a Merchant</p>
         <p>
           <small>
@@ -50,41 +50,41 @@
           </small>
           <p/>
       </h4>
-      <p class="error text-danger"></p>
-      <form action="" method="post" id="register-form">
-        <input type="hidden" name="business_place" />
-        <input type="hidden" name="business_lng" />
-        <input type="hidden" name="business_lat" />
-        <input type="hidden" name="business_map" />
-        <input type="hidden" name="business_icon" />
-        <input type="hidden" name="business_locality" />
+            <p class="error text-danger"></p>
+            <form action="" method="post" id="register-form" autocomplete='off'>
+                <input type="hidden" name="business_place" />
+                <input type="hidden" name="business_lng" />
+                <input type="hidden" name="business_lat" />
+                <input type="hidden" name="business_map" />
+                <input type="hidden" name="business_icon" />
+                <input type="hidden" name="business_locality" />
 
 
-        <div class="form-group has-feedback">
-          <label for="">Business Place</label>
-          <input type="text" class="form-control" placeholder="Business Name" name="business_name" id="txtPlaces" autocomplete="off">
-          <span class="glyphicon glyphicon-home form-control-feedback"></span>
-        </div>
+                <div class="form-group has-feedback">
+                    <label for="">Business Place</label>
+                    <input type="text" class="form-control" placeholder="Business Name" name="business_name" id="txtPlaces" autocomplete="off">
+                    <span class="glyphicon glyphicon-home form-control-feedback"></span>
+                </div>
 
-        <div class="form-group has-feedback">
-          <label for="">Business Email</label>
-          <input type="email" class="form-control" placeholder="Business Email" name="business_email">
-          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-          <label for="">Business Address</label>
-          <input type="text" class="form-control" placeholder="Enter your business address" name="business_address">
-        </div>
-        <div class="form-group has-feedback">
-          <label for="">Business Phone</label>
-          <input type="text" class="form-control" placeholder="Enter your business phone" name="business_phone">
-        </div>
-        <div class="form-group has-feedback">
-          <label for="">Password</label>
-          <input type="password" class="form-control" placeholder="Password" name="password">
-          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-        <!-- <div class="form-group">
+                <div class="form-group has-feedback">
+                    <label for="">Business Email</label>
+                    <input type="email" class="form-control" placeholder="Business Email" name="business_email" autocomplete='off'>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label for="">Business Address</label>
+                    <input type="text" class="form-control" placeholder="Enter your business address" name="business_address" autocomplete='off'>
+                </div>
+                <div class="form-group has-feedback">
+                    <label for="">Business Phone</label>
+                    <input type="text" class="form-control" placeholder="Enter your business phone" name="business_phone" autocomplete='off'>
+                </div>
+                <div class="form-group has-feedback">
+                    <label for="">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" name="password" autocomplete='off'>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <!-- <div class="form-group">
           <div class="checkbox">
             <label>
               <input type="checkbox" name="agreement" value="yes" required> I accept <a href="" style="text-decoration:underline;">Merchant Agreement</a>
@@ -93,52 +93,52 @@
         </div> -->
 
 
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="g-recaptcha" data-sitekey="6LeQMw8TAAAAADJ4ky7GrOeWNJbNAjKpR5TyOlak"></div>
-          </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="g-recaptcha" data-sitekey="6LeQMw8TAAAAADJ4ky7GrOeWNJbNAjKpR5TyOlak"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- /.col -->
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat cta">Register</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+            <!-- /.social-auth-links -->
+
+            <!-- <a href="#">I forgot my password</a> -->
+            <br>
+
+            <a href="/login" class="text-center" style="display:block;">Login</a>
+
         </div>
-        <div class="row">
-          <!-- /.col -->
-          <div class="col-xs-12">
-            <button type="submit" class="btn btn-primary btn-block btn-flat cta">Register</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
-      <!-- /.social-auth-links -->
-
-      <!-- <a href="#">I forgot my password</a> -->
-      <br>
-
-      <a href="/login" class="text-center" style="display:block;">Login</a>
-
+        <!-- /.login-box-body -->
     </div>
-    <!-- /.login-box-body -->
-  </div>
 
-  <!-- /.login-box -->
-  <!-- jQuery 2.1.4 -->
-  <script src="/merchant/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-  <!-- Bootstrap 3.3.5 -->
-  <script src="/merchant/bootstrap/js/bootstrap.min.js"></script>
-  <!-- SlimScroll -->
-  <script src="/merchant/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-  <!-- FastClick -->
-  <script src="/merchant/plugins/fastclick/fastclick.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-  <script src="/merchant/plugins/daterangepicker/daterangepicker.js"></script>
-  <script src="/merchant/dist/js/app.min.js"></script>
-  <script src="/merchant/dist/js/startswith.js"></script>
-  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
-  <!-- <script src="/merchant/plugins/iCheck/icheck.min.js"></script> -->
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  <script src="/merchant/dist/js/merchant.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-  <script src="/merchant/dist/js/google.js"></script>
-  <!--script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmU6eWcH1hDfOueTgg1WxEgHVniADzSkA&signed_in=true&libraries=places&callback=initMap" async defer></script-->
+    <!-- /.login-box -->
+    <!-- jQuery 2.1.4 -->
+    <script src="/merchant/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="/merchant/bootstrap/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="/merchant/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="/merchant/plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="/merchant/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="/merchant/dist/js/app.min.js"></script>
+    <script src="/merchant/dist/js/startswith.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <!-- <script src="/merchant/plugins/iCheck/icheck.min.js"></script> -->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="/merchant/dist/js/merchant.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="/merchant/dist/js/google.js"></script>
+    <!--script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmU6eWcH1hDfOueTgg1WxEgHVniADzSkA&signed_in=true&libraries=places&callback=initMap" async defer></script-->
 
 </body>
 
