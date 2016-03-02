@@ -15,7 +15,6 @@ module.exports = {
                         business_name: request.auth.credentials.business_name,
                         business_email: request.auth.credentials.business_email,
                         business_id: request.auth.credentials.business_id,
-                        code_status: 'invalid'
                     })
                 } else {
                     return reply.redirect('/builder')

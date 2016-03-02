@@ -30,8 +30,7 @@ var login = function (request, reply) {
                 if (err) console.log(err)
                 account = user[0]
 
-                if (user.length === 0 || !bcrypt.compareSync(request.payload.password,
-                        account.password)) {
+                if (user.length === 0 || !bcrypt.compareSync(request.payload.password, account.password)) {
                     message = 'Invalid username or password'
                     replyFn(reply, message)
                 } else {
