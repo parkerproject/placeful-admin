@@ -2,6 +2,7 @@ google.maps.event.addDomListener(window, 'load', function () {
     var places = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'))
     google.maps.event.addListener(places, 'place_changed', function () {
         var place = places.getPlace()
+        console.log(place.website)
         var addressArr = place.address_components
         businessFound = 'true'
         var address = place.formatted_address
@@ -23,5 +24,6 @@ google.maps.event.addDomListener(window, 'load', function () {
         $('input[name=business_map]').val(place.url)
         $('input[name=business_icon]').val(place.icon)
         $('input[name=business_locality]').val(locality[0].long_name)
+        $('input[name=website]').val(place.website)
     })
 })

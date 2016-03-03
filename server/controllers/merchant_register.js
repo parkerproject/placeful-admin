@@ -5,6 +5,7 @@ const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collecti
 const bcrypt = require('bcrypt-nodejs')
 const randtoken = require('rand-token')
 const _request = require('request')
+const _ = require('lodash')
 
 module.exports = {
     index: {
@@ -38,6 +39,7 @@ module.exports = {
                         if (err) console.log(err)
                         let business_name = (request.payload.business_place !== '') ? request.payload.business_place : request.payload.business_name
 
+                        let hashtags = (request.payload.business_hashtags).toLowerCase()
                         let businessObject = {
                             business_name: business_name,
                             business_email: request.payload.business_email,
@@ -52,7 +54,11 @@ module.exports = {
                             referral_code: '',
                             referral_code_redeemed: 0,
                             business_id: randtoken.generate(20),
-                            agreement: request.payload.agreement
+                            agreement: request.payload.agreement,
+                            website: request.payload.website,
+                            tags: _.words(hashtags),
+                            approved: false
+
                         }
 
                         if (request.payload.business_lat && request.payload.business_lng) {

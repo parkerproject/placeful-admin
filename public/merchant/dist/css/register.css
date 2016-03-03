@@ -265,7 +265,31 @@
      height: 40px;
    }
 
-   .cta {
-     width: 250px;
-     margin: 0 auto;
+   .cta, .green {
+     background-color: #FF4136;
+         border: none!important;
+         box-shadow: 0 0 28px rgba(0, 0, 0, .2)!important;
+         border-radius: 3em!important;
+         color: #000 !important;
+         cursor: pointer;
+         display: block;
+         font-size: 0.8em;
+         font-weight: bold;
+         height: calc(4.75em + 2px);
+         letter-spacing: 0.25em;
+         line-height: 4.75em;
+         outline: 0;
+         padding: 0 3.75em;
+         position: relative;
+         text-align: center;
+         text-decoration: none;
+         text-transform: uppercase;
+         white-space: nowrap;
+         -webkit-appearance: none;
+         margin: 0 auto;
+         width: 250px
    }
+
+   input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
