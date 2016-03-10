@@ -13,7 +13,7 @@ module.exports = {
         if (err) console.log(err)
         var now = new Date()
         now = now.toISOString()
-        if (result != null) {
+        if (result != null && result.length !== 0) {
           if (result[0].current_period_end < now || result[0].subscriber === 'no') {
             return reply.redirect('/payment')
           } else {

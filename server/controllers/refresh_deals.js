@@ -86,7 +86,7 @@ module.exports = {
             db.promotions.save(promotion, function (err, result) {
               if (err) console.log(err)
               uploader(promotion.large_image, promotion_id)
-              sendEmail(process.env.ADMIN_EMAIL, 'New promotion', 'A new promotion: ' + promotion_id + ' has been created')
+              sendEmail(process.env.ADMIN_EMAIL, 'New promotion', 'A new promotion: <b>' + promotion_id + '</b> has been created')
 
               return reply.redirect('/manage_deals')
             })
