@@ -11,68 +11,70 @@ const slug = require('slug')
 const mersenne = require('mersenne')
 
 module.exports = {
-    index: {
-        handler: function (request, reply) {
-            let promotion_id = request.params.promotion_id
+  index: {
+    handler: function (request, reply) {
+      let promotion_id = request.params.promotion_id
 
-            let promotion = {
-                deal_id: promotion_id
-            }
+      let promotion = {
+        deal_id: promotion_id
+      }
 
-            req(typeform_url, function (error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    let results = JSON.parse(body).responses
+      req(typeform_url, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+          let results = JSON.parse(body).responses
 
-                    if (results.length !== 0) {
-                        let currentPromotion = _.filter(results, function (result) {
-                            return result.hidden.promotion_id == promotion_id
-                        })
+          console.log(results)
 
-                        currentPromotion = currentPromotion[0]
-
-                        promotion.merchant_id = currentPromotion.hidden.business_id
-                        promotion.merchant_locality = currentPromotion.hidden.merchant_locality
-                        promotion.phone = currentPromotion.hidden.phone
-                        promotion.merchant_address = currentPromotion.hidden.merchant_address
-                        promotion.merchant_name = currentPromotion.hidden.business_name
-                        promotion.quantity_redeemed = 0
-                        promotion.loc = {
-                            type: 'Point',
-                            coordinates: [Number(currentPromotion.hidden.business_lng), Number(currentPromotion.hidden.business_lat)]
-                        }
-                        promotion.title = currentPromotion.answers.textfield_17217315
-                        promotion.description = currentPromotion.answers.textarea_17509767
-                        promotion.fine_print = currentPromotion.answers.textarea_17509616
-                        promotion.large_image = currentPromotion.answers.fileupload_17219382
-                        promotion.start_date = new Date(currentPromotion.answers.date_17219396).toISOString()
-                        promotion.end_date = new Date(currentPromotion.answers.date_17219403).toISOString()
-                        promotion.slug = slug(currentPromotion.answers.textfield_17217315)
-                        promotion.ticket_id = mersenne.rand()
-                        promotion.likes = []
-
-                        let props = Object.keys(currentPromotion.answers)
-                        let tags = []
-
-                        props.forEach(function (tag) {
-                            if (_.startsWith(tag, 'list_17501907_choice') && currentPromotion.answers[tag] !== '') {
-                                tags.push(currentPromotion.answers[tag])
-                            }
-                        })
-
-                        promotion.tags = tags
-
-                        db.promotions.save(promotion, function (err, result) {
-                            if (err) console.log(err)
-                            uploader(promotion.large_image, promotion_id)
-                            return reply.redirect('/manage_deals')
-                        })
-                    } else {
-                        return reply.redirect('/manage_deals')
-                    }
-                }
+          if (results.length !== 0) {
+            let currentPromotion = _.filter(results, function (result) {
+              return result.hidden.promotion_id === promotion_id
             })
-        },
-        auth: 'session'
-    }
+
+            currentPromotion = currentPromotion[0]
+
+            promotion.merchant_id = currentPromotion.hidden.business_id
+            promotion.merchant_locality = currentPromotion.hidden.merchant_locality
+            promotion.phone = currentPromotion.hidden.phone
+            promotion.merchant_address = currentPromotion.hidden.merchant_address
+            promotion.merchant_name = currentPromotion.hidden.business_name
+            promotion.quantity_redeemed = 0
+            promotion.loc = {
+              type: 'Point',
+              coordinates: [Number(currentPromotion.hidden.business_lng), Number(currentPromotion.hidden.business_lat)]
+            }
+            promotion.title = currentPromotion.answers.textfield_17217315
+            promotion.description = currentPromotion.answers.textarea_17509767
+            promotion.fine_print = currentPromotion.answers.textarea_17509616
+            promotion.large_image = currentPromotion.answers.fileupload_17219382
+            promotion.start_date = new Date(currentPromotion.answers.date_17219396).toISOString()
+            promotion.end_date = new Date(currentPromotion.answers.date_17219403).toISOString()
+            promotion.slug = slug(currentPromotion.answers.textfield_17217315)
+            promotion.ticket_id = mersenne.rand()
+            promotion.likes = []
+
+            let props = Object.keys(currentPromotion.answers)
+            let tags = []
+
+            props.forEach(function (tag) {
+              if (_.startsWith(tag, 'list_17501907_choice') && currentPromotion.answers[tag] !== '') {
+                tags.push(currentPromotion.answers[tag])
+              }
+            })
+
+            promotion.tags = tags
+
+            db.promotions.save(promotion, function (err, result) {
+              if (err) console.log(err)
+              uploader(promotion.large_image, promotion_id)
+              return reply.redirect('/manage_deals')
+            })
+          } else {
+            return reply.redirect('/manage_deals')
+          }
+        }
+      })
+    },
+    auth: 'session'
+  }
 
 }
