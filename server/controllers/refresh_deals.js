@@ -74,6 +74,7 @@ module.exports = {
             promotion.likes = []
             promotion.start_time = start_time
             promotion.end_time = end_time
+            promotion.approved = false
 
             let props = Object.keys(currentPromotion.answers)
             let tags = []
