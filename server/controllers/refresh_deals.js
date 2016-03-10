@@ -9,6 +9,7 @@ const uploader = require('./amazon')
 const typeform_url = 'https://api.typeform.com/v0/form/' + process.env.FORM_ID + '?key=' + process.env.TYPEFORM_API + '&completed=true'
 const slug = require('slug')
 const mersenne = require('mersenne')
+const sendEmail = require('./send_email')
 
 function tConvert(time) {
   // Check correct time format and split into components
@@ -41,11 +42,6 @@ module.exports = {
             })
 
             currentPromotion = currentPromotion[0]
-
-            // currentPromotion.answers.number_18667382 - start hour
-            // currentPromotion.answers.number_18667408 - start min
-            // currentPromotion.answers.number_18667562 - end hour
-            // currentPromotion.answers.number_18667563  end min
 
             let start_time = currentPromotion.answers.number_18667382 + ':' + currentPromotion.answers.number_18667408
             start_time = tConvert(start_time)
@@ -90,6 +86,8 @@ module.exports = {
             db.promotions.save(promotion, function (err, result) {
               if (err) console.log(err)
               uploader(promotion.large_image, promotion_id)
+              sendEmail(process.env.ADMIN_EMAIL, 'New promotion', 'A new promotion: ' + promotion_id + ' has been created')
+
               return reply.redirect('/manage_deals')
             })
           } else {
