@@ -1,35 +1,35 @@
 <div class="pull-left">
-    <h2>Membership start at $50 a month</h2>
-    <h3>No Commitments - Cancel Anytime</h3>
-    <p><strong>Create unlimited number of promotions throughout the month</strong>.</p>
+  <h2>Membership start at $50/month</h2>
+  <h3>No Commitments - Cancel Anytime</h3>
+  <p><strong>Create unlimited number of promotions throughout the month</strong>.</p>
 
-    <section>
-        <span class="pricing-currency">$</span>
-        <h2 class="pricing">50</h2>
-        <span class="pricing-period">/month</span>
-        <div class="form-group">
-            <p>
-                <label for="labelStripeCode" style="display:block;float:left;margin-right:10px;padding-top:6px;">Coupon code</label>
-                <input type="text" class="form-control" id="labelStripeCode" placeholder="Coupon code" name="couponCode">
-            </p>
-            <input type="hidden" name="price" value="5000" />
-        </div>
-    </section>
-    <div class="row">
-        <!-- /.payment button-->
-        <div class="col-xs-12">
-            <button type="submit" class="btn btn-info btn-block btn-flat stripeButton" style="width:200px;">Pay with card</button>
-        </div>
-        <!-- /.button -->
+  <section>
+    <span class="pricing-currency">$</span>
+    <h2 class="pricing">50</h2>
+    <span class="pricing-period">/month</span>
+    <div class="form-group">
+      <p>
+        <label for="labelStripeCode" style="display:block;float:left;margin-right:10px;padding-top:6px;">Coupon code</label>
+        <input type="text" class="form-control" id="labelStripeCode" placeholder="Coupon code" name="couponCode">
+      </p>
+      <input type="hidden" name="price" value="5000" />
     </div>
-    <p style="padding-top:20px;">
-        <small>Credit card processing
+  </section>
+  <div class="row">
+    <!-- /.payment button-->
+    <div class="col-xs-12">
+      <button type="submit" class="btn btn-info btn-block btn-flat stripeButton" style="width:200px;">Pay with card</button>
+    </div>
+    <!-- /.button -->
+  </div>
+  <p style="padding-top:20px;">
+    <small>Credit card processing
       <a href="https://stripe.com/" target="_blank"><img src="/images/stripe_small.png"></a> Placeful does not store your payment information.
     </small>
-    </p>
+  </p>
 </div>
 <div class="pull-left plan-info">
-    <!-- <h4>Standard plan includes:</h4>
+  <!-- <h4>Standard plan includes:</h4>
     <ul id="accordion">
         <li><a href="#unlimitedcoupons">Unlimited deals and campaigns</a></li>
         <li><a href="#freepromo">Free promotion via our Networks</a></li>
@@ -46,70 +46,87 @@
 <!-- stripe -->
 <script src="https://checkout.stripe.com/checkout.js"></script>
 <script>
-    $('#labelStripeCode').blur(function() {
-        var numPrice = 5000;
-        $('input[name=price]').val(numPrice);
-        var self = $(this);
-        var text = self.val();
-        $.post('/coupon/validate', {
-            text: text
-        }, function(response) {
-            if (response.status === 'success') {
-                var discount = response.data[0].discount;
-                var price = parseInt($('input[name=price]').val());
-                var new_price = price - (discount * 100);
-                console.log('testing ', new_price, discount)
-                $('input[name=price]').val(new_price);
-            }
-        });
-    })
+  $('#labelStripeCode').blur(function()
+  {
+    var numPrice = 5000;
+    $('input[name=price]').val(numPrice);
+    var self = $(this);
+    var text = self.val();
+    $.post('/coupon/validate',
+    {
+      text: text
+    }, function(response)
+    {
+      if (response.status === 'success')
+      {
+        var discount = response.data[0].discount;
+        var price = parseInt($('input[name=price]').val());
+        var new_price = price - (discount * 100);
+        console.log('testing ', new_price, discount)
+        $('input[name=price]').val(new_price);
+      }
+    });
+  })
 
-    var handler = StripeCheckout.configure({
-        key: 'pk_live_9xZBCqxsOvcil3BXQjT5lpPl', //'pk_live_9xZBCqxsOvcil3BXQjT5lpPl',
-        image: 'https://dl.dropbox.com/s/24qst7cra9x1fvc/placeful-icon_800.png?dl=0',
-        locale: 'auto',
-        "panel-label": 'Subscribe',
-        token: function(token) {
-            token.couponCode = $('input[name=couponCode]').val();
-            $.post('/lab/payment', {
-                token: token
-            }, function(response) {
-                $('.stripeButton').removeClass('btn-info').addClass('btn-success').text('processing payment...').attr('disabled', 'disabled');
-                if (response.status === 'success') {
-                    window.location = '/builder';
-                } else {
-                    alert('Payment processing failed. Refresh the page and try again');
-                }
-
-            });
+  var handler = StripeCheckout.configure(
+  {
+    key: 'pk_live_9xZBCqxsOvcil3BXQjT5lpPl', //'pk_live_9xZBCqxsOvcil3BXQjT5lpPl',
+    image: 'https://dl.dropbox.com/s/24qst7cra9x1fvc/placeful-icon_800.png?dl=0',
+    locale: 'auto',
+    "panel-label": 'Subscribe',
+    token: function(token)
+    {
+      token.couponCode = $('input[name=couponCode]').val();
+      $.post('/lab/payment',
+      {
+        token: token
+      }, function(response)
+      {
+        $('.stripeButton').removeClass('btn-info').addClass('btn-success').text('processing payment...').attr('disabled', 'disabled');
+        if (response.status === 'success')
+        {
+          window.location = '/builder';
         }
-    });
+        else
+        {
+          alert('Payment processing failed. Refresh the page and try again');
+        }
 
-    document.querySelector('.stripeButton').addEventListener('click', function(e) {
-        // Open Checkout with further options
-        $('.stripeButton').text('please wait...').attr('disabled', 'disabled');
-
-        setTimeout(function() {
-            var price = $('input[name=price]').val();
-            handler.open({
-                name: 'Placeful for Business',
-                description: 'Standard Plan ($50)',
-                amount: price,
-                email: "{{business_email}}",
-                zipcode: 'true',
-            });
-        }, 2000);
-
-        e.preventDefault();
-    });
-
-    $(document).on("DOMNodeRemoved", ".stripe_checkout_app", close);
-
-    function close() {
-        setTimeout(function() {
-            if ($('.stripeButton').hasClass('btn-info')) {
-                $('.stripeButton').text('Pay with card').removeAttr('disabled');
-            }
-        }, 5000);
+      });
     }
+  });
+
+  document.querySelector('.stripeButton').addEventListener('click', function(e)
+  {
+    // Open Checkout with further options
+    $('.stripeButton').text('please wait...').attr('disabled', 'disabled');
+
+    setTimeout(function()
+    {
+      var price = $('input[name=price]').val();
+      handler.open(
+      {
+        name: 'Placeful for Business',
+        description: 'Standard Plan ($50)',
+        amount: price,
+        email: "{{business_email}}",
+        zipcode: 'true',
+      });
+    }, 2000);
+
+    e.preventDefault();
+  });
+
+  $(document).on("DOMNodeRemoved", ".stripe_checkout_app", close);
+
+  function close()
+  {
+    setTimeout(function()
+    {
+      if ($('.stripeButton').hasClass('btn-info'))
+      {
+        $('.stripeButton').text('Pay with card').removeAttr('disabled');
+      }
+    }, 5000);
+  }
 </script>

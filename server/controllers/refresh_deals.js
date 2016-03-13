@@ -83,12 +83,18 @@ module.exports = {
 
             promotion.tags = tags
 
-            db.promotions.save(promotion, function (err, result) {
-              if (err) console.log(err)
+            db.promotions.save(promotion, function () {
               uploader(promotion.large_image, promotion_id)
               sendEmail(process.env.ADMIN_EMAIL, 'New promotion', 'A new promotion: <b>' + promotion_id + '</b> has been created')
-
-              return reply.redirect('/manage_deals')
+              db.merchants.update({
+                business_id: promotion.merchant_id
+              }, {
+                $set: {
+                  business_icon: `https://s3-us-west-2.amazonaws.com/zeus00/${promotion_id}`
+                }
+              }, function () {
+                return reply.redirect('/manage_deals')
+              })
             })
           } else {
             return reply.redirect('/manage_deals')
