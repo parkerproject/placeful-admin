@@ -74,6 +74,13 @@ module.exports = {
               db.merchants.save(businessObject, function () {
                 let html = template(appRoot + '/server/views/welcome_email.html', {})
                 sendEmail(request.payload.business_email, 'Welcome to Placeful', html)
+
+                let content = `<p>A new merchant, <strong>${businessObject.business_name}</strong> has joined!</p>
+                Thanks,<br />
+                Placeful robot`
+
+                sendEmail(request.payload.business_email, 'A new merchant', content)
+
                 reply('success')
               })
             } else {
