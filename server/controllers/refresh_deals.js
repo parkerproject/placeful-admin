@@ -85,7 +85,8 @@ module.exports = {
 
             db.promotions.save(promotion, function () {
               uploader(promotion.large_image, promotion_id)
-              sendEmail(process.env.ADMIN_EMAIL, 'New promotion', 'A new promotion: <b>' + promotion_id + '</b> has been created')
+              let content = `http://placeful.co/promotion/${promotion_id}/${promotion.slug}`
+              sendEmail(process.env.ADMIN_EMAIL, 'New promotion', 'A new promotion: <b>' + content + '</b> has been created')
               db.merchants.update({
                 business_id: promotion.merchant_id
               }, {
