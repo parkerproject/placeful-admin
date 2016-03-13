@@ -79,7 +79,7 @@ module.exports = {
                 Thanks,<br />
                 Placeful robot`
 
-                sendEmail(request.payload.business_email, 'A new merchant', content)
+                sendEmail(process.env.ADMIN_EMAIL, 'A new merchant', content)
 
                 reply('success')
               })
