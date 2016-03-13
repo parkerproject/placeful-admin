@@ -3838,7 +3838,6 @@ body.is-loading #sidebar nav ul li {
 .how li {
     display: block;
     height: 170px;
-    margin: 10px;
     width: 25%;
     float: left;
 }

@@ -14,5 +14,6 @@ results
 npm-debug.log
 node_modules
 server/controller/deal_images
-server/controllers/find.js
+server/controllers/factual.js
 server/controllers/local.js
+server/controllers/email_exist.js
