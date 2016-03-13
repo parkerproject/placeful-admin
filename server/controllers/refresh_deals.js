@@ -86,8 +86,10 @@ module.exports = {
             db.promotions.save(promotion, function () {
               uploader(promotion.large_image, promotion_id)
 
-              let content = ` A new promotion http://placeful.co/promotion/${promotion_id}/${promotion.slug} has been created
-              <p>if you like what you see, go ahead and approve in the admin</p>`
+              let content = `A new promotion <a href="http://placeful.co/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created
+              <p>if you like what you see, go ahead and approve in the admin</p>
+              Thanks<br />
+              Placeful robot`
 
               sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
 
