@@ -10,27 +10,6 @@ const typeform_url = 'https://api.typeform.com/v0/form/' + process.env.FORM_ID +
 const slug = require('slug')
 const mersenne = require('mersenne')
 const sendEmail = require('./send_email')
-const geocoderProvider = 'google'
-const httpAdapter = 'https'
-  // optionnal
-const extra = {
-  apiKey: process.env.GOOGLE_API_KEY,
-  formatter: null
-}
-
-const geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra)
-
-function tConvert(time) {
-  // Check correct time format and split into components
-  time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time]
-
-  if (time.length > 1) { // If time format correct
-    time = time.slice(1) // Remove full string match value
-    time[5] = +time[0] < 12 ? 'AM' : 'PM' // Set AM/PM
-    time[0] = +time[0] % 12 || 12 // Adjust hours
-  }
-  return time.join('') // return adjusted time or original string
-}
 
 module.exports = {
   index: {
@@ -52,14 +31,6 @@ module.exports = {
 
             currentPromotion = currentPromotion[0]
 
-            console.log(currentPromotion)
-
-            let start_time = currentPromotion.answers.number_18667382 + ':' + currentPromotion.answers.number_18667408
-            start_time = tConvert(start_time)
-
-            let end_time = currentPromotion.answers.number_18667562 + ':' + currentPromotion.answers.number_18667563
-            end_time = tConvert(end_time)
-
             promotion.merchant_id = currentPromotion.hidden.business_id
             promotion.merchant_locality = currentPromotion.hidden.merchant_locality
             promotion.phone = currentPromotion.hidden.phone
@@ -75,9 +46,13 @@ module.exports = {
             promotion.slug = slug(currentPromotion.answers.textfield_17217315)
             promotion.ticket_id = mersenne.rand()
             promotion.likes = []
-            promotion.start_time = start_time
-            promotion.end_time = end_time
+            promotion.start_time = currentPromotion.answers.dropdown_19050955
+            promotion.end_time = currentPromotion.answers.dropdown_19051023
             promotion.approved = false
+            promotion.loc = {
+              type: 'Point',
+              coordinates: [Number(currentPromotion.hidden.business_lng), Number(currentPromotion.hidden.business_lat)]
+            }
 
             let props = Object.keys(currentPromotion.answers)
             let tags = []
@@ -89,23 +64,6 @@ module.exports = {
             })
 
             promotion.tags = tags
-
-            if (currentPromotion.hidden.business_lng !== 0 || currentPromotion.hidden.business_lng != null) {
-              promotion.loc = {
-                type: 'Point',
-                coordinates: [Number(currentPromotion.hidden.business_lng), Number(currentPromotion.hidden.business_lat)]
-              }
-            } else {
-              geocoder.geocode(promotion.merchant_address)
-                .then((res) => {
-                  promotion.loc = {
-                    type: 'Point',
-                    coordinates: [res[0].longitude, res[0].latitude]
-                  }
-                })
-            }
-
-            console.log('GEO = ', promotion.loc)
 
             db.promotions.save(promotion, function () {
               uploader(promotion.large_image, promotion_id)
