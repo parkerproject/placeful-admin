@@ -10,6 +10,15 @@ const typeform_url = 'https://api.typeform.com/v0/form/' + process.env.FORM_ID +
 const slug = require('slug')
 const mersenne = require('mersenne')
 const sendEmail = require('./send_email')
+const geocoderProvider = 'google'
+const httpAdapter = 'https'
+  // optionnal
+const extra = {
+  apiKey: process.env.GOOGLE_API_KEY,
+  formatter: null
+}
+
+const geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra)
 
 function tConvert(time) {
   // Check correct time format and split into components
@@ -57,10 +66,6 @@ module.exports = {
             promotion.merchant_address = currentPromotion.hidden.merchant_address
             promotion.merchant_name = currentPromotion.hidden.business_name
             promotion.quantity_redeemed = 0
-            promotion.loc = {
-              type: 'Point',
-              coordinates: [Number(currentPromotion.hidden.business_lng), Number(currentPromotion.hidden.business_lat)]
-            }
             promotion.title = currentPromotion.answers.textfield_17217315
             promotion.description = currentPromotion.answers.textarea_17509767
             promotion.fine_print = currentPromotion.answers.textarea_17509616
@@ -84,6 +89,23 @@ module.exports = {
             })
 
             promotion.tags = tags
+
+            if (currentPromotion.hidden.business_lng !== 0 || currentPromotion.hidden.business_lng != null) {
+              promotion.loc = {
+                type: 'Point',
+                coordinates: [Number(currentPromotion.hidden.business_lng), Number(currentPromotion.hidden.business_lat)]
+              }
+            } else {
+              geocoder.geocode(promotion.merchant_address)
+                .then((res) => {
+                  promotion.loc = {
+                    type: 'Point',
+                    coordinates: [res[0].longitude, res[0].latitude]
+                  }
+                })
+            }
+
+            console.log('GEO = ', promotion.loc)
 
             db.promotions.save(promotion, function () {
               uploader(promotion.large_image, promotion_id)
