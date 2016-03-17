@@ -46,6 +46,7 @@
     "mersenne": "0.0.3",
     "moment": "^2.11.0",
     "mongojs": "^0.18.2",
+    "node-geocoder": "^3.8.0",
     "node-mandrill": "^1.0.1",
     "node-parse-api": "^0.3.8",
     "node-schedule": "^0.2.9",

@@ -43,6 +43,8 @@ module.exports = {
 
             currentPromotion = currentPromotion[0]
 
+            console.log(currentPromotion)
+
             let start_time = currentPromotion.answers.number_18667382 + ':' + currentPromotion.answers.number_18667408
             start_time = tConvert(start_time)
 
