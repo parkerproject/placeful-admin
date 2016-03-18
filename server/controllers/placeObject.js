@@ -8,6 +8,7 @@ module.exports = function (obj) {
     business_address: obj.merchant_address,
     business_icon: obj.icon,
     business_locality: obj.merchant_locality,
+    loc: obj.loc,
     followers: [],
     subscriber: 'no',
     password: obj.password,

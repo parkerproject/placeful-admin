@@ -96,10 +96,10 @@ module.exports = {
                   promotion.website = null
                   let merchantAccount = placeObject(promotion)
 
-                  console.log(merchantAccount)
+                  let nameForBusiness = new RegExp(merchantAccount.merchant_name, 'i')
 
                   db.merchants.find({
-                    business_name: merchantAccount.merchant_name
+                    business_name: nameForBusiness
                   }).limit(1, (err, business) => {
                     if (err) console.log(err)
                     if (business.length === 0) {
