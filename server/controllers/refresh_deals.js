@@ -31,8 +31,6 @@ module.exports = {
 
             currentPromotion = currentPromotion[0]
 
-            console.log(currentPromotion)
-
             promotion.merchant_id = currentPromotion.hidden.business_id
             promotion.merchant_locality = currentPromotion.hidden.merchant_locality
             promotion.phone = currentPromotion.hidden.phone
@@ -58,6 +56,7 @@ module.exports = {
 
             let props = Object.keys(currentPromotion.answers)
             let tags = []
+            let days = []
 
             props.forEach(function (tag) {
               if (_.startsWith(tag, 'list_17501907_choice') && currentPromotion.answers[tag] !== '') {
@@ -66,6 +65,14 @@ module.exports = {
             })
 
             promotion.tags = tags
+
+            props.forEach(function (day) {
+              if (_.startsWith(day, 'listimage_19133547') && currentPromotion.answers[day] !== '') {
+                days.push(currentPromotion.answers[day])
+              }
+            })
+
+            promotion.days = days
 
             db.promotions.save(promotion, function () {
               uploader(promotion.large_image, promotion_id)
