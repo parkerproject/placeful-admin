@@ -9,7 +9,13 @@ const typeform_url = 'https://api.typeform.com/v0/form/' + process.env.ADMIN_FOR
 const slug = require('slug')
 const mersenne = require('mersenne')
 const sendEmail = require('./send_email')
-const geocode = require('./geo')
+const geocoderProvider = 'google'
+const httpAdapter = 'https'
+const extra = {
+  apiKey: process.env.GOOGLE_API_KEY,
+  formatter: null
+}
+const geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra)
 
 module.exports = {
   index: {
@@ -50,13 +56,6 @@ module.exports = {
             promotion.end_time = currentPromotion.answers.dropdown_19137102
             promotion.approved = false
 
-            let latitude = geocode(currentPromotion.answers.textfield_18505811).latitude
-            let longitude = geocode(currentPromotion.answers.textfield_18505811).longitude
-            promotion.loc = {
-              type: 'Point',
-              coordinates: [longitude, latitude]
-            }
-
             let props = Object.keys(currentPromotion.answers)
             let tags = []
             let days = []
@@ -77,20 +76,32 @@ module.exports = {
 
             promotion.days = days
 
-            console.log(promotion)
+            geocoder.geocode(currentPromotion.answers.textfield_18505811)
+              .then((res) => {
+                let longitude = res[0].longitude
+                let latitude = res[0].latitude
+                promotion.loc = {
+                  type: 'Point',
+                  coordinates: [longitude, latitude]
+                }
 
-            db.promotions.save(promotion, function () {
-              uploader(promotion.large_image, promotion_id)
+                db.promotions.save(promotion, function () {
+                  uploader(promotion.large_image, promotion_id)
 
-              let content = `A new promotion <a href="http://placeful.co/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
-              <p>if you like what you see, go ahead and approve in the admin</p>
-              Thanks,<br />
-              Placeful robot`
+                  let content = `A new promotion <a href="http://placeful.co/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
+                  <p>if you like what you see, go ahead and approve in the admin</p>
+                  Thanks,<br />
+                  Placeful robot`
 
-              sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
+                  sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
 
-              return reply.redirect('/manage_deals')
-            })
+                  return reply.redirect('/manage_deals')
+                })
+              })
+              .catch(function (err) {
+                console.log(err)
+              })
+
           } else {
             return reply.redirect('/manage_deals')
           }
