@@ -100,7 +100,7 @@ module.exports = {
 
                   db.merchants.find({
                     business_name: merchantAccount.merchant_name
-                  }).limt(1, (err, business) => {
+                  }).limit(1, (err, business) => {
                     if (err) console.log(err)
                     if (business.length === 0) {
                       db.merchants.save(merchantAccount)
