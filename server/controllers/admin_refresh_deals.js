@@ -90,7 +90,7 @@ module.exports = {
                 db.promotions.save(promotion, function () {
                   uploader(promotion.large_image, promotion_id)
 
-                  promotion.business_email = promotion.merchant_id + '@placeful.co'
+                  promotion.email = promotion.merchant_id + '@placeful.co'
                   promotion.password = null
                   promotion.icon = null
                   promotion.website = null
@@ -98,7 +98,7 @@ module.exports = {
 
                   console.log(merchantAccount)
 
-                  db.merchant.find({
+                  db.merchants.find({
                     business_name: merchantAccount.merchant_name
                   }).limt(1, (err, business) => {
                     if (err) console.log(err)
