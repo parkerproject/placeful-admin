@@ -68,7 +68,7 @@ module.exports = {
 
             props.forEach(function (day) {
               if (_.startsWith(day, 'listimage_19133547') && currentPromotion.answers[day] !== '') {
-                days.push(currentPromotion.answers[day])
+                days.push(currentPromotion.answers[day].toLowerCase())
               }
             })
 
