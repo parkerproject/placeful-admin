@@ -16,6 +16,8 @@ const extra = {
   formatter: null
 }
 const geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra)
+const placeObject = require('./placeObject')
+const randtoken = require('rand-token')
 
 module.exports = {
   index: {
@@ -37,7 +39,7 @@ module.exports = {
 
             currentPromotion = currentPromotion[0]
 
-            promotion.merchant_id = 'b6lyhb1Hmq1X1RyZZWZH'
+            promotion.merchant_id = 'placeful_' + randtoken.generate(10)
             promotion.merchant_locality = 'New York'
             promotion.phone = currentPromotion.answers.textfield_18506350
             promotion.merchant_address = currentPromotion.answers.textfield_18505811
@@ -88,14 +90,32 @@ module.exports = {
                 db.promotions.save(promotion, function () {
                   uploader(promotion.large_image, promotion_id)
 
-                  let content = `A new promotion <a href="http://placeful.co/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
-                  <p>if you like what you see, go ahead and approve in the admin</p>
-                  Thanks,<br />
-                  Placeful robot`
+                  promotion.business_email = merchantAccount.business_id + '@placeful.co'
+                  promotion.password = null
+                  promotion.icon = null
+                  promotion.website = null
+                  let merchantAccount = placeObject(promotion)
 
-                  sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
+                  console.log(merchantAccount)
 
-                  return reply.redirect('/manage_deals')
+                  db.merchant.find({
+                    business_name: merchantAccount.merchant_name
+                  }).limt(1, (err, business) => {
+                    if (err) console.log(err)
+                    if (business.length === 0) {
+                      db.merchants.save(merchantAccount)
+                    }
+
+                    let content = `A new promotion <a href="http://placeful.co/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
+                    <p>if you like what you see, go ahead and approve in the admin</p>
+                    Thanks,<br />
+                    Placeful robot`
+
+                    sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
+
+                    return reply.redirect('/manage_deals')
+
+                  })
                 })
               })
               .catch(function (err) {
