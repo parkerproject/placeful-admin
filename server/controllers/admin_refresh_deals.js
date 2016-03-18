@@ -37,7 +37,7 @@ module.exports = {
 
             currentPromotion = currentPromotion[0]
 
-            promotion.merchant_id = 'placeful123'
+            promotion.merchant_id = 'b6lyhb1Hmq1X1RyZZWZH'
             promotion.merchant_locality = 'New York'
             promotion.phone = currentPromotion.answers.textfield_18506350
             promotion.merchant_address = currentPromotion.answers.textfield_18505811
