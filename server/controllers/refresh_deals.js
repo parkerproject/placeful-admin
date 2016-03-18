@@ -84,15 +84,7 @@ module.exports = {
 
               sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
 
-              db.merchants.update({
-                business_id: promotion.merchant_id
-              }, {
-                $set: {
-                  business_icon: `https://s3-us-west-2.amazonaws.com/zeus00/${promotion_id}`
-                }
-              }, function () {
-                return reply.redirect('/manage_deals')
-              })
+              return reply.redirect('/manage_deals')
             })
           } else {
             return reply.redirect('/manage_deals')
