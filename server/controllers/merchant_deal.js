@@ -2,7 +2,6 @@
 require('dotenv').load()
 const collections = ['merchants', 'promotions']
 const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
-const dateFormat = require('./formatDate')
 
 module.exports = {
   deals: {
@@ -14,7 +13,7 @@ module.exports = {
         var now = new Date()
         now = now.toISOString()
         if (result != null && result.length !== 0) {
-          if (result[0].current_period_end < now || result[0].subscriber === 'no') {
+          if (result[0].subscriber === 'no') {
             return reply.redirect('/payment')
           } else {
             db.promotions.find({
@@ -27,7 +26,8 @@ module.exports = {
               reply.view('merchant/manage_deals', {
                 deals: deals,
                 business_name: request.auth.credentials.business_name,
-                business_email: request.auth.credentials.business_email
+                business_email: request.auth.credentials.business_email,
+                role: request.auth.credentials.role
               })
             })
           }

@@ -32,8 +32,9 @@ module.exports = {
               business_address: request.auth.credentials.business_address,
               business_icon: request.auth.credentials.business_icon,
               business_locality: request.auth.credentials.business_locality,
-              form_id: process.env.FORM_ID,
-              promotion_id: randtoken.generate(12)
+              form_id: (request.auth.credentials.role === 'admin') ? process.env.ADMIN_FORM_ID : process.env.FORM_ID,
+              promotion_id: randtoken.generate(12),
+              role: request.auth.credentials.role
             })
           }
         } else {
