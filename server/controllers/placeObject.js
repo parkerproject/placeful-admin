@@ -1,3 +1,4 @@
+'use strict'
 module.exports = function (obj) {
   let businessObject = {
     business_name: obj.merchant_name,
