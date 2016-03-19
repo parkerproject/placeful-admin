@@ -132,6 +132,10 @@ module.exports = function (server) {
     method: 'POST',
     path: '/paid',
     config: controller.paid.index
+  }, {
+    method: 'GET',
+    path: '/admin/placeful_promotions',
+    config: controller.placeful_promotions.deals
   }]
   return routeTable
 }

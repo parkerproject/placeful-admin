@@ -44,22 +44,32 @@
       <li>
         <a href="/manage_deals">
           <i class="fa fa-th"></i>
-          <span>View Promotions</span>
+          <span>All Promotions</span>
         </a>
       </li>
+
+      {% if role %}
+      <li>
+        <a href="/admin/placeful_promotions">
+          <i class="fa fa-th"></i>
+          <span>Placeful Promotions</span>
+        </a>
+      </li>
+      {% endif %}
       <!-- <li>
                 <a href="/analytics">
                     <i class="fa fa-th"></i>
                     <span>Analytics</span>
                 </a>
             </li> -->
+      {% if !role %}
       <li>
         <a href="/profile">
           <i class="fa fa-th"></i>
           <span>Business Profile</span>
         </a>
       </li>
-
+      {% endif %}
     </ul>
   </section>
   <!-- /.sidebar -->

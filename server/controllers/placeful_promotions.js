@@ -6,7 +6,9 @@ const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collecti
 module.exports = {
   deals: {
     handler: function (request, reply) {
-      let queryObj = {}
+      let queryObj = {
+        merchant_id: new RegExp('placeful_', 'i')
+      }
 
       if (!request.auth.credentials.role) {
         queryObj.merchant_id = request.auth.credentials.business_id
@@ -30,7 +32,8 @@ module.exports = {
                 deals: deals,
                 business_name: request.auth.credentials.business_name,
                 business_email: request.auth.credentials.business_email,
-                role: request.auth.credentials.role
+                role: request.auth.credentials.role,
+                text: 'created by Placeful'
               })
             })
           }
