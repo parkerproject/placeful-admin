@@ -17,3 +17,4 @@ server/controller/deal_images
 server/controllers/factual.js
 server/controllers/local.js
 server/controllers/email_exist.js
+server/controllers/lab.js
