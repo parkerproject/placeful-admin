@@ -3838,7 +3838,7 @@ body.is-loading #sidebar nav ul li {
 .how li {
     display: block;
     height: 170px;
-    width: 25%;
+    width: 50%;
     float: left;
 }
 
