@@ -39,6 +39,8 @@ module.exports = {
 
             currentPromotion = currentPromotion[0]
 
+            console.log(currentPromotion)
+
             promotion.merchant_id = 'placeful_' + randtoken.generate(10)
             promotion.merchant_locality = 'New York'
             promotion.phone = currentPromotion.answers.textfield_18506350
