@@ -18,22 +18,22 @@ module.exports = {
         var now = new Date()
         now = now.toISOString()
         if (result != null && result.length !== 0) {
-          if (result[0].subscriber === 'no') {
-            return reply.redirect('/payment')
-          } else {
-            db.promotions.find(queryObj).sort({
-              start_date: 1
-            }, function (err, deals) {
-              if (err) console.log(err)
+          //  if (result[0].subscriber === 'no') {
+          //    return reply.redirect('/payment')
+          //  } else {
+          db.promotions.find(queryObj).sort({
+            start_date: 1
+          }, function (err, deals) {
+            if (err) console.log(err)
 
-              reply.view('merchant/manage_deals', {
-                deals: deals,
-                business_name: request.auth.credentials.business_name,
-                business_email: request.auth.credentials.business_email,
-                role: request.auth.credentials.role
-              })
+            reply.view('merchant/manage_deals', {
+              deals: deals,
+              business_name: request.auth.credentials.business_name,
+              business_email: request.auth.credentials.business_email,
+              role: request.auth.credentials.role
             })
-          }
+          })
+        //  }
         } else { // could find session
           request.auth.session.clear()
           return reply.redirect('/login')
