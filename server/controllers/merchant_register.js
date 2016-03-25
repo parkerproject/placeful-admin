@@ -8,7 +8,6 @@ const _request = require('request')
 const _ = require('lodash')
 const template = require('./template')
 const sendEmail = require('./send_email')
-
 module.exports = {
   index: {
     handler: function (request, reply) {
@@ -20,15 +19,14 @@ module.exports = {
       name: 'register'
     }
   },
-
   register_post: {
     handler: function (request, reply) {
       let password = request.payload.password
       let hash = bcrypt.hashSync(password)
-
       db.merchants.find({
         business_email: request.payload.business_email
       }).limit(1, function (err, results) {
+        if (err) console.log(err)
         if (results.length === 0) {
           var data = {
             secret: process.env.Recaptcha_SECRET,
@@ -40,8 +38,8 @@ module.exports = {
           }, function (err, httpResponse, body) {
             if (err) console.log(err)
             let business_name = (request.payload.business_place !== '') ? request.payload.business_place : request.payload.business_name
-
             let hashtags = (request.payload.business_hashtags).toLowerCase()
+            let expire_date = new Date().getTime() + (30 * 24 * 60 * 60 * 1000)
             let businessObject = {
               business_name: business_name,
               business_email: request.payload.business_email,
@@ -59,28 +57,23 @@ module.exports = {
               agreement: request.payload.agreement,
               website: request.payload.website,
               tags: _.words(hashtags),
-              approved: false
-
+              approved: false,
+              expire_date: expire_date.toISOString()
             }
-
             if (request.payload.business_lat && request.payload.business_lng) {
               businessObject.loc = {
                 type: 'Point',
                 coordinates: [Number(request.payload.business_lng), Number(request.payload.business_lat)]
               }
             }
-
             if (JSON.parse(body).success) {
               db.merchants.save(businessObject, function () {
                 let html = template(appRoot + '/server/views/welcome_email.html', {})
                 sendEmail(request.payload.business_email, 'Welcome to Placeful', html)
-
                 let content = `<p>A new merchant, <strong>${businessObject.business_name}</strong> has joined!</p>
                 Thanks,<br />
                 Placeful robot`
-
                 sendEmail(process.env.ADMIN_EMAIL, 'A new merchant', content)
-
                 reply('success')
               })
             } else {
@@ -91,9 +84,6 @@ module.exports = {
           reply('Already registered, Login to access account')
         }
       })
-
     }
-
   }
-
 }
