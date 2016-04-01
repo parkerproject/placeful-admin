@@ -24,7 +24,6 @@ module.exports = {
               return result.hidden.promotion_id === promotion_id
             })
             currentPromotion = currentPromotion[0]
-            console.log(currentPromotion)
             promotion.merchant_id = currentPromotion.hidden.business_id
             promotion.merchant_locality = currentPromotion.hidden.merchant_locality
             promotion.phone = currentPromotion.hidden.phone
@@ -44,7 +43,7 @@ module.exports = {
             promotion.end_time = currentPromotion.answers.dropdown_19051023
             promotion.approved = false
             promotion.merchant_category = currentPromotion.answers.listimage_19441799_choice
-              // promotion.merchant_locality =
+            promotion.merchant_locality = currentPromotion.answers.dropdown_19905148
             promotion.loc = {
               type: 'Point',
               coordinates: [Number(currentPromotion.hidden.business_lng), Number(currentPromotion.hidden.business_lat)]
