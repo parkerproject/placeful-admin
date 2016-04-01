@@ -33,7 +33,6 @@ module.exports = {
               return result.hidden.promotion_id === promotion_id
             })
             currentPromotion = currentPromotion[0]
-            console.log(currentPromotion)
             promotion.merchant_id = 'placeful_' + randtoken.generate(10)
             promotion.merchant_locality = 'New York'
             promotion.phone = currentPromotion.answers.textfield_18506350
@@ -52,6 +51,7 @@ module.exports = {
             promotion.start_time = currentPromotion.answers.dropdown_19137094
             promotion.end_time = currentPromotion.answers.dropdown_19137102
             promotion.approved = false
+            promotion.merchant_locality = currentPromotion.answers.dropdown_19907801
             promotion.merchant_category = currentPromotion.answers.listimage_19441897_choice
             let props = Object.keys(currentPromotion.answers)
             let tags = []
