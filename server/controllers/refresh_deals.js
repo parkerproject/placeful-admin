@@ -4,33 +4,27 @@ const collections = ['merchants', 'promotions']
 const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
 const req = require('request')
 const _ = require('lodash')
-const randtoken = require('rand-token')
 const uploader = require('./amazon')
 const typeform_url = 'https://api.typeform.com/v0/form/' + process.env.FORM_ID + '?key=' + process.env.TYPEFORM_API + '&completed=true'
 const slug = require('slug')
 const mersenne = require('mersenne')
 const sendEmail = require('./send_email')
-
 module.exports = {
   index: {
     handler: function (request, reply) {
       let promotion_id = request.params.promotion_id
-
       let promotion = {
         deal_id: promotion_id
       }
-
       req(typeform_url, function (error, response, body) {
         if (!error && response.statusCode === 200) {
           let results = JSON.parse(body).responses
-
           if (results.length !== 0) {
             let currentPromotion = _.filter(results, function (result) {
               return result.hidden.promotion_id === promotion_id
             })
-
             currentPromotion = currentPromotion[0]
-
+            console.log(currentPromotion)
             promotion.merchant_id = currentPromotion.hidden.business_id
             promotion.merchant_locality = currentPromotion.hidden.merchant_locality
             promotion.phone = currentPromotion.hidden.phone
@@ -50,41 +44,33 @@ module.exports = {
             promotion.end_time = currentPromotion.answers.dropdown_19051023
             promotion.approved = false
             promotion.merchant_category = currentPromotion.answers.listimage_19441799_choice
+              // promotion.merchant_locality =
             promotion.loc = {
               type: 'Point',
               coordinates: [Number(currentPromotion.hidden.business_lng), Number(currentPromotion.hidden.business_lat)]
             }
-
             let props = Object.keys(currentPromotion.answers)
             let tags = []
             let days = []
-
             props.forEach(function (tag) {
               if (_.startsWith(tag, 'list_17501907_choice') && currentPromotion.answers[tag] !== '') {
                 tags.push(currentPromotion.answers[tag])
               }
             })
-
             promotion.tags = tags
-
             props.forEach(function (day) {
               if (_.startsWith(day, 'listimage_19133547') && currentPromotion.answers[day] !== '') {
                 days.push(currentPromotion.answers[day].toLowerCase())
               }
             })
-
             promotion.days = days
-
             db.promotions.save(promotion, function () {
               uploader(promotion.large_image, promotion_id)
-
               let content = `A new promotion <a href="http://placeful.co/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
               <p>if you like what you see, go ahead and approve in the admin</p>
               Thanks,<br />
               Placeful robot`
-
               sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
-
               return reply.redirect('/manage_deals')
             })
           } else {
@@ -95,5 +81,4 @@ module.exports = {
     },
     auth: 'session'
   }
-
 }
