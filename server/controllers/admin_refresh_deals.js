@@ -18,27 +18,22 @@ const extra = {
 const geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra)
 const placeObject = require('./placeObject')
 const randtoken = require('rand-token')
-
 module.exports = {
   index: {
     handler: function (request, reply) {
       let promotion_id = request.params.promotion_id
-
       let promotion = {
         deal_id: promotion_id
       }
-
       req(typeform_url, function (error, response, body) {
         if (!error && response.statusCode === 200) {
           let results = JSON.parse(body).responses
-
           if (results.length !== 0) {
             let currentPromotion = _.filter(results, function (result) {
               return result.hidden.promotion_id === promotion_id
             })
-
             currentPromotion = currentPromotion[0]
-
+            console.log(currentPromotion)
             promotion.merchant_id = 'placeful_' + randtoken.generate(10)
             promotion.merchant_locality = 'New York'
             promotion.phone = currentPromotion.answers.textfield_18506350
@@ -58,69 +53,53 @@ module.exports = {
             promotion.end_time = currentPromotion.answers.dropdown_19137102
             promotion.approved = false
             promotion.merchant_category = currentPromotion.answers.listimage_19441897_choice
-
             let props = Object.keys(currentPromotion.answers)
             let tags = []
             let days = []
-
             props.forEach(function (tag) {
               if (_.startsWith(tag, 'list_18505043_choice') && currentPromotion.answers[tag] !== '') {
                 tags.push(currentPromotion.answers[tag])
               }
             })
-
             promotion.tags = tags
-
             props.forEach(function (day) {
               if (_.startsWith(day, 'listimage_19137415') && currentPromotion.answers[day] !== '') {
                 days.push(currentPromotion.answers[day].toLowerCase())
               }
             })
-
             promotion.days = days
-
-            geocoder.geocode(currentPromotion.answers.textfield_18505811)
-              .then((res) => {
-                let longitude = res[0].longitude
-                let latitude = res[0].latitude
-                promotion.loc = {
-                  type: 'Point',
-                  coordinates: [longitude, latitude]
-                }
-
-                db.promotions.save(promotion, function () {
-                  uploader(promotion.large_image, promotion_id)
-
-                  promotion.email = promotion.merchant_id + '@placeful.co'
-                  promotion.password = null
-                  promotion.icon = null
-                  promotion.website = null
-                  let merchantAccount = placeObject(promotion)
-
-                  db.merchants.find({
-                    business_name: merchantAccount.merchant_name
-                  }).limit(1, (err, business) => {
-                    if (err) console.log(err)
-                    if (business.length === 0) {
-                      db.merchants.save(merchantAccount)
-                    }
-
-                    let content = `A new promotion <a href="http://placeful.co/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
+            geocoder.geocode(currentPromotion.answers.textfield_18505811).then((res) => {
+              let longitude = res[0].longitude
+              let latitude = res[0].latitude
+              promotion.loc = {
+                type: 'Point',
+                coordinates: [longitude, latitude]
+              }
+              db.promotions.save(promotion, function () {
+                uploader(promotion.large_image, promotion_id)
+                promotion.email = promotion.merchant_id + '@placeful.co'
+                promotion.password = null
+                promotion.icon = null
+                promotion.website = null
+                let merchantAccount = placeObject(promotion)
+                db.merchants.find({
+                  business_name: merchantAccount.merchant_name
+                }).limit(1, (err, business) => {
+                  if (err) console.log(err)
+                  if (business.length === 0) {
+                    db.merchants.save(merchantAccount)
+                  }
+                  let content = `A new promotion <a href="http://placeful.co/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
                     <p>if you like what you see, go ahead and approve in the admin</p>
                     Thanks,<br />
                     Placeful robot`
-
-                    sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
-
-                    return reply.redirect('/manage_deals')
-
-                  })
+                  sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
+                  return reply.redirect('/manage_deals')
                 })
               })
-              .catch(function (err) {
-                console.log(err)
-              })
-
+            }).catch(function (err) {
+              console.log(err)
+            })
           } else {
             return reply.redirect('/manage_deals')
           }
@@ -129,5 +108,4 @@ module.exports = {
     },
     auth: 'session'
   }
-
 }
