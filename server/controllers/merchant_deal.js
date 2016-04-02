@@ -16,7 +16,7 @@ module.exports = {
         var now = new Date()
         now = now.toISOString()
         if (result != null && result.length !== 0) {
-          if (result[0].subscriber === 'no' && result[0].expire_date < new Date().toISOString()) {
+          if (result[0].subscriber === 'no') {
             return reply.redirect('/payment')
           } else {
             db.promotions.find(queryObj).sort({

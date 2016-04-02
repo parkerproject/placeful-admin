@@ -8,7 +8,7 @@ module.exports = {
         business_id: request.auth.credentials.business_id
       }).limit(1, function (err, result) {
         if (err) console.log(err)
-        if (result[0].subscriber === 'no' && result[0].expire_date < new Date().toISOString()) {
+        if (result[0].subscriber === 'no') {
           reply.view('merchant/index', {
             business_name: request.auth.credentials.business_name,
             business_email: request.auth.credentials.business_email,
