@@ -89,7 +89,7 @@ module.exports = {
                   if (business.length === 0) {
                     db.merchants.save(merchantAccount)
                   }
-                  let content = `A new promotion <a href="http://placeful.co/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
+                  let content = `A new promotion <a href="http://placefulapp.com/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
                     <p>if you like what you see, go ahead and approve in the admin</p>
                     Thanks,<br />
                     Placeful robot`
