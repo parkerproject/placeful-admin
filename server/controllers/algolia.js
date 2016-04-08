@@ -17,7 +17,7 @@ function end(err) {
   let content = 'Mongodb<>Algolia import done'
   sendEmail(process.env.DEV_EMAIL, 'Search database refreshed', content)
 }
-let j = schedule.scheduleJob('0 15 * * *', function () {
+let j = schedule.scheduleJob('0 14 * * *', function () {
   db.promotions.find({}, (err, results) => {
     if (err) console.log(err)
     results = results.map((result) => {
@@ -26,7 +26,6 @@ let j = schedule.scheduleJob('0 15 * * *', function () {
         'lat': result.loc.coordinates[1],
         'lng': result.loc.coordinates[0]
       }
-      delete result.loc
       return result
     })
     let chunkedResults = _.chunk(results, 5000)
