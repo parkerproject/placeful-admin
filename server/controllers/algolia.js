@@ -7,7 +7,7 @@ const client = algoliasearch(process.env.ALGOLIA_APPLICATION_ID, process.env.ALG
 const index = client.initIndex('promotions')
 const async = require('async')
 const _ = require('lodash')
-const cron = require('node-cron')
+const schedule = require('node-schedule')
 const sendEmail = require('./send_email')
 
 function end(err) {
@@ -17,19 +17,19 @@ function end(err) {
   let content = 'Mongodb<>Algolia import done'
   sendEmail(process.env.DEV_EMAIL, 'Search database refreshed', content)
 }
-// cron.schedule('*', function () {
-//   db.promotions.find({}, (err, results) => {
-//     if (err) console.log(err)
-//     results = results.map((result) => {
-//       result.objectID = result.deal_id
-//       result._geoloc = {
-//         'lat': result.loc.coordinates[1],
-//         'lng': result.loc.coordinates[0]
-//       }
-//       delete result.loc
-//       return result
-//     })
-//     let chunkedResults = _.chunk(results, 5000)
-//     async.each(chunkedResults, index.saveObjects.bind(index), end)
-//   })
-// })
+let j = schedule.scheduleJob('0 15 * * *', function () {
+  db.promotions.find({}, (err, results) => {
+    if (err) console.log(err)
+    results = results.map((result) => {
+      result.objectID = result.deal_id
+      result._geoloc = {
+        'lat': result.loc.coordinates[1],
+        'lng': result.loc.coordinates[0]
+      }
+      delete result.loc
+      return result
+    })
+    let chunkedResults = _.chunk(results, 5000)
+    async.each(chunkedResults, index.saveObjects.bind(index), end)
+  })
+})
