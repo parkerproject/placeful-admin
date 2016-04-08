@@ -17,19 +17,19 @@ function end(err) {
   let content = 'Mongodb<>Algolia import done'
   sendEmail(process.env.DEV_EMAIL, 'Search database refreshed', content)
 }
-cron.schedule('*', function () {
-  db.promotions.find({}, (err, results) => {
-    if (err) console.log(err)
-    results = results.map((result) => {
-      result.objectID = result.deal_id
-      result._geoloc = {
-        'lat': result.loc.coordinates[1],
-        'lng': result.loc.coordinates[0]
-      }
-      delete result.loc
-      return result
-    })
-    let chunkedResults = _.chunk(results, 5000)
-    async.each(chunkedResults, index.saveObjects.bind(index), end)
-  })
-})
+// cron.schedule('*', function () {
+//   db.promotions.find({}, (err, results) => {
+//     if (err) console.log(err)
+//     results = results.map((result) => {
+//       result.objectID = result.deal_id
+//       result._geoloc = {
+//         'lat': result.loc.coordinates[1],
+//         'lng': result.loc.coordinates[0]
+//       }
+//       delete result.loc
+//       return result
+//     })
+//     let chunkedResults = _.chunk(results, 5000)
+//     async.each(chunkedResults, index.saveObjects.bind(index), end)
+//   })
+// })
