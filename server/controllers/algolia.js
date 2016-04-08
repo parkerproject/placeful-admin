@@ -17,7 +17,7 @@ function end(err) {
   let content = 'Mongodb<>Algolia import done'
   sendEmail(process.env.DEV_EMAIL, 'Search database refreshed', content)
 }
-cron.schedule('00 00 10 * * 1-7', function () {
+cron.schedule('*', function () {
   db.promotions.find({}, (err, results) => {
     if (err) console.log(err)
     results = results.map((result) => {
