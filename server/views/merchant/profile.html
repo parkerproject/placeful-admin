@@ -37,18 +37,20 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label for="">Business Email</label>
-                  <input type="text" class="form-control" value="{{business_email}}" name="business_email" required>
+                  <input type="text" class="form-control" value="{{business_email}}" name="business_email" required disabled="disabled">
                   <span class="error" style="display: none;"></span>
                 </div>
               </div>
             </div>
             <div class="row">
               <!-- /.col -->
-              <div class="col-xs-4">
+              <div class="col-xs-8">
                 <input type="hidden" name="business_id" value={{business_id}} />
                 <input type="hidden" name="nonhumans" value="" />
 
-                <button type="submit" class="btn btn-success btn-block btn-flat profile-js">Update Profile</button>
+                <p>Send an email to <a href="mailto:concierge@placeful.co">concierge@placeful.co</a> to update or your cancel profile.</p>
+
+                <!-- <button type="submit" class="btn btn-success btn-block btn-flat profile-js">Update Profile</button> -->
               </div>
               <!-- /.col -->
             </div>
