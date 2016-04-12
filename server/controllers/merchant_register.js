@@ -39,7 +39,7 @@ module.exports = {
             if (err) console.log(err)
             let business_name = (request.payload.business_place !== '') ? request.payload.business_place : request.payload.business_name
             let hashtags = (request.payload.business_hashtags).toLowerCase()
-            let expire_date = new Date().getTime() + (30 * 24 * 60 * 60 * 1000)
+              //  let expire_date = new Date().getTime() + (30 * 24 * 60 * 60 * 1000)
             let businessObject = {
               business_name: business_name,
               business_email: request.payload.business_email,
@@ -57,8 +57,8 @@ module.exports = {
               agreement: request.payload.agreement,
               website: request.payload.website,
               tags: _.words(hashtags),
-              approved: false,
-              expire_date: expire_date.toISOString()
+              approved: false
+                //  expire_date: expire_date.toISOString()
             }
             if (request.payload.business_lat && request.payload.business_lng) {
               businessObject.loc = {
