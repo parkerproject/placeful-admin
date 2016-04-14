@@ -2,6 +2,7 @@
 module.exports = (endTime) => {
   // let endTime = '9:00 AM'
   let endTimeString
+  console.log(endTime)
   if (endTime.includes('PM')) {
     let res = endTime.replace('PM', '')
     res = res.trim()
