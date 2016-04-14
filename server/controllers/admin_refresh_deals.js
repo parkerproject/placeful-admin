@@ -18,6 +18,7 @@ const extra = {
 const geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra)
 const placeObject = require('./placeObject')
 const randtoken = require('rand-token')
+const endTimeString = require('./end_time')
 module.exports = {
   index: {
     handler: function (request, reply) {
@@ -50,6 +51,7 @@ module.exports = {
             promotion.likes = []
             promotion.start_time = currentPromotion.answers.dropdown_19137094
             promotion.end_time = currentPromotion.answers.dropdown_19137102
+            promotion.endTimeString = endTimeString(currentPromotion.answers.dropdown_19137102)
             promotion.approved = false
             promotion.merchant_locality = currentPromotion.answers.dropdown_19907801
             promotion.merchant_category = currentPromotion.answers.listimage_19441897_choice

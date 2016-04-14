@@ -9,6 +9,7 @@ const typeform_url = 'https://api.typeform.com/v0/form/' + process.env.FORM_ID +
 const slug = require('slug')
 const mersenne = require('mersenne')
 const sendEmail = require('./send_email')
+const endTimeString = require('./end_time')
 module.exports = {
   index: {
     handler: function (request, reply) {
@@ -41,6 +42,7 @@ module.exports = {
             promotion.likes = []
             promotion.start_time = currentPromotion.answers.dropdown_19050955
             promotion.end_time = currentPromotion.answers.dropdown_19051023
+            promotion.endTimeString = endTimeString(currentPromotion.answers.dropdown_19137102)
             promotion.approved = false
             promotion.merchant_category = currentPromotion.answers.listimage_19441799_choice
             promotion.merchant_locality = currentPromotion.answers.dropdown_19905148
