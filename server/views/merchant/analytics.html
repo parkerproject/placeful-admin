@@ -1,0 +1,40 @@
+{% extends '../layouts/merchant_default.html' %} {% block title %}{{ title }}{% endblock %} {% block content %}
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  {% include '../includes/merchant_head.html' %} {% include '../includes/merchant_sidebar.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box metrics">
+        <div class="box-body">
+        </div>
+
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <footer class=" main-footer ">
+    <div class="pull-right hidden-xs ">
+      <b>Version</b> 2.3.0
+    </div>
+    <strong>Copyright &copy; 2016 Placeful.</strong> All rights reserved.
+  </footer>
+
+  <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+  <div class="control-sidebar-bg "></div>
+</div>
+<!-- ./wrapper -->
+
+{% endblock %}

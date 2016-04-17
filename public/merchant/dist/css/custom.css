@@ -266,3 +266,10 @@
   .main-header .logo{
     background-color: #bd382a!important
   }
+
+
+.metrics{
+  background: url(/images/dashboard.jpg) no-repeat;
+  height: 627px;
+  max-width: 100%;
+}
