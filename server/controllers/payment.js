@@ -1,8 +1,9 @@
+'use strict'
 require('dotenv').load()
-var collections = ['merchants']
-var db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
-var stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-var moment = require('moment')
+const collections = ['merchants']
+const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+
 module.exports = {
   index: {
     handler: function (request, reply) {
@@ -10,17 +11,21 @@ module.exports = {
         email: request.payload.token.email,
         source: request.payload.token.id,
         metadata: {
-          business_id: request.auth.credentials.business_id
+          business_name: request.auth.credentials.business_name
         },
         plan: 'merchant00'
       }
       if (request.auth.credentials.subscriber === 'no' && request.payload.token.couponCode) {
         customer.coupon = request.payload.token.couponCode.toUpperCase()
       }
+
       stripe.customers.create(customer, function (err, customer) {
-        if (err) console.log(err)
+        if (err) {
+          reply({
+            status: 'failed'
+          })
+        }
         if (customer) {
-          var current_period_end = moment.unix(customer.subscriptions.data[0].current_period_end)
           db.merchants.findAndModify({
             query: {
               business_id: request.auth.credentials.business_id
@@ -28,8 +33,6 @@ module.exports = {
             update: {
               $set: {
                 subscriber: 'yes',
-                current_period_end: current_period_end.format(),
-                referral_code_redeemed: 1,
                 referral_code: (request.payload.token.couponCode) ? request.payload.token.couponCode : '',
                 stripe_id: customer.id
               }
@@ -45,10 +48,6 @@ module.exports = {
                 status: 'success'
               })
             }
-          })
-        } else {
-          reply({
-            status: 'failed'
           })
         }
       })

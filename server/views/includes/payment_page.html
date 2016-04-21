@@ -71,9 +71,9 @@
   var handler = StripeCheckout.configure(
   {
     key: 'pk_live_9xZBCqxsOvcil3BXQjT5lpPl', //'pk_live_9xZBCqxsOvcil3BXQjT5lpPl',
-    image: 'https://dl.dropbox.com/s/24qst7cra9x1fvc/placeful-icon_800.png?dl=0',
+    //image: 'https://dl.dropbox.com/s/dk44jwvhaoxkxl2/Icon-76%402x.png?dl=0',
     locale: 'auto',
-    "panel-label": 'Subscribe',
+    "panel-label": 'Join',
     token: function(token)
     {
       token.couponCode = $('input[name=couponCode]').val();
@@ -106,9 +106,9 @@
       var price = $('input[name=price]').val();
       handler.open(
       {
-        name: 'Placeful for Business',
-        description: 'Standard Plan ($50)',
-        amount: price,
+        name: 'Placeful',
+        //description: 'Standard Plan ($50)',
+        //amount: price,
         email: "{{business_email}}",
         zipcode: 'true',
       });

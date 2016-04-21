@@ -14,7 +14,7 @@ module.exports = {
       }).limit(1, function (err, result) {
         if (err) console.log(err)
         if (result != null) { // keeps failing here
-          if (result[0].subscriber === 'no' && result[0].expire_date < new Date().toISOString()) {
+          if (result[0].subscriber === 'no') {
             return reply.redirect('/payment')
           } else {
             reply.view('merchant/add_deal', {

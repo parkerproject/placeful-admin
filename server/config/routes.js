@@ -94,8 +94,8 @@ module.exports = function (server) {
     config: controller.merchant_register.index
   }, {
     method: 'POST',
-    path: '/register_post',
-    config: controller.merchant_register.register_post
+    path: '/register',
+    config: controller.merchant_register.register
   }, {
     method: 'GET',
     path: '/builder',
