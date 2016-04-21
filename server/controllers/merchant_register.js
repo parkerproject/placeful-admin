@@ -100,7 +100,8 @@ module.exports = {
                 tags: '',
                 approved: false,
                 stripe_id: customer.id,
-                referral_code: (request.payload.coupon) ? request.payload.coupon : ''
+                referral_code: (request.payload.coupon) ? request.payload.coupon : '',
+                referral_name: request.payload.referral
               }
               if (request.payload.business_lat && request.payload.business_lng) {
                 businessObject.loc = {
