@@ -54,16 +54,23 @@ module.exports = {
             promotion.endTimeString = endTimeString(currentPromotion.answers.dropdown_19137102)
             promotion.approved = false
             promotion.merchant_locality = currentPromotion.answers.dropdown_19907801
-            promotion.merchant_category = currentPromotion.answers.listimage_19441897_choice
+            // promotion.merchant_category = currentPromotion.answers.listimage_19441897_choice
             let props = Object.keys(currentPromotion.answers)
             let tags = []
             let days = []
+            let categories = []
             props.forEach(function (tag) {
               if (_.startsWith(tag, 'list_18505043_choice') && currentPromotion.answers[tag] !== '') {
                 tags.push(currentPromotion.answers[tag])
               }
             })
             promotion.tags = tags
+            props.forEach(function (category) {
+              if (_.startsWith(category, 'listimage_19441897_choice') && currentPromotion.answers[category] !== '') {
+                categories.push(currentPromotion.answers[category])
+              }
+            })
+            promotion.merchant_category = categories
             props.forEach(function (day) {
               if (_.startsWith(day, 'listimage_19137415') && currentPromotion.answers[day] !== '') {
                 days.push(currentPromotion.answers[day].toLowerCase())
