@@ -1,0 +1,205 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+a:hover {
+    color: #bd382a;
+}
+
+.logo {
+    margin: 10px 0;
+}
+
+.powered {
+    position: relative;
+    top: -12px;
+}
+
+ul {
+    margin: 10px 0;
+}
+
+ul li {
+    display: inline-block;
+    list-style: none;
+    margin-bottom: 0;
+}
+
+.header ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    padding: 0 10px;
+}
+
+hr {
+    margin: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.wrapper.red {
+    background: #bd382a;
+    color: white;
+}
+
+.wrapper.black {
+    background: black;
+    color: white;
+}
+
+.main-nav {
+    padding: 8px;
+}
+
+.main-nav li {
+    font-weight: bold;
+}
+
+.wrapper.gray {
+    background-color: #ebebeb;
+}
+
+.trademark {
+    position: relative;
+    color: white;
+    top: -28px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.main-headline {
+    background: url(/images/headline-section.png) repeat;
+    height: 350px;
+    background-size: contain;
+}
+
+.main-headline h1 {
+    padding-top: 100px;
+}
+
+.main-headline p {
+    font-size: 1.5em;
+}
+
+.logo-section {
+    position: relative;
+}
+
+#business .business {
+    border-bottom: 2px solid white;
+}
+
+.btn {
+    background-color: #00a65a;
+    border: none;
+    box-shadow: 0 0 28px rgba(0, 0, 0, .2)!important;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 0.9em;
+    font-weight: bold;
+    height: calc(3.5em + 2px);
+    letter-spacing: 0.25em;
+    line-height: 3.5em;
+    outline: 0;
+    padding: 0 3.75em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    -webkit-appearance: none;
+    margin: 0 auto;
+    width: 200px;
+}
+
+.btn-red {
+    background: #FF4136;
+}
+
+.btn-ghost {
+    border: 1px solid white;
+    background-color: white;
+    color: black;
+}
+
+.intro p {
+    font-size: 2em;
+    padding: 20px 0;
+}
+
+.inner {
+    padding: 10px;
+    box-shadow: 0 0 28px rgba(0, 0, 0, .2)!important;
+}
+
+.inner img {
+    width: 200px;
+}
+
+.inner h5 {
+    margin-bottom: 0;
+}
+
+.break {
+    height: 200px;
+    margin: 40px 0;
+    width: 100%;
+}
+
+.badge {
+    box-sizing: border-box;
+    margin: 0 5px 0 0;
+    padding-top: .3em;
+    padding-right: .4em;
+    padding-left: .4em;
+    padding-bottom: .3em;
+    min-width: 1.5em;
+    min-height: 1em;
+    line-height: 1em;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    background-color: #bd382a;
+    border-radius: 1em;
+    font-size: 23px;
+}
+
+.how-it-works ul {
+    margin: 0 auto;
+    float: none;
+    width: 450px;
+}
+
+.how-it-works h5{
+  margin-bottom: 0;
+}
+
+h5 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 2.4rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Bree Serif', serif;
+}
+
+
+/* Portrait and Landscape */
+
+@media only screen and (max-width: 667px) {
+    .how-it-works ul {
+        width: 100%;
+    }
+}
