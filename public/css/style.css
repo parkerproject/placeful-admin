@@ -105,7 +105,7 @@ hr {
     letter-spacing: 0.25em;
     line-height: 3.5em;
     outline: 0;
-    padding: 0 3.75em;
+    text-align: center;
     position: relative;
     text-align: center;
     text-decoration: none;
@@ -113,7 +113,7 @@ hr {
     white-space: nowrap;
     -webkit-appearance: none;
     margin: 0 auto;
-    width: 200px;
+    width: 250px;
 }
 
 .btn-red {

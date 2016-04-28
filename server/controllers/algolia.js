@@ -10,14 +10,14 @@ const _ = require('lodash')
 const schedule = require('node-schedule')
 const sendEmail = require('./send_email')
 
-function end(err) {
+function end (err) {
   if (err) {
     sendEmail(process.env.DEV_EMAIL, 'error: refreshing search data', err)
   }
   let content = 'Mongodb<>Algolia import done'
   sendEmail(process.env.DEV_EMAIL, 'Search database refreshed', content)
 }
-let j = schedule.scheduleJob('0 14 * * *', function () {
+let j = schedule.scheduleJob('0 */12 * * *', function () { // 0 14 * * *
   db.promotions.find({}, (err, results) => {
     if (err) console.log(err)
     results = results.map((result) => {

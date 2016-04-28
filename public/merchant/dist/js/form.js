@@ -24,9 +24,9 @@ $(document).ready(function () {
     var curStep = $(this).closest('.setup-content')
     var curStepBtn = curStep.attr('id')
     var nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children('a')
-    var curInputs = curStep.find("input[type='text'],input[type='phone'], input[type='email'], input[type='password'], #g-recaptcha-response")
+    var curInputs = curStep.find("input[type='text'],input[type='phone'], input[type='email'], input[type='password']")
     var isValid = true
-    var googleRecaptcha = $('#g-recaptcha-response').val()
+    //  var googleRecaptcha = $('#g-recaptcha-response').val()
 
     $('.form-group').removeClass('has-error')
     for (var i = 0; i < curInputs.length; i++) {
