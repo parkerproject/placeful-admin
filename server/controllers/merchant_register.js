@@ -22,19 +22,6 @@ const alreadyRegistered = `
 </html>
 `
 
-const successHTML = `
-<html>
-<body>
-<div style="border: 1px solid gray;padding:10px;width:400px;margin:5% auto;font-family:sans-serif">
- <h3 style="text-align:center;">Thank you for choosing Placeful as a means to promote your business!</h3>
-  <p style="text-align:center;margin-top:10%;">
-    <a href="https://merchant.placeful.co/login">Login and get started with creating your first promotion</a>
-  </p>
-</div>
-</body>
-</html>
-`
-
 module.exports = {
   index: {
     handler: function (request, reply) {
@@ -117,7 +104,7 @@ module.exports = {
                     Thanks,<br />
                     Placeful robot`
             sendEmail(process.env.ADMIN_EMAIL, 'A new merchant', content)
-            reply(successHTML)
+            return reply.redirect('/thankyou')
           })
         } else {
           let dups = `<p>It looks like <strong>${request.payload.business_place}</strong> has paid twice!</p>
