@@ -7,7 +7,13 @@ const bcrypt = require('bcrypt-nodejs')
 const randtoken = require('rand-token')
 const template = require('./template')
 const sendEmail = require('./send_email')
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+const geocoderProvider = 'google'
+const httpAdapter = 'https'
+const extra = {
+  apiKey: process.env.GOOGLE_API_KEY,
+  formatter: null
+}
+const geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra)
 
 const alreadyRegistered = `
 <html>
@@ -21,6 +27,18 @@ const alreadyRegistered = `
 </body>
 </html>
 `
+
+function saveDB (businessObject, business_email, business_name, reply) {
+  db.merchants.save(businessObject, function () {
+    let html = template(appRoot + '/server/views/welcome_email.html', {})
+    sendEmail(business_email, 'Welcome to Placeful', html)
+    let content = `<p>A new merchant, <strong>${business_name}</strong> has joined!</p>
+            Thanks,<br />
+            Placeful robot`
+    sendEmail(process.env.ADMIN_EMAIL, 'A new merchant', content)
+    return reply.redirect('/thankyou')
+  })
+}
 
 module.exports = {
   index: {
@@ -37,33 +55,6 @@ module.exports = {
     handler: function (request, reply) {
       let password = request.payload.password
       let hash = bcrypt.hashSync(password)
-
-      // let customer = {
-      //   email: request.payload.business_email,
-      //   source: request.payload.stripeToken,
-      //   metadata: {
-      //     business_name: request.payload.business_place
-      //   },
-      //   plan: 'merchant00'
-      // }
-      // if (request.payload.coupon) {
-      //   customer.coupon = request.payload.coupon.toUpperCase()
-      // }
-      // stripe.customers.create(customer, (err, customer) => {
-      //   if (err) {
-      //     let error_message = `
-      //     <html>
-      //     <body>
-      //       <p style="text-align:center;margin-top:10%;">
-      //       ${err.message}<br />
-      //       <a href="https://merchant.placeful.co/register">Back to Registration</a>
-      //       </p>
-      //     </body>
-      //     </html>
-      //     `
-      //     reply(error_message)
-      //   }
-      //   if (customer) {
       db.merchants.find({
         business_email: request.payload.business_email
       }).limit(1, (err, results) => {
@@ -76,7 +67,7 @@ module.exports = {
             business_phone: request.payload.business_phone,
             business_map: request.payload.business_map,
             business_address: request.payload.business_address,
-            business_icon: request.payload.business_icon,
+            business_icon: (request.payload.business_icon) ? request.payload.business_icon : 'https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png',
             business_locality: request.payload.business_locality,
             followers: [],
             subscriber: 'yes',
@@ -86,8 +77,6 @@ module.exports = {
             website: request.payload.website,
             tags: '',
             approved: false,
-            // stripe_id: customer.id,
-            referral_code: (request.payload.coupon) ? request.payload.coupon : '',
             referral_name: request.payload.referral
           }
           if (request.payload.business_lat && request.payload.business_lng) {
@@ -95,17 +84,18 @@ module.exports = {
               type: 'Point',
               coordinates: [Number(request.payload.business_lng), Number(request.payload.business_lat)]
             }
+            saveDB(businessObject, request.payload.business_email, business_name, reply)
+          } else {
+            geocoder.geocode(request.payload.business_address).then((res) => {
+              let longitude = res[0].longitude
+              let latitude = res[0].latitude
+              businessObject.loc = {
+                type: 'Point',
+                coordinates: [Number(longitude), Number(latitude)]
+              }
+              saveDB(businessObject, request.payload.business_email, business_name, reply)
+            })
           }
-
-          db.merchants.save(businessObject, function () {
-            let html = template(appRoot + '/server/views/welcome_email.html', {})
-            sendEmail(request.payload.business_email, 'Welcome to Placeful', html)
-            let content = `<p>A new merchant, <strong>${businessObject.business_name}</strong> has joined!</p>
-                    Thanks,<br />
-                    Placeful robot`
-            sendEmail(process.env.ADMIN_EMAIL, 'A new merchant', content)
-            return reply.redirect('/thankyou')
-          })
         } else {
           let dups = `<p>It looks like <strong>${request.payload.business_place}</strong> has paid twice!</p>
               <p> Get in touch and probably issue a refund or cancel duplicate subscription in stripe.</p>
