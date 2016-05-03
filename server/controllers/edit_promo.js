@@ -26,7 +26,7 @@ module.exports = {
         title: request.payload.title
       }
 
-      db.promotions.update({deal_id: request.payload.deal_id}, {$set: data}, function () {
+      db.promotions.update({deal_id: request.payload.deal_id, merchant_id: request.auth.credentials.business_id}, {$set: data}, function () {
         return reply.redirect('/manage_deals')
       })
     },
