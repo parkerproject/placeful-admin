@@ -2,6 +2,7 @@
 require('dotenv').load()
 const collections = ['promotions']
 const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
+const slug = require('slug')
 module.exports = {
   index: {
     handler: function (request, reply) {
@@ -23,7 +24,8 @@ module.exports = {
       let data = {
         description: request.payload.description,
         fine_print: request.payload.fine_print,
-        title: request.payload.title
+        title: request.payload.title,
+        slug: slug(request.payload.title)
       }
 
       db.promotions.update({deal_id: request.payload.deal_id, merchant_id: request.auth.credentials.business_id}, {$set: data}, function () {
