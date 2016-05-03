@@ -15,7 +15,10 @@ module.exports = {
       }
       db.merchants.find({ business_id: {$not: /^placeful.*/ } }, function (err, people) {
         if (err) console.log(err)
-        reply.view('merchant/merchants.html', {merchants: people})
+        reply.view('merchant/merchants.html', {
+          merchants: people,
+          role: request.auth.credentials.role
+        })
       })
     },
     auth: 'session'
