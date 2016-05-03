@@ -1,0 +1,79 @@
+{% extends '../layouts/merchant_default.html' %} {% block title %}{{ title }}{% endblock %} {% block content %}
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  {% include '../includes/merchant_head.html' %} {% include '../includes/merchant_sidebar.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <p class="lead" style="margin:0;">Merchants</p>
+          <span>You can view all merchants from this page</span>
+          <h3>{{merchants.length || 0}} merchants {{text}}</h3>
+          <!-- <input type="search" class="form-control input-sm" placeholder="search for coupon code, etc." aria-controls="example1" style="width:300px;"> -->
+        </div>
+        <div class="box-body">
+          <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <!-- <div class="row">
+              <div class="col-sm-6">
+                <div id="example1_filter" class="dataTables_filter">
+                  <label>Search:
+                    <input type="search" class="form-control input-sm" placeholder="search for deal, coupon code, etc." aria-controls="example1" style="width:300px;">
+                  </label>
+                </div>
+              </div>
+            </div> -->
+            <div class="row">
+              <div class="col-sm-12">
+                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info" style="table-layout:fixed;">
+                  <thead>
+                    <tr role="row">
+                      <th class="sorting" rowspan="1" colspan="1" style="width: 10%;">Merchant Name</th>
+                      <th class="sorting" rowspan="1" colspan="1" style="width: 10%;">Merchant Phone</th>
+                      <th class="sorting" rowspan="1" colspan="1" style="width: 10%;">Referral</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for merchant in merchants %}
+                    <tr role=" row " class="">
+                      <td style="word-wrap: break-word;">{{merchant.business_name}}</td>
+                      <td style="word-wrap: break-word;">{{merchant.business_phone}}</td>
+                      <td style="word-wrap: break-word;">{{merchant.referral_name}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <footer class=" main-footer ">
+    <div class="pull-right hidden-xs ">
+      <b>Version</b> 2.3.0
+    </div>
+    <strong>Copyright &copy; 2016 Placeful.</strong> All rights reserved.
+  </footer>
+
+  <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+  <div class="control-sidebar-bg "></div>
+</div>
+<!-- ./wrapper -->
+
+{% endblock %}
