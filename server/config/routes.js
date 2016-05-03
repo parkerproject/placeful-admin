@@ -136,6 +136,14 @@ module.exports = function (server) {
     method: 'GET',
     path: '/admin/placeful_promotions',
     config: controller.placeful_promotions.deals
+  }, {
+    method: 'GET',
+    path: '/promotion/edit/{promotion_id}',
+    config: controller.edit_promo.index
+  }, {
+    method: 'POST',
+    path: '/promotion/edit',
+    config: controller.edit_promo.update
   }]
   return routeTable
 }

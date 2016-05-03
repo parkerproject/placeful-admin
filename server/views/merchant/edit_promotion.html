@@ -1,0 +1,77 @@
+{% extends '../layouts/merchant_default.html' %} {% block title %}{{ title }}{% endblock %} {% block content %}
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  {% include '../includes/merchant_head.html' %} {% include '../includes/merchant_sidebar.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <p class="lead" style="margin:0;">Promotions</p>
+          <span>You can edit certain parts of your promotion from this page</span>
+          <!-- <input type="search" class="form-control input-sm" placeholder="search for coupon code, etc." aria-controls="example1" style="width:300px;"> -->
+        </div>
+        <div class="box-body">
+          <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap">
+            <!-- <div class="row">
+              <div class="col-sm-6">
+                <div id="example1_filter" class="dataTables_filter">
+                  <label>Search:
+                    <input type="search" class="form-control input-sm" placeholder="search for deal, coupon code, etc." aria-controls="example1" style="width:300px;">
+                  </label>
+                </div>
+              </div>
+            </div> -->
+            <div class="row">
+              <div class="col-sm-12">
+                <form method="post" action="/promotion/edit" id="edit-form">
+                  <input type="hidden" value="{{deal.deal_id}}" name="deal_id" />
+                  <div class="form-group">
+                  <label class="control-label"><strong>Promo</strong></label>
+                  <input type="text" class="form-control" name="title" value="{{ deal.title}}">
+                  </div>
+                  <div class="form-group">
+                  <label class="control-label"><strong>Description</strong></label>
+                  <textarea class="form-control" name="description" style="height: 200px;">{{deal.description}}</textarea>
+                  </div>
+                  <div class="form-group">
+                  <label class="control-label"><strong>The Fine Print</strong></label>
+                  <textarea class="form-control" name="fine_print" style="height: 100px;">{{deal.fine_print}}</textarea>
+                  </div>
+                  <div class="form-group">
+                   <button class="btn btn-success" type="submit" style="margin-right: 5px;">Update promo</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <footer class=" main-footer ">
+    <div class="pull-right hidden-xs ">
+      <b>Version</b> 2.3.0
+    </div>
+    <strong>Copyright &copy; 2016 Placeful.</strong> All rights reserved.
+  </footer>
+
+  <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+  <div class="control-sidebar-bg "></div>
+</div>
+<!-- ./wrapper -->
+
+{% endblock %}

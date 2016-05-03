@@ -67,8 +67,8 @@
   .btn-primary:hover,
   .btn-primary:focus,
   .btn-primary:active {
-    background-color: #DB462C;
-    border-color: #DB462C;
+    /*background-color: #DB462C;
+    border-color: #DB462C;*/
     font-weight: bold;
   }
 
@@ -260,11 +260,11 @@
   }
 
   .navbar{
-    background-color: #bd382a!important
+    /*background-color: #bd382a!important*/
   }
 
   .main-header .logo{
-    background-color: #bd382a!important
+    /*background-color: #bd382a!important*/
   }
 
 

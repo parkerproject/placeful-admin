@@ -12,8 +12,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <p class="lead" style="margin:0;">Manage Your Profile</p>
-          <span>You can view, edit your email</span>
+          <p class="lead" style="margin:0;">Edit Your Profile</p>
         </div>
         <div class="row">
           <div class="col-md-12">
@@ -24,12 +23,12 @@
           </div>
         </div>
         <div class="box-body">
-          <form method="post" action="/profile" name="updateProfileForm" id="updateProfileForm">
+          <form method="post" action="/profile" id="updateProfileForm">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
                   <label for="">Business Name</label>
-                  <input type="text" class="form-control" value="{{business_name}}" name="business_name" required disabled>
+                  <input type="text" class="form-control" value="{{merchant.business_name}}" name="business_name">
                 </div>
               </div>
             </div>
@@ -37,20 +36,33 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label for="">Business Email</label>
-                  <input type="text" class="form-control" value="{{business_email}}" name="business_email" required disabled="disabled">
-                  <span class="error" style="display: none;"></span>
+                  <input type="text" class="form-control" value="{{merchant.business_email}}" name="business_email" disabled="disabled">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="">Business Address</label>
+                  <input type="text" class="form-control" value="{{merchant.business_address}}" name="business_address" disabled="disabled">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="">About your business</label>
+                  <textarea name="description" class="form-control">{{merchant.description}}</textarea>
                 </div>
               </div>
             </div>
             <div class="row">
               <!-- /.col -->
               <div class="col-xs-8">
-                <input type="hidden" name="business_id" value={{business_id}} />
-                <input type="hidden" name="nonhumans" value="" />
-
-                <p>Send an email to <a href="mailto:concierge@placeful.co">concierge@placeful.co</a> to update or your cancel profile.</p>
-
-                <!-- <button type="submit" class="btn btn-success btn-block btn-flat profile-js">Update Profile</button> -->
+                <input type="hidden" name="business_id" value={{merchant.business_id}} />
+                <button type="submit" class="btn btn-success">Update Profile</button>
               </div>
               <!-- /.col -->
             </div>
@@ -65,64 +77,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-
-  <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header" style="border:none;">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="padding:0;">
-          <div class="box-body">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="panel panel-default coupon">
-                  <div class="panel-heading clearfix" id="head">
-                    <div class="panel-title" id="title">
-                      <img src="" class="small_image">
-                      <span class="hidden-xs title"></span>
-                      <span class="visible-xs title"></span>
-                    </div>
-                  </div>
-                  <div class="panel-body">
-                    <img src="" class="coupon-img img-rounded">
-                    <div class="col-md-12">
-                      <div class="offer number"></div>
-                    </div>
-                    <div class="col-md-12">
-                      <h3>Deal Description</h3>
-                      <span class="description"></span>
-                    </div>
-                    <div class="col-md-12">
-                      <h3>The Fine Print</h3>
-                      <p class="disclosure"></p>
-                    </div>
-                  </div>
-                  <div class="panel-footer">
-                    <div class="coupon-code">
-                      Code:
-                      <span class="code"></span>
-                    </div>
-                    <div class="exp">Expires:
-                      <span class="expiry_date"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <a type="button" class="btn btn-warning edit_deal" href="">Edit Deal</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <footer class=" main-footer ">
     <div class="pull-right hidden-xs ">

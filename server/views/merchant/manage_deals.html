@@ -13,7 +13,7 @@
       <div class="box">
         <div class="box-header with-border">
           <p class="lead" style="margin:0;">Promotions</p>
-          <span>You can view all your promotions from this page</span>
+          <span>You can view and edit all your promotions from this page</span>
           <h3>{{deals.length || 0}} specials {{text}}</h3>
           <!-- <input type="search" class="form-control input-sm" placeholder="search for coupon code, etc." aria-controls="example1" style="width:300px;"> -->
         </div>
@@ -40,6 +40,7 @@
                       <th class="sorting" rowspan="1" colspan="1" style="width: 10%;">Start Date</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 10%;">End Date</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 27%;">Promotion URL</th>
+                      <th></th>
 
                     </tr>
                   </thead>
@@ -53,6 +54,8 @@
                       <td style="word-wrap: break-word;">{{ deal.start_date|date('F jS, Y') }}</td>
                       <td style="word-wrap: break-word;">{{ deal.end_date|date('F jS, Y') }}</td>
                       <td style="word-wrap: break-word;"><a href="http://placefulapp.com/promotion/{{deal.deal_id}}/{{deal.slug}}" target="_blank">http://placefulapp.com/promotion/{{deal.deal_id}}/{{deal.slug}}</a></td>
+                      <td><a href="/promotion/edit/{{deal.deal_id}}" class="btn btn-primary edit-promo">Edit</a>
+                      </td>
                     </tr>
                     {% endfor %}
                   </tbody>

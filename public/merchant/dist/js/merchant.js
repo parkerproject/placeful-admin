@@ -70,29 +70,6 @@ $(function () {
     return false
   }
 
-  $('.profile-js').click(function (e) {
-    e.preventDefault()
-    var business_id = $('input[name=business_id]').val()
-    var business_email = $('input[name=business_email]').val()
-
-    if (!validateEmail(business_email)) {
-      $('.error').text('Enter valid business email')
-      $('.error').show()
-    } else {
-      $('.error').hide()
-      $('.profile-js').text('Updating...')
-      $.post('/profile', {
-        business_id: business_id,
-        business_email: business_email
-      }, function (data, status) {
-        if (status === 'success') {
-          $('.success-js').show()
-          $('.profile-js').text('Update Profile')
-        }
-      })
-    }
-  })
-
   // add custom rules for credit card validating
   // jQuery.validator.addMethod('cardNumber', Stripe.validateCardNumber, 'Please enter a valid card number')
   // jQuery.validator.addMethod('cardCVC', Stripe.validateCVC, 'Please enter a valid security code')
@@ -109,6 +86,33 @@ $(function () {
       },
       'password': {
         password: true,
+        required: true
+      }
+    }
+  })
+
+  $('#edit-form').validate({
+    submitHandler: submit,
+    rules: {
+      'title': {
+        required: true
+      },
+      'description': {
+        required: true
+      },
+      'fine_print': {
+        required: true
+      }
+    }
+  })
+
+  $('#updateProfileForm').validate({
+    submitHandler: submit,
+    rules: {
+      'business_name': {
+        required: true
+      },
+      'description': {
         required: true
       }
     }
