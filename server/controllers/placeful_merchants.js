@@ -13,13 +13,7 @@ module.exports = {
       if (!request.auth.credentials.role) {
         reply("<h1>You don't have the permission to access this page</h1>")
       }
-      let firstCase = {
-        business_id: { $not: /^placeful.*/ }
-      }
-      let secondCase = {
-        business_id: { $nin: ['dv8ySTnrbuB5nEEufY9p', 'pcCxqeV5C5O6OtpEqMhw'] }
-      }
-      db.merchants.find({ $or: [firstCase, secondCase] }, function (err, people) {
+      db.merchants.find({ business_id: {$not: /^placeful.*/ } }, function (err, people) {
         if (err) console.log(err)
         reply.view('merchant/merchants.html', {
           merchants: people,
