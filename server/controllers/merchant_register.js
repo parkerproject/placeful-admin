@@ -70,7 +70,7 @@ module.exports = {
             business_icon: (request.payload.business_icon) ? request.payload.business_icon : 'https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png',
             business_locality: request.payload.business_locality,
             followers: [],
-            subscriber: 'yes',
+            subscriber: 'no',
             password: hash,
             business_id: randtoken.generate(20),
             agreement: request.payload.agreement,
