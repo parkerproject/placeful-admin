@@ -14,7 +14,7 @@
         <div class="box-header with-border">
           <p class="lead" style="margin:0;">Merchants</p>
           <span>You can view all merchants from this page</span>
-          <h3>{{merchants.length || 0}} merchants {{text}}</h3>
+          <h3>{{merchants.length - 2 || 0}} merchants {{text}}</h3>
           <!-- <input type="search" class="form-control input-sm" placeholder="search for coupon code, etc." aria-controls="example1" style="width:300px;"> -->
         </div>
         <div class="box-body">
@@ -40,7 +40,7 @@
                   </thead>
                   <tbody>
                     {% for merchant in merchants %}
-                    <tr role=" row " class="">
+                    <tr role="row" class="">
                       <td style="word-wrap: break-word;">{{merchant.business_name}}</td>
                       <td style="word-wrap: break-word;">{{merchant.business_phone}}</td>
                       <td style="word-wrap: break-word;">{{merchant.referral_name}}</td>
