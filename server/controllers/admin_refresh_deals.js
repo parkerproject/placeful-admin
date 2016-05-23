@@ -34,6 +34,7 @@ module.exports = {
               return result.hidden.promotion_id === promotion_id
             })
             currentPromotion = currentPromotion[0]
+            promotion.merchant_icon = ''
             promotion.merchant_id = 'placeful_' + randtoken.generate(10)
             promotion.merchant_locality = 'New York'
             promotion.phone = currentPromotion.answers.textfield_18506350
