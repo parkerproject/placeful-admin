@@ -34,7 +34,6 @@ module.exports = {
               return result.hidden.promotion_id === promotion_id
             })
             currentPromotion = currentPromotion[0]
-            promotion.merchant_icon = ''
             promotion.merchant_id = 'placeful_' + randtoken.generate(10)
             promotion.merchant_locality = 'New York'
             promotion.phone = currentPromotion.answers.textfield_18506350
@@ -85,6 +84,8 @@ module.exports = {
                 type: 'Point',
                 coordinates: [longitude, latitude]
               }
+              promotion.followers = []
+              promotion.merchant_icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png'
               db.promotions.save(promotion, function () {
                 uploader(promotion.large_image, promotion_id)
                 promotion.email = promotion.merchant_id + '@placeful.co'

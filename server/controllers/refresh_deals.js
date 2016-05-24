@@ -25,7 +25,6 @@ module.exports = {
               return result.hidden.promotion_id === promotion_id
             })
             currentPromotion = currentPromotion[0]
-            promotion.merchant_icon = ''
             promotion.merchant_id = currentPromotion.hidden.business_id
             promotion.merchant_locality = currentPromotion.hidden.merchant_locality
             promotion.phone = currentPromotion.hidden.phone
@@ -74,15 +73,22 @@ module.exports = {
               }
             })
             promotion.days = days
-            db.promotions.save(promotion, function () {
-              uploader(promotion.large_image, promotion_id)
-              let content = `A new promotion <a href="http://placefulapp.com/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
-              <p>if you like what you see, go ahead and approve in the admin</p>
-              Thanks,<br />
-              Placeful robot`
-              sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
-              return reply.redirect('/manage_deals')
+
+            db.merchants.find({business_id: currentPromotion.hidden.business_id}, function (err, business) {
+              promotion.followers = business[0].followers
+              promotion.merchant_icon = business[0].business_icon
+
+              db.promotions.save(promotion, function () {
+                uploader(promotion.large_image, promotion_id)
+                let content = `A new promotion <a href="http://placefulapp.com/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
+                <p>if you like what you see, go ahead and approve in the admin</p>
+                Thanks,<br />
+                Placeful robot`
+                sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
+                return reply.redirect('/manage_deals')
+              })
             })
+
           } else {
             return reply.redirect('/manage_deals')
           }
