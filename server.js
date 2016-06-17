@@ -9,10 +9,10 @@ var swaggerOptions = {
 }
 var server = new Hapi.Server()
 server.connection({
-    host: '0.0.0.0',
-    port: 1222
-  })
-  // Require the routes and pass the server object.
+  host: '0.0.0.0',
+  port: 1222
+})
+// Require the routes and pass the server object.
 var routes = require('./server/config/routes')(server)
 
 global.appRoot = path.resolve(__dirname)
@@ -27,6 +27,7 @@ server.register([Inert, Vision, Hapi_auth, {
   register: HapiSwagger,
   options: swaggerOptions
 }], function (err) {
+  if (err) console.log(err)
   server.views({
     path: './server/views',
     engines: {
@@ -42,6 +43,12 @@ server.register([Inert, Vision, Hapi_auth, {
     ttl: 15 * 60 * 60 * 1000
   })
   server.route(routes)
+
+  server.on('internalError', function (request, err) {
+    console.log(err.data.stack)
+  // console.log('Error response (500) sent for request: ' + request.id + ' because: ' + (err.trace || err.stack || err))
+  })
+
   server.start(function () {
     console.log('Server started at: ' + server.info.uri)
   })

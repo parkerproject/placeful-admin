@@ -13,7 +13,7 @@ var replyFn = function (reply, message) {
 
 var login = function (request, reply) {
   if (request.auth.isAuthenticated) {
-    return reply.redirect('/manage_deals')
+    return reply.redirect('/home')
   }
 
   var message = ''
@@ -35,7 +35,7 @@ var login = function (request, reply) {
           replyFn(reply, message)
         } else {
           request.auth.session.set(account)
-          return reply.redirect('/manage_deals')
+          return reply.redirect('/home')
         }
       })
     }
@@ -60,5 +60,4 @@ module.exports = {
       }
     }
   }
-
 }

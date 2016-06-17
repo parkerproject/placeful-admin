@@ -54,7 +54,7 @@
                       <td style="word-wrap: break-word;">{{ deal.start_date|date('F jS, Y') }}</td>
                       <td style="word-wrap: break-word;">{{ deal.end_date|date('F jS, Y') }}</td>
                       <td style="word-wrap: break-word;"><a href="http://placefulapp.com/promotion/{{deal.deal_id}}/{{deal.slug}}" target="_blank">http://placefulapp.com/promotion/{{deal.deal_id}}/{{deal.slug}}</a></td>
-                      <td><a href="/promotion/edit/{{deal.deal_id}}" class="btn btn-primary edit-promo">Edit</a>
+                      <td style="vertical-align:middle;text-align:center;"><a href="/promotion/edit/{{deal.deal_id}}" class="edit-promo"><i class="fa fa-edit" style="font-size: 20px;"></i></a>
                       </td>
                     </tr>
                     {% endfor %}

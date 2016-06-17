@@ -36,6 +36,7 @@
                       <th class="sorting" rowspan="1" colspan="1" style="width: 10%;">Merchant Name</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 10%;">Merchant Phone</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 10%;">Referral</th>
+                      <th class="sorting" rowspan="1" colspan="1" style="width: 10%;">Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -44,6 +45,10 @@
                       <td style="word-wrap: break-word;">{{merchant.business_name}}</td>
                       <td style="word-wrap: break-word;">{{merchant.business_phone}}</td>
                       <td style="word-wrap: break-word;">{{merchant.referral_name}}</td>
+                        <td style="word-wrap: break-word;">
+                          {% if merchant.approved === false %}<span class="text-danger status-js" data-business="{{merchant.business_id}}">Pending</span> {% endif %}
+                          {% if merchant.approved === true %}<span class="text-success status.js" data-business="{{merchant.business_id}}">Active</span> {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                   </tbody>

@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="box-body">
-          <form method="post" action="/profile" id="updateProfileForm">
+          <form method="post" action="/profile" id="updateProfileForm" enctype="multipart/form-data">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
@@ -58,6 +58,35 @@
                 </div>
               </div>
             </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="">Tags for your business <small class="text-danger">(We match users to your promos using this)</small></label>
+                  <input type="text" class="form-control" value="{{ tags }}" name="tags" data-role="tagsinput" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 left">
+                <img id="img-uploaded" src="{{placeholder_img}}" alt="your image" />
+              </div>
+              <div class="right">
+                <!-- <input type="text" class="img-path" placeholder="Image Path"> -->
+                <span class="file-wrapper">
+                  <input type="file" name="photo" id="imgInp" class="uploader" value="" />
+                  <span class="btn"><u>{{ upload_text }}</u></span>
+                </span>
+              </div>
+            </div>
+
+
+
+
+
+
+
             <div class="row">
               <!-- /.col -->
               <div class="col-xs-8">

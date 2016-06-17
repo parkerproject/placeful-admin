@@ -29,7 +29,7 @@
             </div> -->
             <div class="row">
               <div class="col-sm-12">
-                <form method="post" action="/promotion/edit" id="edit-form">
+                <form method="post" action="/promotion/edit" id="edit-form" enctype="multipart/form-data">
                   <input type="hidden" value="{{deal.deal_id}}" name="deal_id" />
                   <div class="form-group">
                   <label class="control-label"><strong>Promo</strong></label>
@@ -37,11 +37,23 @@
                   </div>
                   <div class="form-group">
                   <label class="control-label"><strong>Description</strong></label>
-                  <textarea class="form-control" name="description" style="height: 200px;">{{deal.description}}</textarea>
+                  <textarea class="form-control" name="description" style="height: 125px;">{{deal.description}}</textarea>
                   </div>
                   <div class="form-group">
                   <label class="control-label"><strong>The Fine Print</strong></label>
                   <textarea class="form-control" name="fine_print" style="height: 100px;">{{deal.fine_print}}</textarea>
+                  </div>
+                  <div class="form-group">
+                    <div class="left" style="width: 19em;">
+                      <img id="img-uploaded" src="{{deal.large_image}}" alt="your image" />
+                    </div>
+                    <div class="right">
+                      <!-- <input type="text" class="img-path" placeholder="Image Path"> -->
+                      <span class="file-wrapper">
+                        <input type="file" name="photo" id="imgInp" class="uploader" value="" />
+                        <span class="btn"><u>Change promo image</u></span>
+                      </span>
+                    </div>
                   </div>
                   <div class="form-group">
                    <button class="btn btn-success" type="submit" style="margin-right: 5px;">Update promo</button>

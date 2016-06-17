@@ -67,10 +67,6 @@ module.exports = function (server) {
   }, {
     method: 'GET',
     path: '/home',
-    config: controller.dashboard.index
-  }, {
-    method: 'GET',
-    path: '/payment',
     config: controller.merchant.index
   }, {
     method: ['GET', 'POST'],
@@ -113,13 +109,13 @@ module.exports = function (server) {
     path: '/manage_deals',
     config: controller.merchant_deal.deals
   }, {
-    method: ['GET', 'POST'],
+    method: 'GET',
     path: '/profile',
     config: controller.profile.index
   }, {
     method: 'POST',
-    path: '/coupon/validate',
-    config: controller.coupon.index
+    path: '/profile',
+    config: controller.edit_profile.index
   }, {
     method: 'GET',
     path: '/promotion/{promotion_id}',

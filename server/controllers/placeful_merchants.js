@@ -2,6 +2,7 @@
 require('dotenv').load()
 const collections = ['merchants']
 const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
+const _ = require('lodash')
 
 module.exports = {
   index: {

@@ -5,6 +5,8 @@ const collections = ['merchants']
 const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
 const bcrypt = require('bcrypt-nodejs')
 const randtoken = require('rand-token')
+const Moment = require('moment')
+const slug = require('slug')
 const template = require('./template')
 const sendEmail = require('./send_email')
 const geocoderProvider = 'google'
@@ -75,7 +77,9 @@ module.exports = {
             business_id: randtoken.generate(20),
             agreement: request.payload.agreement,
             website: request.payload.website,
-            tags: '',
+            joined_date: new Moment().format(),
+            slug: slug(business_name + ' ' + request.payload.business_locality),
+            tags: [],
             approved: false,
             referral_name: request.payload.referral
           }

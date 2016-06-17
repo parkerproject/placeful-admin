@@ -50,12 +50,13 @@
     position: relative;
     right: 20px;
     top: 9px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
   }
 
   .logout:hover {
-    color: gray;
+    text-decoration: underline;
+    font-weight: bold;
+    color: white;
   }
 
   .error {
@@ -272,4 +273,67 @@
   background: url(/images/dashboard.jpg) no-repeat;
   height: 627px;
   max-width: 100%;
+}
+
+body{
+  font-size: 13px;
+}
+
+
+.left, .right {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.left {
+  width: 9em;
+  min-width: 9em;
+  padding-right: 1em;
+}
+.left img {
+  width: 100%;
+  margin: 0 0 30px 0;
+}
+
+.img-holder {
+  display: block;
+  vertical-align: middle;
+  width: 2em;
+  height: 2em;
+}
+.img-holder img {
+  width: 100%;
+  max-width: 100%;
+}
+
+.file-wrapper {
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+}
+
+.file-wrapper input {
+  cursor: pointer;
+  font-size: 100px;
+  height: 100%;
+  filter: alpha(opacity=1);
+  -moz-opacity: 0.01;
+  opacity: 0.01;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 9;
+}
+
+.bootstrap-tagsinput .tag{
+  font-size: 100%;
+}
+
+.overview h4{
+  font-weight: bold;
+}
+
+.status-js{
+  cursor: pointer;
 }
