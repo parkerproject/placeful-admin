@@ -8,12 +8,11 @@ var replyFn = function (reply, message) {
     _class: 'login-page',
     message: message
   })
-
 }
 
 var login = function (request, reply) {
   if (request.auth.isAuthenticated) {
-    return reply.redirect('/home')
+    return reply.redirect('/manage_deals')
   }
 
   var message = ''
@@ -22,10 +21,10 @@ var login = function (request, reply) {
   if (request.method === 'post') {
     if (!request.payload.username || !request.payload.password) {
       message = 'Missing username or password'
-
     } else {
       db.merchants.find({
-        business_email: request.payload.username
+        business_email: request.payload.username,
+        role: 'admin'
       }).limit(1, function (err, user) {
         if (err) console.log(err)
         account = user[0]
@@ -44,7 +43,6 @@ var login = function (request, reply) {
   if (request.method === 'get' || message) {
     replyFn(reply, message)
   }
-
 }
 
 module.exports = {

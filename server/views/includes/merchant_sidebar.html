@@ -29,13 +29,6 @@
     <ul class="sidebar-menu">
 
       <li>
-        <a href="/home">
-          <i class="fa fa-home"></i>
-          <span>Overview</span>
-        </a>
-      </li>
-
-      <li>
         <a href="/builder">
           <i class="fa fa-edit"></i>
           <span>Create a new promotion</span>
@@ -48,31 +41,6 @@
           <span>Manage promotions</span>
         </a>
       </li>
-     {% if !role %}
-      <li>
-        <a href="#">
-          <i class="fa fa-line-chart"></i>
-          <span>Analytics</span>
-          <i class="fa fa-lock pull-right"></i>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fa fa-edit"></i>
-          <span>Last minute promo</span>
-          <i class="fa fa-lock pull-right"></i>
-        </a>
-      </li>
-
-      <li>
-        <a href="#">
-          <i class="fa fa-users"></i>
-          <span>Promote to followers</span>
-          <i class="fa fa-lock pull-right"></i>
-        </a>
-      </li>
-      {% endif %}
-
       {% if role %}
       <li>
         <a href="/admin/placeful_promotions">
@@ -84,14 +52,6 @@
         <a href="/admin/placeful_merchants">
           <i class="fa fa-users"></i>
           <span>Merchants</span>
-        </a>
-      </li>
-      {% endif %}
-      {% if !role %}
-      <li>
-        <a href="/profile">
-          <i class="fa fa-user"></i>
-          <span>Edit profile</span>
         </a>
       </li>
       {% endif %}
