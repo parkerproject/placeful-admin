@@ -40,6 +40,7 @@
                       <th class="sorting" rowspan="1" colspan="1" style="width: 10%;">Start Date</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 10%;">End Date</th>
                       <th class="sorting" rowspan="1" colspan="1" style="width: 27%;">Promotion URL</th>
+                      <th class="sorting" rowspan="1" colspan="1" style="width: 27%;">Approved</th>
                       <th></th>
 
                     </tr>
@@ -54,6 +55,7 @@
                       <td style="word-wrap: break-word;">{{ deal.start_date|date('F jS, Y') }}</td>
                       <td style="word-wrap: break-word;">{{ deal.end_date|date('F jS, Y') }}</td>
                       <td style="word-wrap: break-word;"><a href="http://placefulapp.com/promotion/{{deal.deal_id}}/{{deal.slug}}" target="_blank">http://placefulapp.com/promotion/{{deal.deal_id}}/{{deal.slug}}</a></td>
+                      <td style="word-wrap: break-word;">{{ deal.approved }}</td>
                       <td style="vertical-align:middle;text-align:center;"><a href="/promotion/edit/{{deal.deal_id}}" class="edit-promo"><i class="fa fa-edit" style="font-size: 20px;"></i></a>
                       </td>
                     </tr>
