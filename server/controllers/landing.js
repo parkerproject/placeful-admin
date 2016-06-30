@@ -1,8 +1,7 @@
 module.exports = {
-    index: {
-        handler: function (request, reply) {
-            reply.view('merchant/merchant_landing', {})
-
-        }
+  index: {
+    handler: function (request, reply) {
+      reply({hello: 'You are not supposed to be here, my friend:)'})
     }
+  }
 }
