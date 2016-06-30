@@ -34,7 +34,7 @@ var login = function (request, reply) {
           replyFn(reply, message)
         } else {
           request.auth.session.set(account)
-          return reply.redirect('/home')
+          return reply.redirect('/manage_deals')
         }
       })
     }
