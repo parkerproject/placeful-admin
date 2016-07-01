@@ -41,7 +41,8 @@ module.exports = {
         description: data.description,
         fine_print: data.fine_print,
         title: data.title,
-        slug: slug(data.title)
+        slug: slug(data.title),
+        approved: data.approved === 'true' ? true : false
       }
 
       if (data.photo.hapi.filename && data.photo.hapi.filename !== '') {
@@ -55,14 +56,23 @@ module.exports = {
           cloudinary.uploader.upload(path, function (result) {
             fs.unlinkSync(path)
             edits.large_image = result.url
-
-            db.promotions.update({deal_id: data.deal_id}, {$set: edits}, function () {
+            db.promotions.findAndModify({
+              query: { deal_id: data.deal_id },
+              update: { $set: edits },
+              new: false
+            }, function (err, doc, lastErrorObject) {
+              if (err)console.log(err)
               return reply.redirect('/manage_deals')
             })
           })
         })
       } else {
-        db.promotions.update({deal_id: data.deal_id, merchant_id: request.auth.credentials.business_id}, {$set: edits}, function () {
+        db.promotions.findAndModify({
+          query: { deal_id: data.deal_id },
+          update: { $set: edits },
+          new: false
+        }, function (err, doc, lastErrorObject) {
+          if (err)console.log(err)
           return reply.redirect('/manage_deals')
         })
       }

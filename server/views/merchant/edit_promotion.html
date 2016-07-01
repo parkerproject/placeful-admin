@@ -18,19 +18,21 @@
         </div>
         <div class="box-body">
           <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap">
-            <!-- <div class="row">
-              <div class="col-sm-6">
-                <div id="example1_filter" class="dataTables_filter">
-                  <label>Search:
-                    <input type="search" class="form-control input-sm" placeholder="search for deal, coupon code, etc." aria-controls="example1" style="width:300px;">
-                  </label>
-                </div>
-              </div>
-            </div> -->
             <div class="row">
               <div class="col-sm-12">
                 <form method="post" action="/promotion/edit" id="edit-form" enctype="multipart/form-data">
                   <input type="hidden" value="{{deal.deal_id}}" name="deal_id" />
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <h5><strong>Approved</strong></h5>
+                      <select class="form-control" name='approved'>
+                        <option value='true' {% if deal.approved %} selected {% endif %}>True</option>
+                        <option value='false' {% if !deal.approved %} selected {% endif %}>False</option>
+                      </select>
+                    </div>
+                    </div>
+                  </div>
                   <div class="form-group">
                   <label class="control-label"><strong>Promo</strong></label>
                   <input type="text" class="form-control" name="title" value="{{ deal.title}}">
