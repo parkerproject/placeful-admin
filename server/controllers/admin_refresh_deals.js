@@ -85,14 +85,17 @@ module.exports = {
                 coordinates: [longitude, latitude]
               }
               promotion.followers = []
-              promotion.merchant_icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png'
-
               cloudinary.uploader.upload(currentPromotion.answers.fileupload_18505044, function (result) {
                 promotion.large_image = result.url
+                let basePath = 'http://res.cloudinary.com/placeful/image/upload/'
+                let lastPath = (result.url).split(basePath)[1]
+                let icon = `${basePath}c_fill,h_50,w_50/${lastPath}`
+                promotion.merchant_icon = icon
+
                 db.promotions.save(promotion, function () {
                   promotion.email = promotion.merchant_id + '@placeful.co'
                   promotion.password = null
-                  promotion.icon = null
+                  promotion.icon = icon
                   promotion.website = null
                   let merchantAccount = placeObject(promotion)
                   db.merchants.find({
