@@ -4,7 +4,7 @@ const collections = ['merchants', 'promotions']
 const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collections)
 const req = require('request')
 const _ = require('lodash')
-const uploader = require('./amazon')
+const cloudinary = require('./cloudinary')
 const typeform_url = 'https://api.typeform.com/v0/form/' + process.env.ADMIN_FORM_ID + '?key=' + process.env.TYPEFORM_API + '&completed=true'
 const slug = require('slug')
 const mersenne = require('mersenne')
@@ -43,7 +43,7 @@ module.exports = {
             promotion.title = currentPromotion.answers.textfield_18505040
             promotion.description = currentPromotion.answers.textarea_18505041
             promotion.fine_print = currentPromotion.answers.textarea_18505042
-            promotion.large_image = currentPromotion.answers.fileupload_18505044
+            // promotion.large_image = currentPromotion.answers.fileupload_18505044
             promotion.start_date = new Date(currentPromotion.answers.date_18505045).toISOString()
             promotion.end_date = new Date(currentPromotion.answers.date_18505046).toISOString()
             promotion.slug = slug(currentPromotion.answers.textfield_18505040)
@@ -86,26 +86,29 @@ module.exports = {
               }
               promotion.followers = []
               promotion.merchant_icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png'
-              db.promotions.save(promotion, function () {
-                uploader(promotion.large_image, promotion_id)
-                promotion.email = promotion.merchant_id + '@placeful.co'
-                promotion.password = null
-                promotion.icon = null
-                promotion.website = null
-                let merchantAccount = placeObject(promotion)
-                db.merchants.find({
-                  business_name: merchantAccount.merchant_name
-                }).limit(1, (err, business) => {
-                  if (err) console.log(err)
-                  if (business.length === 0) {
-                    db.merchants.save(merchantAccount)
-                  }
-                  let content = `A new promotion <a href="http://placefulapp.com/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
-                    <p>if you like what you see, go ahead and approve in the admin</p>
-                    Thanks,<br />
-                    Placeful robot`
-                  sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
-                  return reply.redirect('/manage_deals')
+
+              cloudinary.uploader.upload(currentPromotion.answers.fileupload_18505044, function (result) {
+                promotion.large_image = result.url
+                db.promotions.save(promotion, function () {
+                  promotion.email = promotion.merchant_id + '@placeful.co'
+                  promotion.password = null
+                  promotion.icon = null
+                  promotion.website = null
+                  let merchantAccount = placeObject(promotion)
+                  db.merchants.find({
+                    business_name: merchantAccount.merchant_name
+                  }).limit(1, (err, business) => {
+                    if (err) console.log(err)
+                    if (business.length === 0) {
+                      db.merchants.save(merchantAccount)
+                    }
+                    let content = `A new promotion <a href="http://placefulapp.com/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
+                      <p>if you like what you see, go ahead and approve in the admin</p>
+                      Thanks,<br />
+                      Placeful robot`
+                    sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
+                    return reply.redirect('/manage_deals')
+                  })
                 })
               })
             }).catch(function (err) {
