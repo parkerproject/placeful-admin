@@ -104,26 +104,13 @@ module.exports = {
                     if (err) console.log(err)
                     if (business.length === 0) {
                       db.merchants.save(merchantAccount)
-                      let content = `A new promotion <a href="http://placefulapp.com/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
-                        <p>if you like what you see, go ahead and approve in the admin</p>
-                        Thanks,<br />
-                        Placeful robot`
-                      sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
-                      return reply.redirect('/manage_deals')
-                    }else {
-                      // update the promo merchant id with this merchant id
-                      db.promotions.update({
-                      deal_id: promotion.deal_id},
-                        {$set: {merchant_id: business[0].business_id}},
-                        function () {
-                          let content = `A new promotion <a href="http://placefulapp.com/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
-                            <p>if you like what you see, go ahead and approve in the admin</p>
-                            Thanks,<br />
-                            Placeful robot`
-                          sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
-                          return reply.redirect('/manage_deals')
-                        })
                     }
+                    let content = `A new promotion <a href="http://placefulapp.com/promotion/${promotion_id}/${promotion.slug}">${promotion.title}</a> has been created!
+                      <p>if you like what you see, go ahead and approve in the admin</p>
+                      Thanks,<br />
+                      Placeful robot`
+                    sendEmail(process.env.ADMIN_EMAIL, 'New promotion', content)
+                    return reply.redirect('/manage_deals')
                   })
                 })
               })
