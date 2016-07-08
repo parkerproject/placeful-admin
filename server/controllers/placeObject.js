@@ -6,7 +6,7 @@ module.exports = function (obj) {
     business_phone: obj.phone,
     business_map: null,
     business_address: obj.merchant_address,
-    business_icon: obj.icon,
+    business_icon: obj.merchant_icon,
     business_locality: obj.merchant_locality,
     loc: obj.loc,
     followers: [],

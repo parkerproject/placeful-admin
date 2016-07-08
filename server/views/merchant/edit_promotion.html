@@ -22,6 +22,10 @@
               <div class="col-sm-12">
                 <form method="post" action="/promotion/edit" id="edit-form" enctype="multipart/form-data">
                   <input type="hidden" value="{{deal.deal_id}}" name="deal_id" />
+                  <input type="hidden" value="{{deal.merchant_address}}" name="merchant_address" />
+                  <input type="hidden" value="{{deal.merchant_icon}}" name="icon" />
+                  <input type="hidden" value="{{deal.merchant_id}}" name="merchant_id" />
+                  <input type="hidden" value="{{deal.endTimeString}}" name="endTimeString" />
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
@@ -56,6 +60,24 @@
                         <span class="btn"><u>Change promo image</u></span>
                       </span>
                     </div>
+                  </div>
+                  <div class="form-group">
+                  <label class="control-label"><strong>Category</strong></label>
+                  <select class="form-control" name="category">
+                    <option {% if deal['merchant_category'] == 'Happy Hour'%} selected {% endif %}>Happy Hour</option>
+                    <option {% if deal['merchant_category'] == 'Lunch'%} selected {% endif %}>Lunch</option>
+                    <option {% if deal['merchant_category'] == 'Dinner'%} selected {% endif %}>Dinner</option>
+                    <option {% if deal['merchant_category'] == 'Brunch'%} selected {% endif %}>Brunch</option>
+                  </select>
+                  </div>
+                  <div class="form-group">
+                  <label class="control-label"><strong>Start time</strong></label>
+                  <small>brunch(11am -3pm), lunch(12:30 - 4pm), dinner(6pm - 11pm)</small>
+                  <input type="text" class="form-control" name="start_time" value="{{ deal.start_time }}">
+                  </div>
+                  <div class="form-group">
+                  <label class="control-label"><strong>End time</strong></label>
+                  <input type="text" class="form-control" name="end_time" value="{{ deal.end_time }}">
                   </div>
                   <div class="form-group">
                    <button class="btn btn-success" type="submit" style="margin-right: 5px;">Update promo</button>

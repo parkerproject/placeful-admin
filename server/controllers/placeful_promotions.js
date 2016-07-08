@@ -41,9 +41,7 @@ module.exports = {
           request.auth.session.clear()
           return reply.redirect('/login')
         }
-
       })
-
     },
     auth: 'session'
   }

@@ -94,10 +94,6 @@ module.exports = function (server) {
     config: controller.merchant_register.register
   }, {
     method: 'GET',
-    path: '/builder',
-    config: controller.builder.index
-  }, {
-    method: 'GET',
     path: '/lab/yelp_phone',
     config: controller.searchYelp.index
   }, {
@@ -116,18 +112,6 @@ module.exports = function (server) {
     method: 'POST',
     path: '/profile',
     config: controller.edit_profile.index
-  }, {
-    method: 'GET',
-    path: '/promotion/{promotion_id}',
-    config: controller.refresh_deals.index
-  }, {
-    method: 'GET',
-    path: '/admin/promotion/{promotion_id}',
-    config: controller.admin_refresh_deals.index
-  }, {
-    method: 'POST',
-    path: '/paid',
-    config: controller.paid.index
   }, {
     method: 'GET',
     path: '/admin/placeful_promotions',
