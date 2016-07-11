@@ -8,7 +8,7 @@ const index = client.initIndex('promotions')
 const async = require('async')
 const _ = require('lodash')
 const schedule = require('node-schedule')
-const sendEmail = require('./send_email')
+const sendEmail = require('./send_email') // email
 
 function end (err) {
   if (err) {
