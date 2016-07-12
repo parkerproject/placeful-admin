@@ -5,7 +5,9 @@ const db = require('mongojs').connect(process.env.DEALSBOX_MONGODB_URL, collecti
 module.exports = {
   deals: {
     handler: function (request, reply) {
-      let queryObj = {}
+      let queryObj = {
+        approved: false
+      }
       if (!request.auth.credentials.role) {
         queryObj.merchant_id = request.auth.credentials.business_id
       }

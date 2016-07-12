@@ -24,8 +24,7 @@ module.exports = {
             return reply.redirect('/payment')
           } else {
             db.promotions.find(queryObj).sort({
-              start_date: 1,
-              approved: false
+              start_date: 1
             }, function (err, deals) {
               if (err) console.log(err)
 
