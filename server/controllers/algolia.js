@@ -17,7 +17,7 @@ function end (err) {
   let content = 'Mongodb<>Algolia import done'
   sendEmail(process.env.DEV_EMAIL, 'Search database refreshed', content)
 }
-let j = schedule.scheduleJob('* * * * *', function () { // 0 14 * * *
+let j = schedule.scheduleJob('0 */12 * * *', function () { // 0 14 * * *
   db.promotions.find({approved: true}, (err, results) => {
     if (err) console.log(err)
     results = results.map((result) => {
