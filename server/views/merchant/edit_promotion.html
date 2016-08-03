@@ -30,7 +30,7 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <h5><strong>Approved</strong></h5>
-                      <select class="form-control" name='approved' disabled="disabled">
+                      <select class="form-control" name='approved'>
                         <option value='true' {% if deal.approved %} selected {% endif %}>True</option>
                         <option value='false' {% if !deal.approved %} selected {% endif %}>False</option>
                       </select>
@@ -39,15 +39,15 @@
                   </div>
                   <div class="form-group">
                   <label class="control-label"><strong>Promo</strong></label>
-                  <input type="text" class="form-control" name="title" value="{{ deal.title}}" disabled="disabled">
+                  <input type="text" class="form-control" name="title" value="{{ deal.title}}">
                   </div>
                   <div class="form-group">
                   <label class="control-label"><strong>Description</strong></label>
-                  <textarea class="form-control" name="description" style="height: 125px;" disabled="disabled">{{deal.description}}</textarea>
+                  <textarea class="form-control" name="description" style="height: 125px;">{{deal.description}}</textarea>
                   </div>
                   <div class="form-group">
                   <label class="control-label"><strong>The Fine Print</strong></label>
-                  <textarea class="form-control" name="fine_print" style="height: 100px;" disabled="disabled">{{deal.fine_print}}</textarea>
+                  <textarea class="form-control" name="fine_print" style="height: 100px;">{{deal.fine_print}}</textarea>
                   </div>
                   <div class="form-group">
                     <div class="left" style="width: 19em;">
@@ -63,7 +63,7 @@
                   </div>
                   <div class="form-group">
                   <label class="control-label"><strong>Category</strong></label>
-                  <select class="form-control" name="category" disabled="disabled">
+                  <select class="form-control" name="category">
                     <option {% if deal['merchant_category'] == 'Happy Hour'%} selected {% endif %}>Happy Hour</option>
                     <option {% if deal['merchant_category'] == 'Lunch'%} selected {% endif %}>Lunch</option>
                     <option {% if deal['merchant_category'] == 'Dinner'%} selected {% endif %}>Dinner</option>
@@ -73,11 +73,11 @@
                   <div class="form-group">
                   <label class="control-label"><strong>Start time</strong></label>
                   <small>brunch(11am -3pm), lunch(12:30 - 4pm), dinner(6pm - 11pm)</small>
-                  <input type="text" class="form-control" name="start_time" value="{{ deal.start_time }}" disabled="disabled">
+                  <input type="text" class="form-control" name="start_time" value="{{ deal.start_time }}">
                   </div>
                   <div class="form-group">
                   <label class="control-label"><strong>End time</strong></label>
-                  <input type="text" class="form-control" name="end_time" value="{{ deal.end_time }}" disabled="disabled">
+                  <input type="text" class="form-control" name="end_time" value="{{ deal.end_time }}">
                   </div>
                   <div class="form-group">
                    <button class="btn btn-success" type="submit" style="margin-right: 5px;">Update promo</button>
